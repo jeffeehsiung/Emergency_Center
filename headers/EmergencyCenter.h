@@ -1,8 +1,6 @@
 #ifndef EMERGENCYCENTER_H
 #define EMERGENCYCENTER_H
 
-#include <string>
-#include <vector>
 #include "Component.h"
 
 class EmergencyCenter {

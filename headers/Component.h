@@ -1,8 +1,12 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include <string>
 #include <list>
+#include <string>
+#include <vector>
+#include <stdio.h>
+#include <stdio.h>
+#include <iostream>
 
 class Component {
 protected:
