@@ -18,7 +18,7 @@ public:
     // Singleton related methods
     static EmergencyCenter* getInstance();
     
-    // Member functions as per the UML diagram
+    // Other methods
     void addComponent(Component* component);
     void printAllSensorsOrderedById();
     void printAllSensorsOrderedByVendor();
