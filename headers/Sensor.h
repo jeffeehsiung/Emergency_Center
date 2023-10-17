@@ -3,19 +3,19 @@
 
 class Sensor: public Component {
 public:
-    virtual string getVendor() const {
+    virtual std::string getVendor() const {
         return vendor;
     }
 
-    virtual string getLocation() const {
+    virtual std::string getLocation() const {
         return location;
     }
 
-    virtual string getFabrication() const {
+    virtual std::string getFabrication() const {
         return fabrication;
     }
 
-    virtual string getSoftwareVersion() const {
+    virtual std::string getSoftwareVersion() const {
         return softwareVersion;
     }
 
@@ -29,9 +29,9 @@ public:
 
 
 protected:
-    string vendor;
-    string location;
-    string fabrication;
-    string softwareVersion;
-    vector<SensorStrategy*> strategies;
+    std::string vendor;
+    std::string location;
+    std::string fabrication;
+    std::string softwareVersion;
+    std::vector<SensorStrategy*> strategies;
 };
