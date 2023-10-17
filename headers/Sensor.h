@@ -1,7 +1,7 @@
 #include <vector>
 #include <string>
-#include SensorStrategy.h
-#include Component.h
+#include "SensorStrategy.h"
+#include "Component.h"
 
 Class Sensor: public Component {
 public:
