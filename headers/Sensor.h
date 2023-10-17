@@ -20,11 +20,11 @@ public:
     }
 
     virtual void addStrategy(SensorStrategy* sensorStrategy){
-        strategies.push_back(sensorStrategy);
+        //strategies.push_back(sensorStrategy);
     }
 
     virtual void removeStrategy(SensorStrategy* sensorStrategy){
-        strategies.erase(std::remove(strategies.begin(), strategies.ends(), sensorStrategy), strategies.end());
+        //strategies.erase(std::remove(strategies.begin(), strategies.ends(), sensorStrategy), strategies.end());
     }
 
 
