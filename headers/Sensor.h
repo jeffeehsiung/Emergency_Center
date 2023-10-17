@@ -25,6 +25,10 @@ public:
         strategies.push_back(sensorStrategy);
     }
 
+    virtual void removeStrategy(SensorStrategy* sensorStrategy){
+        strategies.erase(std::remove(strategies.begin(), strategies.ends(), sensorStrategy), strategies.end());
+    }
+
 
 protected:
     string vendor;
