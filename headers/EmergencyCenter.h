@@ -1,11 +1,11 @@
 #ifndef EMERGENCYCENTER_H
 #define EMERGENCYCENTER_H
 
-#include <memory>
+#include <iostream>
+#include <string>
 #include <vector>
 
-#include "sensor.h"
-
+#include "Sensor.h"
 
 class EmergencyCenter
 {
