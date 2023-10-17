@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include <stdio.h>
-#include <stdio.h>
 #include <iostream>
 
 class Component {
