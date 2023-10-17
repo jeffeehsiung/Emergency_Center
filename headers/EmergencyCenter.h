@@ -3,9 +3,7 @@
 
 #include <string>
 #include <vector>
-
-// Forward declaration of the Component class to use as a pointer.
-class Component;
+#include "Component.h"
 
 class EmergencyCenter {
 private:
@@ -22,7 +20,9 @@ public:
     
     // Member functions as per the UML diagram
     void addComponent(Component* component);
-    void printSensorsOrderedByLocation();
+    void printAllSensorsOrderedById();
+    void printAllSensorsOrderedByVendor();
+    void printAllSensorsOrderedByLocation();
     void activateAllSensors();
     void deactivateAllSensors();
     bool testAllSensors();
