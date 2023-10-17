@@ -3,18 +3,17 @@
 
 #include <string>
 #include <list>
-#include <ctime>
 
 class Component {
 protected:
     std::string id;
     std::string location;
-    time_t activationTimeStart;
-    time_t activationTimeEnd;
+    int activationTimeStart;
+    int activationTimeEnd;
     std::list<std::string> monitorScope;
     bool isActive;
     bool alwaysActive;
-    time_t deactivationTime;
+    int deactivationTime;
 
 public:
     virtual ~Component() {}
@@ -25,9 +24,9 @@ public:
     virtual std::string getLocation() const = 0;
     virtual void setLocation(const std::string& location) = 0;
 
-    virtual time_t getActivationTimeStart() const = 0;
-    virtual time_t getActivationTimeEnd() const = 0;
-    virtual void setActivationTime(time_t start, time_t end) = 0;
+    virtual int getActivationTimeStart() const = 0;
+    virtual int getActivationTimeEnd() const = 0;
+    virtual void setActivationTime(int start, int end) = 0;
 
     virtual std::list<std::string> getMonitorScope() const = 0;
     virtual void setMonitorScope(const std::list<std::string>& scope) = 0;
@@ -39,8 +38,8 @@ public:
     virtual bool getAlwaysActive() const = 0;
     virtual void setAlwaysActive(bool alwaysActiveStatus) = 0;
 
-    virtual time_t getDeactivationTime() const = 0;
-    virtual void setDeactivationTime(time_t deactivation) = 0;
+    virtual int getDeactivationTime() const = 0;
+    virtual void setDeactivationTime(int deactivation) = 0;
 
     virtual void executeStrategy() = 0;
     virtual void updateSoftware() = 0;
