@@ -1,9 +1,7 @@
-#include <vector>
-#include <string>
 #include "SensorStrategy.h"
 #include "Component.h"
 
-Class Sensor: public Component {
+class Sensor: public Component {
 public:
     virtual string getVendor() const {
         return vendor;
