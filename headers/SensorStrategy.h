@@ -10,8 +10,8 @@ using namespace std;
 class SensorStrategy
 {
 public:
-    SensorStrategy();
-    virtual ~SensorStrategy();
+    SensorStrategy(){};
+    virtual ~SensorStrategy(){};
     virtual void executeStrategy() = 0;
 };
 
