@@ -2,7 +2,11 @@
 
 import <iostream>;
 import <string>;
-import <vector>;
+
+
+FireBrigade::FireBrigade()
+{
+}
 
 void FireBrigade::executeStrategy()
 {

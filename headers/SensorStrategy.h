@@ -5,6 +5,8 @@
 #ifndef SENSORSTRATEGY_H
 #define SENSORSTRATEGY_H
 
+using namespace std;
+
 class SensorStrategy
 {
 public:

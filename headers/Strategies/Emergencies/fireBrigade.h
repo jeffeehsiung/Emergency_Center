@@ -5,6 +5,7 @@
 #define FIREBRIGADE_H
 
 #include "EmergencyStrategy.h"
+#include <iostream>
 
 class FireBrigade : public EmergencyStrategy
 {
