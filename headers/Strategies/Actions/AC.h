@@ -8,9 +8,9 @@
 class AC : public ActionStrategy
 {
 public:
-    AC();
-    virtual ~AC();
-    void executeStrategy() override;
+    AC(){};
+    virtual ~AC(){};
+    void executeStrategy() const override;
 };
 
 #endif  // AC_H

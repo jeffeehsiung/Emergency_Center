@@ -4,13 +4,15 @@
 #define ALARMSTRATEGY_H
 
 #include "SensorStrategy.h"
+#include <string>
+using namespace std;
 
 class AlarmStrategy : public SensorStrategy
 {
 public:
     AlarmStrategy(){};
     ~AlarmStrategy(){};
-    virtual void executeStrategy() const = 0;
+    virtual void executeStrategy(string alarm) const = 0;
 };
 
 #endif  // ALARMSTRATEGY_H

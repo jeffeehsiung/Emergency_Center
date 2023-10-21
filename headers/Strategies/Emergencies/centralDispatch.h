@@ -5,6 +5,7 @@
 
 #include "EmergencyStrategy.h"
 
+
 class CentralDispatch : public EmergencyStrategy
 {
 public:

@@ -2,13 +2,13 @@
 #define POLICE_H
 
 #include "EmergencyStrategy.h"
-#include <iostream>
+
 
 class Police : public EmergencyStrategy
 {
 public:
-    Police();
-    virtual ~Police();
+    Police(){};
+    virtual ~Police(){};
     void executeStrategy() const override;
 };
 

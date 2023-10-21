@@ -5,7 +5,7 @@
 #ifndef SENSORSTRATEGY_H
 #define SENSORSTRATEGY_H
 
-using namespace std;
+#include <iostream>
 
 class SensorStrategy
 {
