@@ -9,8 +9,8 @@
 class FireBrigade : public EmergencyStrategy
 {
 public:
-    fireBrigade();
-    virtual ~fireBrigade();
+    FireBrigade();
+    virtual ~FireBrigade();
     void executeStrategy() override;
 };
 
