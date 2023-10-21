@@ -8,8 +8,8 @@
 class NotificationStrategy : public SensorStrategy
 {
 public:
-    NotificationStrategy();
-    ~NotificationStrategy();
+    NotificationStrategy(){};
+    ~NotificationStrategy(){};
     virtual void executeStrategy() const = 0;
 };
 
