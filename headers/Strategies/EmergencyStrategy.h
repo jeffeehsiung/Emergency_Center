@@ -8,8 +8,8 @@
 class EmergencyStrategy : public SensorStrategy
 {
 public:
-    EmergencyStrategy();
-    ~EmergencyStrategy();
+    EmergencyStrategy(){};
+    ~EmergencyStrategy(){};
     virtual void executeStrategy() const = 0;
 };
 

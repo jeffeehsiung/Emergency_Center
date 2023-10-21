@@ -8,8 +8,8 @@
 class CentralDispatch : public EmergencyStrategy
 {
 public:
-    CentralDispatch();
-    virtual ~CentralDispatch();
+    CentralDispatch(){};
+    virtual ~CentralDispatch(){};
     void executeStrategy() override;
 };
 
