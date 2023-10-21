@@ -4,13 +4,15 @@
 #define EMAIL_H
 
 #include "NotificationStrategy.h"
+#include <string>
+using namespace std;
 
 class Email : public NotificationStrategy
 {
 public:
-    Email();
-    virtual ~Email();
-    void executeStrategy() override;
+    Email(){};
+    virtual ~Email(){};
+    void executeStrategy(string receiver) const override;
 };
 
 #endif  // EMAIL_H

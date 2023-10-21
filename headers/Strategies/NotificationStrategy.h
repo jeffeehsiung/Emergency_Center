@@ -4,13 +4,15 @@
 #define NOTIFICATIONSTRATEGY_H
 
 #include "SensorStrategy.h"
+#include <string>
+using namespace std;
 
 class NotificationStrategy : public SensorStrategy
 {
 public:
     NotificationStrategy(){};
     ~NotificationStrategy(){};
-    virtual void executeStrategy() const = 0;
+    virtual void executeStrategy(string receiver) const = 0;
 };
 
 #endif  // NOTIFICATIONSTRATEGY_H

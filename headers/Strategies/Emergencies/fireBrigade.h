@@ -6,12 +6,13 @@
 
 #include "EmergencyStrategy.h"
 
+
 class FireBrigade : public EmergencyStrategy
 {
 public:
     FireBrigade(){};
     virtual ~FireBrigade(){};
-    void executeStrategy() override;
+    void executeStrategy() const override;
 };
 
 #endif  // FIREBRIGADE_H

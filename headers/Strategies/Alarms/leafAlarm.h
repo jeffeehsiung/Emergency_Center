@@ -5,13 +5,15 @@
 #define LEAFALARM_H
 
 #include "AlarmStrategy.h"
+#include <string>
+using namespace std;
 
 class LeafAlarm : public AlarmStrategy
 {
 public:
-    LeafAlarm();
-    virtual ~LeafAlarm();
-    void executeStrategy() override;
+    LeafAlarm(){};
+    virtual ~LeafAlarm(){};
+    void executeStrategy(string leafAlarm) override;
 };
 
 #endif  // LEAFALARM_H

@@ -5,6 +5,8 @@
 #ifndef SENSORSTRATEGY_H
 #define SENSORSTRATEGY_H
 
+#include <iostream>
+
 class SensorStrategy
 {
 public:

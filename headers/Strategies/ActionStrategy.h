@@ -4,6 +4,8 @@
 #define ACTIONSTRATEGY_H
 
 #include "SensorStrategy.h"
+#include <iostream>
+using namespace std;
 
 class ActionStrategy : public SensorStrategy
 {

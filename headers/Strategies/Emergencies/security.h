@@ -5,12 +5,13 @@
 
 #include "EmergencyStrategy.h"
 
+
 class Security : public EmergencyStrategy
 {
 public:
-    Security();
-    virtual ~Security();
-    void executeStrategy() override;
+    Security(){};
+    virtual ~Security(){};
+    void executeStrategy() const override;
 };
 
 #endif  // SECURITY_H

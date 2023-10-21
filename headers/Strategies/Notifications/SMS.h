@@ -5,13 +5,15 @@
 #define SMS_H
 
 #include "NotificationStrategy.h"
+#include <string>
+using namespace std;
 
 class SMS : public NotificationStrategy
 {
 public:
-    SMS();
-    virtual ~SMS();
-    void executeStrategy() override;
+    SMS(){};
+    virtual ~SMS(){};
+    void executeStrategy(string receiver) const override;
 };
 
 #endif  // SMS_H

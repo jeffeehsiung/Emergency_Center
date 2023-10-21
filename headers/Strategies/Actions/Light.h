@@ -8,9 +8,9 @@
 class Light : public ActionStrategy
 {
 public:
-    Light();
-    virtual ~Light();
-    void executeStrategy() override;
+    Light(){};
+    virtual ~Light(){};
+    void executeStrategy() const override;
 };
 
 #endif  // LIGHT_H

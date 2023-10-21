@@ -1,9 +1,7 @@
-#include "fireBrigade.h"
+#include "FireBrigade.h"
 
-import <iostream>;
-import <string>;
-import <vector>;
-
-void FireBrigade::executeStrategy()
+void FireBrigade::executeStrategy() const
 {
+    // call the fire brigade
+    std::cout << "Calling the fire brigade.\n" << std::endl;
 }
