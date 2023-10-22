@@ -5,13 +5,12 @@
 
 #include "EmergencyStrategy.h"
 
-
 class CentralDispatch : public EmergencyStrategy
 {
 public:
     CentralDispatch(){};
-    virtual ~CentralDispatch(){};
-    void executeStrategy() override;
+    ~CentralDispatch(){};
+    void executeStrategy() const override;
 };
 
 #endif  // CENTRALDISPATCH_H

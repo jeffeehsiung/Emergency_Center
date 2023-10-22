@@ -7,12 +7,11 @@
 #include "EmergencyStrategy.h"
 #include <iostream>
 
-
 class FireBrigade : public EmergencyStrategy
 {
 public:
     FireBrigade(){};
-    virtual ~FireBrigade(){};
+    ~FireBrigade(){};
     void executeStrategy() const override;
 };
 

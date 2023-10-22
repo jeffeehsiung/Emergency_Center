@@ -4,15 +4,13 @@
 #define ALARMSTRATEGY_H
 
 #include "SensorStrategy.h"
-#include <string>
-using namespace std;
+#include <iostream>
 
 class AlarmStrategy : public SensorStrategy
 {
 public:
-    AlarmStrategy(){};
-    ~AlarmStrategy(){};
-    virtual void executeStrategy(string alarm) const = 0;
+    virtual ~AlarmStrategy() = default; // the derived class can rely on the base class destructor.
+    virtual void executeStrategy() const = 0;
 };
 
 #endif  // ALARMSTRATEGY_H

@@ -6,14 +6,15 @@
 
 #include "NotificationStrategy.h"
 #include <string>
-using namespace std;
 
 class SMS : public NotificationStrategy
 {
 public:
-    SMS(){};
-    virtual ~SMS(){};
-    void executeStrategy(string receiver) const override;
+    SMS(std::string& receipientName, std::string& receipientNumber, std::string& message): receipientName(receipientName), receipientNumber(receipientNumber), message(message){};
+    void executeStrategy() const override;
+private:
+    std::string receipientName;
+    std::string receipientNumber;
+    std::string message;
 };
-
 #endif  // SMS_H

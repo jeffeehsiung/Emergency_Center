@@ -5,13 +5,11 @@
 
 #include "SensorStrategy.h"
 #include <iostream>
-using namespace std;
 
 class ActionStrategy : public SensorStrategy
 {
 public:
-    ActionStrategy(){};
-    ~ActionStrategy(){};
+    virtual ~ActionStrategy() = default; // the derived class can rely on the base class destructor.
     virtual void executeStrategy() const = 0;
 };
 

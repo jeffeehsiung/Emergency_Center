@@ -1,6 +1,7 @@
 #include "GroupAlarm.h"
+#include <iostream>
 
-void GroupAlarm::executeStrategy(string groupAlarm)
+void GroupAlarm::executeStrategy() const
 {
-    std::cout << "activating and sound the group alarm of " << groupAlarm << "\n" << std::endl;
+    std::cout << "activating and sound the " << groupAlarm << " alarm" << std::endl;
 }

@@ -19,15 +19,16 @@ EXEC = $(basename $(SRCS))$
 all: $(EXEC)
 
 $(EXEC): $(SRCS) $(HDRS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+    $(CXX) $(CXXFLAGS) -o $@ $^
 
 # Build main.cpp
 main: main.cpp
-	$(CXX) $(CXXFLAGS) -o $@ $^
+    $(CXX) $(CXXFLAGS) -o $@ $^
 
 run: $(EXEC)
-	./$(EXEC)
+    ./$(EXEC)
 
 # Cleanup
 clean:
-	rm -f $(EXEC) *.o *~
+    rm -f $(EXEC) *.o *~
+

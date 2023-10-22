@@ -9,7 +9,7 @@ class Light : public ActionStrategy
 {
 public:
     Light(){};
-    virtual ~Light(){};
+    ~Light(){};
     void executeStrategy() const override;
 };
 

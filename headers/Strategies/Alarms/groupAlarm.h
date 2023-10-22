@@ -4,15 +4,15 @@
 #define GROUPALARM_H
 
 #include "AlarmStrategy.h"
-#include <string>
-using namespace std;
 
 class GroupAlarm : public AlarmStrategy
 {
+private:
+    std::string groupAlarm;
 public:
-    GroupAlarm(){};
-    virtual ~GroupAlarm(){};
-    void executeStrategy(string groupAlarm) override;
+    //groupAlarm constructor to specify the name of the group alarm
+    GroupAlarm(std::string& groupAlarm): groupAlarm(groupAlarm){};
+    void executeStrategy() const override;
 };
 
 #endif  // GROUPALARM_H
