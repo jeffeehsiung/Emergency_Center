@@ -10,7 +10,7 @@ class Light : public ActionStrategy
 public:
     Light(){};
     ~Light(){};
-    void executeStrategy() const override;
+    virtual void executeStrategy() const override;
 };
 
 #endif  // LIGHT_H

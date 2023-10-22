@@ -11,7 +11,7 @@ class SMS : public NotificationStrategy
 {
 public:
     SMS(std::string& receipientName, std::string& receipientNumber, std::string& message): receipientName(receipientName), receipientNumber(receipientNumber), message(message){};
-    void executeStrategy() const override;
+    virtual void executeStrategy() const override;
 private:
     std::string receipientName;
     std::string receipientNumber;

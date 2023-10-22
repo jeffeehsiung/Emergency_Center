@@ -12,7 +12,7 @@ class FireBrigade : public EmergencyStrategy
 public:
     FireBrigade(){};
     ~FireBrigade(){};
-    void executeStrategy() const override;
+    virtual void executeStrategy() const override;
 };
 
 #endif  // FIREBRIGADE_H

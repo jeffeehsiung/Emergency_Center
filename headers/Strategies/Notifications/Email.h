@@ -10,7 +10,7 @@ class Email : public NotificationStrategy
 {
 public:
     Email(std::string& receipientName, std::string& receipientEmail, std::string& message): receipientName(receipientName), receipientEmail(receipientEmail), message(message){};
-    void executeStrategy() const override;
+    virtual void executeStrategy() const override;
 private:
     std::string receipientName;
     std::string receipientEmail;

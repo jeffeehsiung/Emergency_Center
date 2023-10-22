@@ -11,7 +11,7 @@ class Security : public EmergencyStrategy
 public:
     Security(){};
     ~Security(){};
-    void executeStrategy() const override;
+    virtual void executeStrategy() const override;
 };
 
 #endif  // SECURITY_H
