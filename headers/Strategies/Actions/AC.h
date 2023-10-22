@@ -10,7 +10,7 @@ class AC : public ActionStrategy
 public:
     AC(){};
     ~AC(){};
-    void executeStrategy() const override;
+    virtual void executeStrategy() const override;
 };
 
 #endif  // AC_H
