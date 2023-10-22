@@ -1,6 +1,7 @@
 #include "Email.h"
+#include <iostream>
 
-void Email::executeStrategy(string receiver) const
+void Email::executeStrategy() const
 {
-    std::cout << "Email sent to " << receiver << "\n" << std::endl;
+    std::cout << "Email sent to " << receipientName << " at " << receipientEmail << ": " << message << std::endl;
 }

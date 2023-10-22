@@ -1,6 +1,7 @@
 #include "SMS.h"
+#include <iostream>
 
-void SMS::executeStrategy(string receiver) const
+void SMS::executeStrategy() const
 {
-    std::cout << "Sending SMS to " << receiver << "\n" << std::endl;
+    std::cout << "SMS sent to " << receipientName << " at " << receipientNumber << ": " << message << std::endl;
 }

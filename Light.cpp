@@ -1,4 +1,5 @@
 #include "Light.h"
+#include <iostream>
 
 void Light::executeStrategy() const
 {
