@@ -1,4 +1,5 @@
 #include "FireBrigade.h"
+#include <iostream>
 
 void FireBrigade::executeStrategy() const
 {

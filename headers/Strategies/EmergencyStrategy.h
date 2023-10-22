@@ -4,12 +4,12 @@
 #define EMERGENCYSTRATEGY_H
 
 #include "SensorStrategy.h"
+#include <iostream>
 
 class EmergencyStrategy : public SensorStrategy
 {
 public:
-    EmergencyStrategy(){};
-    ~EmergencyStrategy(){};
+    virtual ~EmergencyStrategy() = default; // the derived class can rely on the base class destructor.
     virtual void executeStrategy() const = 0;
 };
 

@@ -3,12 +3,11 @@
 
 #include "EmergencyStrategy.h"
 
-
 class Police : public EmergencyStrategy
 {
 public:
     Police(){};
-    virtual ~Police(){};
+    ~Police(){};
     void executeStrategy() const override;
 };
 

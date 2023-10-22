@@ -5,13 +5,15 @@
 #ifndef SENSORSTRATEGY_H
 #define SENSORSTRATEGY_H
 
+// Interface is an abstract class with only pure virtual functions.
+// the functions are virtual and set to 0, which means they have no implementation.
+// the functions should be implemented in the derived classes.
 #include <iostream>
 
 class SensorStrategy
 {
 public:
-    SensorStrategy(){};
-    virtual ~SensorStrategy(){};
+    virtual ~SensorStrategy() = default; // the derived class can rely on the base class destructor.
     virtual void executeStrategy() = 0;
 };
 

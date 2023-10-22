@@ -1,4 +1,5 @@
 #include "AC.h"
+#include <iostream>
 
 void AC::executeStrategy() const
 {

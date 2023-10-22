@@ -1,4 +1,5 @@
 #include "Sprinkler.h"
+#include <iostream>
 
 void Sprinkler::executeStrategy() const
 {

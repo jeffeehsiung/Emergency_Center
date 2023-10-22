@@ -1,4 +1,5 @@
 #include "Security.h"
+#include <iostream>
 
 void Security::executeStrategy() const
 {

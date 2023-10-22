@@ -1,6 +1,7 @@
 #include "LeafAlarm.h"
+#include <iostream>
 
-void LeafAlarm::executeStrategy(string leafAlarm)
+void LeafAlarm::executeStrategy() const
 {
-    std::cout << "activating and sound the indivudal alarm of " << leafAlarm << "\n" << std::endl;
+    std::cout << "activating and sound the " << leafAlarm << " alarm" << std::endl;   
 }
