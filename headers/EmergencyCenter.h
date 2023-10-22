@@ -24,9 +24,9 @@ public:
     void activateAllSensors();
     void deactivateAllSensors();
     bool testAllSensors();
-    void activateComponent();
-    void deactivateComponent();
-    void testComponent();
+    void activateComponent(Component* component);
+    void deactivateComponent(Component* component);
+    bool testComponent(Component* component);
     void updateAllSoftware();
 };
 
