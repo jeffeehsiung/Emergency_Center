@@ -9,3 +9,5 @@ Thumbs.db
 
 # ignore compiled code-specific files, such as .o files.
 *.o
+
+/.vscode
