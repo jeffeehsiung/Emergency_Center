@@ -55,6 +55,18 @@ std::ostream& operator<<(std::ostream& out, const EmergencyCenter& center) {
     return out;
 }
 
+// Overloaded ++ operator for Component
+Component& Component::operator++() {
+    this->setActive();
+    return *this;
+}
+
+// Overloaded -- operator for Component
+Component& Component::operator--() {
+    this->setNotActive();
+    return *this;
+}
+
 // Overloaded ++ operator for EmergencyCenter
 EmergencyCenter& EmergencyCenter::operator++() {
     Component* newComp = nullptr;  // Logic to add a component if necessary
@@ -88,12 +100,12 @@ void EmergencyCenter::printAllComponents() {
 
 void EmergencyCenter::activateComponent(Component* component) {
     // Need logic to activate the component
-    component->setActive();
+    ++(*component);
 }
 
 void EmergencyCenter::deactivateComponent(Component* component) {
     // Need logic to deactivate the component
-    component->setNotActive();
+    --(*component);
 }
 
 bool EmergencyCenter::testComponent(Component* component) {

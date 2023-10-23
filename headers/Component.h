@@ -53,6 +53,8 @@ public:
     virtual void updateSoftware() = 0;
 
     friend std::ostream& operator<<(std::ostream& out, const Component& component);
+    Component& operator++();
+    Component& operator--();
 
 };
 
