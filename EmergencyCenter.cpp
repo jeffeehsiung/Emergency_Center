@@ -33,7 +33,7 @@ std::ostream& operator<<(std::ostream& out, const std::list<std::string>& list) 
     return out;
 }
 
-// Overloaded << operator for Component's monitor scope
+// Overloaded << operator for Component
 std::ostream& operator<<(std::ostream& out, const Component& component) {
     // Print component details using its getter methods
     out << "ID: " << component.getId() << "\n"
