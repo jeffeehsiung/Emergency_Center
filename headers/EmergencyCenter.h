@@ -18,16 +18,25 @@ public:
     
     // Other methods
     void addComponent(Component* component);
-    void printAllSensorsOrderedById();
-    void printAllSensorsOrderedByVendor();
-    void printAllSensorsOrderedByLocation();
-    void activateAllSensors();
-    void deactivateAllSensors();
-    bool testAllSensors();
+    void removeComponent(Component* component);
     void activateComponent(Component* component);
     void deactivateComponent(Component* component);
     bool testComponent(Component* component);
-    void updateAllSoftware();
+
+    void printAllComponents();
+    void activateAllComponents();
+    void deactivateAllComponents();
+    bool testAllComponents();
+    void updateAllSoftwares();
+
+    // Overloading for printing all components
+    friend std::ostream& operator<<(std::ostream& out, const EmergencyCenter& center);
+
+    // Overloading for adding a component
+    EmergencyCenter& operator++(); 
+
+    // Overloading for removing a component
+    EmergencyCenter& operator--();
 };
 
 #endif // EMERGENCYCENTER_H

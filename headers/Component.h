@@ -51,6 +51,9 @@ public:
 
     virtual void executeStrategy() = 0;
     virtual void updateSoftware() = 0;
+
+    friend std::ostream& operator<<(std::ostream& out, const Component& component);
+
 };
 
 #endif // COMPONENT_H
