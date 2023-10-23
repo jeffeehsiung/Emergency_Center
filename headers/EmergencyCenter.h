@@ -19,8 +19,6 @@ public:
     // Other methods
     void addComponent(Component* component);
     void removeComponent(Component* component);
-    void activateComponent(Component* component);
-    void deactivateComponent(Component* component);
     bool testComponent(Component* component);
 
     void printAllComponents();
@@ -31,12 +29,6 @@ public:
 
     // Overloading for printing all components
     friend std::ostream& operator<<(std::ostream& out, const EmergencyCenter& center);
-
-    // Overloading for adding a component
-    EmergencyCenter& operator++(); 
-
-    // Overloading for removing a component
-    EmergencyCenter& operator--();
 };
 
 #endif // EMERGENCYCENTER_H

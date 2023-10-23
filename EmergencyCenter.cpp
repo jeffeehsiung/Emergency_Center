@@ -8,10 +8,10 @@ EmergencyCenter::EmergencyCenter() {
 }
 
 EmergencyCenter::~EmergencyCenter() {
-    // Use overloaded -- operator to destruct components
-    while (!components.empty()) {
-        --(*this);
+    for (Component* component : components) {
+        delete component;
     }
+    components.clear();
 }
 
 // Singleton instance getter
@@ -67,45 +67,20 @@ Component& Component::operator--() {
     return *this;
 }
 
-// Overloaded ++ operator for EmergencyCenter
-EmergencyCenter& EmergencyCenter::operator++() {
-    Component* newComp = nullptr;  // Logic to add a component if necessary
-    components.push_back(newComp);
-    return *this;
-}
-
-// Overloaded -- operator for EmergencyCenter
-EmergencyCenter& EmergencyCenter::operator--() {
-    if (!components.empty()) {
-        delete components.back();
-        components.pop_back();
-    }
-    return *this;
-}
-
 void EmergencyCenter::addComponent(Component* component) {
-    ++(*this);
+    components.push_back(component);
 }
 
 void EmergencyCenter::removeComponent(Component* component) {
-    auto it = std::remove(components.begin(), components.end(), component);
+    auto it = std::find(components.begin(), components.end(), component);
     if (it != components.end()) {
-        --(*this);
+        delete *it;                // Release the memory for the component
+        components.erase(it);      // Remove the pointer from the list
     }
 }
 
 void EmergencyCenter::printAllComponents() {
     std::cout << *this;
-}
-
-void EmergencyCenter::activateComponent(Component* component) {
-    // Need logic to activate the component
-    ++(*component);
-}
-
-void EmergencyCenter::deactivateComponent(Component* component) {
-    // Need logic to deactivate the component
-    --(*component);
 }
 
 bool EmergencyCenter::testComponent(Component* component) {
@@ -115,13 +90,13 @@ bool EmergencyCenter::testComponent(Component* component) {
 
 void EmergencyCenter::activateAllComponents() {
     for (auto& comp : components) {
-        activateComponent(comp);
+        ++(*comp);
     }
 }
 
 void EmergencyCenter::deactivateAllComponents() {
     for (auto& comp : components) {
-        deactivateComponent(comp);
+        --(*comp);
     }
 }
 
