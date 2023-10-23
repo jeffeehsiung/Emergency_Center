@@ -27,7 +27,7 @@ public:
     bool testAllComponents();
     void updateAllSoftwares();
 
-    // Overloading for printing all components
+    // Operator overloading methods
     friend std::ostream& operator<<(std::ostream& out, const EmergencyCenter& center);
 };
 

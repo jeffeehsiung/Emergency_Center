@@ -52,6 +52,7 @@ public:
     virtual void executeStrategy() = 0;
     virtual void updateSoftware() = 0;
 
+    // Operator overloading methods
     friend std::ostream& operator<<(std::ostream& out, const Component& component);
     Component& operator++();
     Component& operator--();
