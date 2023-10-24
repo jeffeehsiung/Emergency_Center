@@ -1,4 +1,4 @@
-#include "Sprinkler.h"
+#include "headers/Strategies/Actions/Sprinkler.h"
 #include <iostream>
 
 void Sprinkler::executeStrategy() const

@@ -8,6 +8,7 @@
 #include <iostream>
 #include <algorithm>
 #include <memory>
+#include "headers/SensorStrategy.h"
 
 class Component {
 protected:
@@ -21,8 +22,16 @@ protected:
     bool alwaysActive;
     int deactivationTime;
     int softwareVersion;
+    // // vector list of sensor strategies
+    // std::vector<std::shared_ptr<SensorStrategy>> strategies;
 
 public:
+    // constructor
+    Component() {}
+    Component(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion)
+        : id{id}, location{location}, vendor{vendor}, activationTimeStart{activationTimeStart}, activationTimeEnd{activationTimeEnd}, monitorScope{monitorScope}, isActive{isActive}, alwaysActive{alwaysActive}, deactivationTime{deactivationTime}, softwareVersion{softwareVersion} {
+        std::cout << "Component constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd << ", " << monitorScope << ", " << isActive << ", " << alwaysActive << ", " << deactivationTime << ", " << softwareVersion << std::endl;
+    }
     virtual ~Component() {}
 
     // make the getId method constant
@@ -94,7 +103,9 @@ public:
     virtual int getSoftwareVersion() const{
         return softwareVersion;
     }
-    virtual void executeStrategy() = 0;
+
+    // to be implemented by derived classes
+    virtual void executeStrategy() const = 0;
 
     // Operator overloading methods
     friend std::ostream& operator<<(std::ostream& COUT, const std::list<std::string>& list) {

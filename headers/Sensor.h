@@ -7,7 +7,8 @@ class Sensor: public Component {
         std::string location;
         time_t fabricationDate;
         int softwareVersion;
-        std::vector<SensorStrategy*> strategies;
+        std::vector<std::shared_ptr<SensorStrategy>> strategies;
+
     public:
         Sensor(std::string vn, std::string lo, time_t fd, int sv);
 
@@ -19,7 +20,10 @@ class Sensor: public Component {
 
         int getSoftwareVersion() const{return softwareVersion};
 
-        virtual void addStrategy(SensorStrategy* sensorStrategy);
+        void addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy);
 
-        virtual void removeStrategy(SensorStrategy* sensorStrategy);
+        void removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy); 
+
+        // override the executeStrategy method from Component
+        virtual void executeStrategy() const override;
 };

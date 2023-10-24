@@ -3,7 +3,7 @@
 #ifndef ACTIONSTRATEGY_H
 #define ACTIONSTRATEGY_H
 
-#include "SensorStrategy.h"
+#include "headers/SensorStrategy.h"
 #include <iostream>
 
 class ActionStrategy : public SensorStrategy

@@ -4,7 +4,7 @@
 #ifndef LEAFALARM_H
 #define LEAFALARM_H
 
-#include "AlarmStrategy.h"
+#include "headers/AlarmStrategy.h"
 #include <string>
 
 class LeafAlarm : public AlarmStrategy

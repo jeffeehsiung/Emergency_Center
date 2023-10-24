@@ -1,4 +1,4 @@
-#include "SensorGroup.h"
+#include "headers/SensorGroup.h"
 
 
 void SensorGroup::addSensor(Component& component)

@@ -4,7 +4,7 @@
 #ifndef FIREBRIGADE_H
 #define FIREBRIGADE_H
 
-#include "EmergencyStrategy.h"
+#include "headers/EmergencyStrategy.h"
 #include <iostream>
 
 class FireBrigade : public EmergencyStrategy

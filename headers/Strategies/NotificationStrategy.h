@@ -3,7 +3,7 @@
 #ifndef NOTIFICATIONSTRATEGY_H
 #define NOTIFICATIONSTRATEGY_H
 
-#include "SensorStrategy.h"
+#include "headers/SensorStrategy.h"
 #include <iostream>
 
 class NotificationStrategy : public SensorStrategy

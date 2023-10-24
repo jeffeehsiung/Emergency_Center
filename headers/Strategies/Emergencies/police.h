@@ -1,7 +1,7 @@
 #ifndef POLICE_H
 #define POLICE_H
 
-#include "EmergencyStrategy.h"
+#include "headers/EmergencyStrategy.h"
 
 class Police : public EmergencyStrategy
 {

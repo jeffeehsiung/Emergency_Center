@@ -1,4 +1,4 @@
-#include "Light.h"
+#include "headers/Strategies/Actions/Light.h"
 #include <iostream>
 
 void Light::executeStrategy() const

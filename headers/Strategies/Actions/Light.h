@@ -3,7 +3,7 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 
-#include "ActionStrategy.h"
+#include "headers/ActionStrategy.h"
 
 class Light : public ActionStrategy
 {
