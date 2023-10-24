@@ -43,7 +43,7 @@ std::ostream& operator<<(std::ostream& COUT, const Component& component) {
         << "Monitor scope: " << component.getMonitorScope() << "\n"
         << "Is active? " << component.getIsActive() << "\n"
         << "Is always active? " << component.getAlwaysActive() << "\n"
-        << "Deactivation time: " << component.getDeactivationTime() << "\n";
+        << "Deactivation time: " << component.getDeactivationTime() << "\n\n\n";
     return COUT;
 }
 
