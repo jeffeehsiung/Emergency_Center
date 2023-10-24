@@ -1,5 +1,4 @@
 #include "headers/Sensor.h"
-#include "Sensor.h"
 
 
 Sensor::Sensor(std::string vn, std::string lo, time_t fd, int sv)
@@ -9,12 +8,24 @@ Sensor::Sensor(std::string vn, std::string lo, time_t fd, int sv)
 }
 void Sensor::addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy)
 {
+    strategies.push_back(sensorStrategy);
 }
 void Sensor::removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy)
 {
+    // Find and remove the specified strategy
+    for (auto it = strategies.begin(); it != strategies.end(); ++it) {
+        if (*it == sensorStrategy) {
+            strategies.erase(it);
+            break;  // Assuming there are no duplicate strategies
+        }
+    }
 }
-c void Sensor::executeStrategy() const
+void Sensor::executeStrategy() const
 {
+    // Execute all strategies
+    for (auto strategy : strategies) {
+        strategy->execute();
+    }
 }
 onst std::string getVendor() const {
     return vendor;
@@ -30,14 +41,6 @@ std::string getFabrication() {
 
 int getSoftwareVersion() {
     return softwareVersion;
-};
-
-void addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy) {
-    strategies.push_back(sensorStrategy);
-};
-
-void removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy) {
-    strategies.remove(sensorStrategy);
 };
 
 // void addStrategy(SensorStrategy* sensorStrategy) {
