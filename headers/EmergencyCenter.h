@@ -5,7 +5,7 @@
 
 class EmergencyCenter {
 private:
-    static EmergencyCenter* instance; // Singleton instance
+    static std::unique_ptr<EmergencyCenter> instance; // Singleton instance
     std::list<std::unique_ptr<Component>> components;
 
 public:
@@ -17,9 +17,9 @@ public:
     static EmergencyCenter* getInstance();
     
     // Other methods
-    void EmergencyCenter::addComponent(std::unique_ptr<Component> component);
-    void EmergencyCenter::removeComponent(Component* component);
-    bool EmergencyCenter::testComponent(Component* component);
+    void addComponent(std::unique_ptr<Component> component);
+    void removeComponent(Component* component);
+    bool testComponent(Component* component);
 
     void printAllComponents();
     void activateAllComponents();

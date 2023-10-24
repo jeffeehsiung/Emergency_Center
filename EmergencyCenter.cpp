@@ -1,7 +1,7 @@
 #include "headers/EmergencyCenter.h"
 
 // Initialize the singleton instance as null
-EmergencyCenter* EmergencyCenter::instance = nullptr;
+std::unique_ptr<EmergencyCenter> EmergencyCenter::instance = nullptr;
 
 EmergencyCenter::EmergencyCenter() {
     // Initialization (if needed)
@@ -12,9 +12,9 @@ EmergencyCenter::~EmergencyCenter() = default;
 // Singleton instance getter
 EmergencyCenter* EmergencyCenter::getInstance() {
     if (!instance) {
-        instance = new EmergencyCenter();
+        instance = std::make_unique<EmergencyCenter>();
     }
-    return instance;
+    return instance.get();
 }
 
 // Overloaded << operator for EmergencyCenter
@@ -59,7 +59,7 @@ void EmergencyCenter::deactivateAllComponents() {
 }
 
 bool EmergencyCenter::testAllComponents() {
-    return std::all_of(components.begin(), components.end(), [](Component* comp) { return comp->getIsActive(); });
+    return std::all_of(components.begin(), components.end(), [](const std::unique_ptr<Component>& comp) { return comp->getIsActive(); });
 }
 
 void EmergencyCenter::updateAllSoftwares() {
