@@ -1,13 +1,6 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include <list>
-#include <string>
-#include <vector>
-#include <stdio.h>
-#include <iostream>
-#include <algorithm>
-#include <memory>
 #include "headers/SensorStrategy.h"
 
 class Component {
