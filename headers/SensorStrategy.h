@@ -9,6 +9,13 @@
 // the functions are virtual and set to 0, which means they have no implementation.
 // the functions should be implemented in the derived classes.
 #include <iostream>
+#include <list>
+#include <string>
+#include <vector>
+#include <stdio.h>
+#include <iostream>
+#include <algorithm>
+#include <memory>
 
 class SensorStrategy
 {
