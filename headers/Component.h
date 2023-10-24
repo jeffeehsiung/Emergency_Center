@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <algorithm>
+#include <memory>
 
 class Component {
 protected:
@@ -53,9 +54,38 @@ public:
     virtual void updateSoftware() = 0;
 
     // Operator overloading methods
-    friend std::ostream& operator<<(std::ostream& COUT, const Component& component);
-    Component& operator++();
-    Component& operator--();
+    friend std::ostream& operator<<(std::ostream& COUT, const std::list<std::string>& list) {
+        COUT << "[";
+        for (const auto& item : list) {
+            COUT << item;
+            if (&item != &list.back()) COUT << ", ";
+        }
+        COUT << "]";
+        return COUT;
+    }
+
+    friend std::ostream& operator<<(std::ostream& COUT, const Component& component) {
+        // Print component details using its getter methods
+        COUT << "ID: " << component.getId() << "\n"
+            << "Location: " << component.getLocation() << "\n"
+            << "Vendor: " << component.getVendor() << "\n"
+            << "Activation time: " << component.getActivationTimeStart() << " to " << component.getActivationTimeEnd() << "\n"
+            << "Monitor scope: " << component.getMonitorScope() << "\n"
+            << "Is active? " << component.getIsActive() << "\n"
+            << "Is always active? " << component.getAlwaysActive() << "\n"
+            << "Deactivation time: " << component.getDeactivationTime() << "\n\n\n";
+        return COUT;
+    }
+
+    Component& operator++() {
+        this->setActive();
+        return *this;
+    }
+
+    Component& operator--() {
+        this->setNotActive();
+    return *this;
+    }
 
 };
 

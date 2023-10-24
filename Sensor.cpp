@@ -1,5 +1,5 @@
-#include "/headers/Sensor.h"
-#include "/headers/SensorStrategy.h"
+#include "headers/Sensor.h"
+#include "headers/SensorStrategy.h"
 
 
 Sensor::Sensor(std::string vn, std::string lo, time_t fd, int sv)

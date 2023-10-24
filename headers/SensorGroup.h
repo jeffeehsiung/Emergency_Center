@@ -1,9 +1,9 @@
-#include "Component.h"
+#include "headers/Component.h"
 
 class SensorGroup: public Component{
-    protected:
+protected:
     std::vector<Component*> components;
-    public:
+public:
     virtual void addStrategy(Component* component);
     virtual void removeStrategy(Component* component);
 };
