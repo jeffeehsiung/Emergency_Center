@@ -1,4 +1,4 @@
-#include "Component.h"
+#include "headers/Component.h"
 #include <memory> // for std::shared_ptr
 
 class SensorGroup: public Component{
