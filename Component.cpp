@@ -1,9 +1,10 @@
 #include "headers/Component.h"
 
 // constructor
-Component::Component(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion)
-    : id{id}, location{location}, vendor{vendor}, activationTimeStart{activationTimeStart}, activationTimeEnd{activationTimeEnd}, monitorScope{monitorScope}, isActive{isActive}, alwaysActive{alwaysActive}, deactivationTime{deactivationTime}, softwareVersion{softwareVersion} {
-    std::cout << "Component constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd << ", " << monitorScope << ", " << isActive << ", " << alwaysActive << ", " << deactivationTime << ", " << softwareVersion << std::endl;
+Component::Component(std::string id, std::string location, std::string vendor, int activationTimeStart, 
+    int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion)
+    : id{id}, location{location}, vendor{vendor}, activationTimeStart{activationTimeStart}, activationTimeEnd{activationTimeEnd}, monitorScope{monitorScope}, 
+    isActive{isActive}, alwaysActive{alwaysActive}, deactivationTime{deactivationTime}, softwareVersion{softwareVersion} {
 }
 
 Component::~Component() {}

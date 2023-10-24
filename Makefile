@@ -2,33 +2,32 @@
 CXX = g++
 
 # Flags for compiler
-CXXFLAGS = -Wall -g -std=c++20 
-# -I/home/rcw/cpp_tests/AdvancedProgrammingTechniques
+CXXFLAGS = -Wall -std=c++20 -I/home/rcw/works/team-a4-ec/
+
+# Executable name
+EXEC = my_program
+
+# Object files
+OBJS = EmergencyCenter.o Component.o
 
 # Header files
-HDRS = $(wildcard *.h)
-
-# Source files (all .cpp files in the current directory)
-SRCS = $(wildcard *.cpp)
-
-# Output Executable name
-EXEC = $(basename $(SRCS))$
+HDRS = headers/EmergencyCenter.h headers/Component.h headers/SensorStrategy.h
 
 # Build rules
-
 all: $(EXEC)
 
-$(EXEC): $(SRCS) $(HDRS)
-    $(CXX) $(CXXFLAGS) -o $@ $^
+$(EXEC): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJS)
 
-# Build main.cpp
-main: main.cpp
-    $(CXX) $(CXXFLAGS) -o $@ $^
+EmergencyCenter.o: EmergencyCenter.cpp $(HDRS)
+	$(CXX) $(CXXFLAGS) -c EmergencyCenter.cpp
+
+Component.o: Component.cpp $(HDRS)
+	$(CXX) $(CXXFLAGS) -c Component.cpp
 
 run: $(EXEC)
-    ./$(EXEC)
+	./$(EXEC)
 
 # Cleanup
 clean:
-    rm -f $(EXEC) *.o *~
-
+	rm -f $(EXEC) $(OBJS)
