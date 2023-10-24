@@ -1,30 +1,41 @@
 #include "headers/Sensor.h"
+#include "Sensor.h"
 
 
-Sensor::Sensor(std::string vn, std::string lo, time_t fd, int sv)
-    : vendor{vn}, location{lo}, fabricationDate{fd}, softwareVersion{sv}
+// Sensor::Sensor(std::string vn, std::string lo, time_t fd, int sv)
+//     : vendor{vn}, location{lo}, fabricationDate{fd}, softwareVersion{sv}
+// {
+//   std::cout << "Sensor constructor 1 called with parameters " << vendor << ", " << location << ", " << fabricationDate << ", " << softwareVersion << std::endl;
+// }
+
+// constructor
+Sensor::Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, int fabricationDate):
+    Component(id, location, vendor, activationTimeStart, activationTimeEnd, monitorScope, isActive, alwaysActive, deactivationTime, softwareVersion)
 {
-  std::cout << "Sensor constructor 1 called with parameters " << vendor << ", " << location << ", " << fabricationDate << ", " << softwareVersion << std::endl;
+    // set the fabrication date
+    this->fabricationDate = fabricationDate;
+    std::cout << "Sensor constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd << ", " << fabricationDate << std::endl;
 }
+
 void Sensor::addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy)
 {
     strategies.push_back(sensorStrategy);
 }
 void Sensor::removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy)
 {
-    // Find and remove the specified strategy
+    // find and remove the specified strategy making use of iterators
     for (auto it = strategies.begin(); it != strategies.end(); ++it) {
         if (*it == sensorStrategy) {
             strategies.erase(it);
-            break;  // Assuming there are no duplicate strategies
+            break;  // assuming there are no duplicate strategies
         }
     }
 }
 void Sensor::executeStrategy() const
 {
     // Execute all strategies
-    for (auto strategy : strategies) {
-        strategy->execute();
+    for (const auto& strategy : strategies) {
+        strategy->executeStrategy();
     }
 }
 onst std::string getVendor() const {
