@@ -18,16 +18,17 @@ public:
     
     // Other methods
     void addComponent(Component* component);
-    void printAllSensorsOrderedById();
-    void printAllSensorsOrderedByVendor();
-    void printAllSensorsOrderedByLocation();
-    void activateAllSensors();
-    void deactivateAllSensors();
-    bool testAllSensors();
-    void activateComponent();
-    void deactivateComponent();
-    void testComponent();
-    void updateAllSoftware();
+    void removeComponent(Component* component);
+    bool testComponent(Component* component);
+
+    void printAllComponents();
+    void activateAllComponents();
+    void deactivateAllComponents();
+    bool testAllComponents();
+    void updateAllSoftwares();
+
+    // Operator overloading methods
+    friend std::ostream& operator<<(std::ostream& COUT, const EmergencyCenter& center);
 };
 
 #endif // EMERGENCYCENTER_H

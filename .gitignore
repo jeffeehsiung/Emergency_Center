@@ -1,1 +1,13 @@
+# ignore all .json files
+*.json
+
+#ignore all operating system files
+.DS_Store
+
+# ignore all microsoft operating system files
+Thumbs.db
+
+# ignore compiled code-specific files, such as .o files.
+*.o
+
 /.vscode

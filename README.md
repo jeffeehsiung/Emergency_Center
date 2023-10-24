@@ -23,4 +23,4 @@ classes.
 * Implementation of 3 different scenarios based on same “library”
 
 ## UML ##
-<br /><img src="img/a4_emergency_center_JeffeeHsiung.png" alt="image" width="1000" height="auto"><br />
+<br /><img src="img/a4_emergency_center_update.png" alt="image" width="1000" height="auto"><br />

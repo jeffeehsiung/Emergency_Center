@@ -5,13 +5,14 @@
 #include <string>
 #include <vector>
 #include <stdio.h>
-#include <stdio.h>
 #include <iostream>
+#include <algorithm>
 
 class Component {
 protected:
     std::string id;
     std::string location;
+    std::string vendor;
     int activationTimeStart;
     int activationTimeEnd;
     std::list<std::string> monitorScope;
@@ -27,6 +28,9 @@ public:
 
     virtual std::string getLocation() const = 0;
     virtual void setLocation(const std::string& location) = 0;
+
+    virtual std::string getVendor() const = 0;
+    virtual void setVendor(const std::string& vendor) = 0;
 
     virtual int getActivationTimeStart() const = 0;
     virtual int getActivationTimeEnd() const = 0;
@@ -47,6 +51,12 @@ public:
 
     virtual void executeStrategy() = 0;
     virtual void updateSoftware() = 0;
+
+    // Operator overloading methods
+    friend std::ostream& operator<<(std::ostream& COUT, const Component& component);
+    Component& operator++();
+    Component& operator--();
+
 };
 
 #endif // COMPONENT_H

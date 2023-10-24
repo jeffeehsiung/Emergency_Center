@@ -2,31 +2,33 @@
 CXX = g++
 
 # Flags for compiler
-CXXFLAGS = -Wall -std=c++17
+CXXFLAGS = -Wall -g -std=c++20 
 # -I/home/rcw/cpp_tests/AdvancedProgrammingTechniques
 
-# Executable name
-EXEC = my_program
-
-# Object files
-OBJS = main.o Box.o truckload.o thoughpack.o
-
 # Header files
-HDRS = Box.h truckload.h thoughpack.h
+HDRS = $(wildcard *.h)
+
+# Source files (all .cpp files in the current directory)
+SRCS = $(wildcard *.cpp)
+
+# Output Executable name
+EXEC = $(basename $(SRCS))$
 
 # Build rules
 
 all: $(EXEC)
 
-$(EXEC): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJS)
+$(EXEC): $(SRCS) $(HDRS)
+    $(CXX) $(CXXFLAGS) -o $@ $^
 
-%.o: %.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c $<
+# Build main.cpp
+main: main.cpp
+    $(CXX) $(CXXFLAGS) -o $@ $^
 
 run: $(EXEC)
-	./$(EXEC)
+    ./$(EXEC)
 
 # Cleanup
 clean:
-	rm -f $(EXEC) $(OBJS)
+    rm -f $(EXEC) *.o *~
+
