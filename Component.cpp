@@ -92,7 +92,11 @@ std::ostream& operator<<(std::ostream& COUT, const Component& component) {
     // Print component details using its getter methods
     COUT << "ID: " << component.getId() << "\n"
          << "Location: " << component.getLocation() << "\n"
-         // ... Continue this pattern for all member variables ...
+         << "Vendor: " << component.getVendor() << "\n"
+         << "Activation time: " << component.getActivationTimeStart() << " to " << component.getActivationTimeEnd() << "\n"
+         << "Monitor scope: " << component.getMonitorScope() << "\n"
+         << "Is active? " << component.getIsActive() << "\n"
+         << "Is always active? " << component.getAlwaysActive() << "\n"
          << "Deactivation time: " << component.getDeactivationTime() << "\n\n\n";
     return COUT;
 }
