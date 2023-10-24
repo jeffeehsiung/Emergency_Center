@@ -1,7 +1,7 @@
 #ifndef EMERGENCYCENTER_H
 #define EMERGENCYCENTER_H
 
-#include "Component.h"
+#include "headers/Component.h"
 
 class EmergencyCenter {
 private:

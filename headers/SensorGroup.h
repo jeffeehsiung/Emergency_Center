@@ -1,4 +1,4 @@
-#include "Component.h"
+#include "headers/Component.h"
 
 class SensorGroup: public Component{
     protected:

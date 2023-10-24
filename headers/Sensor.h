@@ -1,5 +1,5 @@
-#include "SensorStrategy.h"
-#include "Component.h"
+#include "headers/SensorStrategy.h"
+#include "headers/Component.h"
 
 class Sensor: public Component {
     protected:

@@ -1,5 +1,5 @@
-#include "/headers/Sensor.h"
-#include "/headers/SensorStrategy.h"
+#include "headers/Sensor.h"
+#include "headers/SensorStrategy.h"
 
 virtual std::string getVendor() {
     return vendor;
