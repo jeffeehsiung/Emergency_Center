@@ -26,120 +26,63 @@ protected:
     // std::vector<std::shared_ptr<SensorStrategy>> strategies;
 
 public:
-    // constructor
-    Component() {}
-    Component(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion)
-        : id{id}, location{location}, vendor{vendor}, activationTimeStart{activationTimeStart}, activationTimeEnd{activationTimeEnd}, monitorScope{monitorScope}, isActive{isActive}, alwaysActive{alwaysActive}, deactivationTime{deactivationTime}, softwareVersion{softwareVersion} {
-        std::cout << "Component constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd << ", " << monitorScope << ", " << isActive << ", " << alwaysActive << ", " << deactivationTime << ", " << softwareVersion << std::endl;
-    }
-    virtual ~Component() {}
+    // constructor and destructor
+    Component(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion);
+    
+    virtual ~Component();
 
     // make the getId method constant
-    virtual std::string getId() const{
-        return id;
-    }
-    virtual void setId(const std::string& id) const{
-        this->id = id;
-    }
+    virtual std::string getId() const;
 
-    virtual std::string getLocation() const{
-        return location;
-    }
-    virtual void setLocation(const std::string& location) const{
-        this->location = location;
-    }
+    virtual void setId(const std::string& id);
 
-    virtual std::string getVendor() const{
-        return vendor;
-    }
-    virtual void setVendor(const std::string& vendor) const{
-        this->vendor = vendor;
-    }
+    virtual std::string getLocation() const;
 
-    virtual int getActivationTimeStart() const{
-        return activationTimeStart;
-    }
-    virtual int getActivationTimeEnd() const{
-        return activationTimeEnd;
-    }
-    virtual void setActivationTime(int start, int end) const{
-        this->activationTimeStart = start;
-        this->activationTimeEnd = end;
-    }
+    virtual void setLocation(const std::string& location);
 
-    virtual std::list<std::string> getMonitorScope() const{
-        return monitorScope;
-    }
-    virtual void setMonitorScope(const std::list<std::string>& scope) const{
-        this->monitorScope = scope;
-    }
+    virtual std::string getVendor() const;
 
-    virtual bool getIsActive() const{
-        return isActive;
-    }
-    virtual void setActive() const{
-        this->isActive = true;
-    }
-    virtual void setNotActive() const{
-        this->isActive = false;
-    }
+    virtual void setVendor(const std::string& vendor);
 
-    virtual bool getAlwaysActive() const{
-        return alwaysActive;
-    }
-    virtual void setAlwaysActive(bool alwaysActiveStatus) const{
-        this->alwaysActive = alwaysActiveStatus;
-    }
+    virtual int getActivationTimeStart() const;
 
-    virtual int getDeactivationTime() const{
-        return deactivationTime;
-    }
-    virtual void setDeactivationTime(int deactivation) const{
-        this->deactivationTime = deactivation;
-    }
-    virtual void updateSoftware() const{
-        this->softwareVersion++;
-    }
-    virtual int getSoftwareVersion() const{
-        return softwareVersion;
-    }
+    virtual int getActivationTimeEnd() const;
+
+    virtual void setActivationTime(int start, int end);
+
+    virtual std::list<std::string> getMonitorScope() const;
+
+    virtual void setMonitorScope(const std::list<std::string>& scope);
+
+    virtual bool getIsActive() const;
+
+    virtual void setActive();
+
+    virtual void setNotActive();
+
+    virtual bool getAlwaysActive() const;
+
+    virtual void setAlwaysActive(bool alwaysActiveStatus);
+
+    virtual int getDeactivationTime() const; 
+
+    virtual void setDeactivationTime(int deactivation);
+
+    virtual void updateSoftware();
+
+    virtual int getSoftwareVersion() const;
 
     // to be implemented by derived classes
     virtual void executeStrategy() const = 0;
 
     // Operator overloading methods
-    friend std::ostream& operator<<(std::ostream& COUT, const std::list<std::string>& list) {
-        COUT << "[";
-        for (const auto& item : list) {
-            COUT << item;
-            if (&item != &list.back()) COUT << ", ";
-        }
-        COUT << "]";
-        return COUT;
-    }
+    friend std::ostream& operator<<(std::ostream& COUT, const std::list<std::string>& list);
 
-    friend std::ostream& operator<<(std::ostream& COUT, const Component& component) {
-        // Print component details using its getter methods
-        COUT << "ID: " << component.getId() << "\n"
-            << "Location: " << component.getLocation() << "\n"
-            << "Vendor: " << component.getVendor() << "\n"
-            << "Activation time: " << component.getActivationTimeStart() << " to " << component.getActivationTimeEnd() << "\n"
-            << "Monitor scope: " << component.getMonitorScope() << "\n"
-            << "Is active? " << component.getIsActive() << "\n"
-            << "Is always active? " << component.getAlwaysActive() << "\n"
-            << "Deactivation time: " << component.getDeactivationTime() << "\n\n\n";
-        return COUT;
-    }
+    friend std::ostream& operator<<(std::ostream& COUT, const Component& component);
 
-    Component& operator++() {
-        this->setActive();
-        return *this;
-    }
+    Component& operator++();
 
-    Component& operator--() {
-        this->setNotActive();
-    return *this;
-    }
+    Component& operator--();
 
 };
 
