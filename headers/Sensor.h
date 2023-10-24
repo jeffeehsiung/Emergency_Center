@@ -1,21 +1,23 @@
-#include "SensorStrategy.h"
-#include "Component.h"
+#include "headers/SensorStrategy.h"
+#include "headers/Component.h"
 
 class Sensor: public Component {
-    protected:
+    private:
         std::string vendor;
         std::string location;
-        std::string fabrication;
+        time_t fabricationDate;
         int softwareVersion;
         std::vector<SensorStrategy*> strategies;
     public:
-        virtual std::string getVendor();
+        Sensor(std::string vn, std::string lo, time_t fd, int sv);
 
-        virtual std::string getLocation();
+        const std::string getVendor() const {return vendor};
 
-        virtual std::string getFabrication();
+        std::string getLocation() const{return location};
 
-        virtual int getSoftwareVersion();
+        time_t getFabricationDate() const{return fabricationDate};
+
+        int getSoftwareVersion() const{return softwareVersion};
 
         virtual void addStrategy(SensorStrategy* sensorStrategy);
 

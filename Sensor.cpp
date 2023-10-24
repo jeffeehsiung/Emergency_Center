@@ -1,27 +1,33 @@
-#include "/headers/Sensor.h"
-#include "/headers/SensorStrategy.h"
+#include "headers/Sensor.h"
+#include "headers/SensorStrategy.h"
 
-virtual std::string getVendor() {
+
+Sensor::Sensor(std::string vn, std::string lo, time_t fd, int sv)
+    : vendor{vn}, location{lo}, fabricationDate{fd}, softwareVersion{sv}
+{
+  std::cout << "Sensor constructor 1 called with parameters " << vendor << ", " << location << ", " << fabricationDate << ", " << softwareVersion << std::endl;
+}
+const std::string getVendor() const {
     return vendor;
 };
 
-virtual std::string getLocation() {
+std::string getLocation() {
     return location;
 };
 
-virtual std::string getFabrication() {
+std::string getFabrication() {
     return fabrication;
 };
 
-virtual int getSoftwareVersion() {
+int getSoftwareVersion() {
     return softwareVersion;
 };
 
-virtual void addStrategy(SensorStrategy* sensorStrategy) {
+void addStrategy(SensorStrategy* sensorStrategy) {
     strategies.push_back(sensorStrategy);
 };
 
-virtual void removeStrategy(SensorStrategy* sensorStrategy) {
+void removeStrategy(SensorStrategy* sensorStrategy) {
     // Find and remove the specified strategy
     for (auto it = strategies.begin(); it != strategies.end(); ++it) {
         if (*it == sensorStrategy) {

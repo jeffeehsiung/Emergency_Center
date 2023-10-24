@@ -1,12 +1,12 @@
 #ifndef EMERGENCYCENTER_H
 #define EMERGENCYCENTER_H
 
-#include "Component.h"
+#include "headers/Component.h"
 
 class EmergencyCenter {
 private:
     static EmergencyCenter* instance; // Singleton instance
-    std::vector<Component*> components;
+    std::list<std::unique_ptr<Component>> components;
 
 public:
     // Constructor & Destructor
@@ -17,9 +17,9 @@ public:
     static EmergencyCenter* getInstance();
     
     // Other methods
-    void addComponent(Component* component);
-    void removeComponent(Component* component);
-    bool testComponent(Component* component);
+    void EmergencyCenter::addComponent(std::unique_ptr<Component> component);
+    void EmergencyCenter::removeComponent(Component* component);
+    bool EmergencyCenter::testComponent(Component* component);
 
     void printAllComponents();
     void activateAllComponents();
