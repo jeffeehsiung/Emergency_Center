@@ -7,12 +7,7 @@ EmergencyCenter::EmergencyCenter() {
     // Initialization (if needed)
 }
 
-EmergencyCenter::~EmergencyCenter() {
-    for (Component* component : components) {
-        delete component;
-    }
-    components.clear();
-}
+EmergencyCenter::~EmergencyCenter() = default;
 
 // Singleton instance getter
 EmergencyCenter* EmergencyCenter::getInstance() {
@@ -20,31 +15,6 @@ EmergencyCenter* EmergencyCenter::getInstance() {
         instance = new EmergencyCenter();
     }
     return instance;
-}
-
-// Overloaded << operator for Component's monitor scope
-std::ostream& operator<<(std::ostream& COUT, const std::list<std::string>& list) {
-    COUT << "[";
-    for (const auto& item : list) {
-        COUT << item;
-        if (&item != &list.back()) COUT << ", ";
-    }
-    COUT << "]";
-    return COUT;
-}
-
-// Overloaded << operator for Component
-std::ostream& operator<<(std::ostream& COUT, const Component& component) {
-    // Print component details using its getter methods
-    COUT << "ID: " << component.getId() << "\n"
-        << "Location: " << component.getLocation() << "\n"
-        << "Vendor: " << component.getVendor() << "\n"
-        << "Activation time: " << component.getActivationTimeStart() << " to " << component.getActivationTimeEnd() << "\n"
-        << "Monitor scope: " << component.getMonitorScope() << "\n"
-        << "Is active? " << component.getIsActive() << "\n"
-        << "Is always active? " << component.getAlwaysActive() << "\n"
-        << "Deactivation time: " << component.getDeactivationTime() << "\n\n\n";
-    return COUT;
 }
 
 // Overloaded << operator for EmergencyCenter
@@ -55,27 +25,15 @@ std::ostream& operator<<(std::ostream& COUT, const EmergencyCenter& center) {
     return COUT;
 }
 
-// Overloaded ++ operator for Component
-Component& Component::operator++() {
-    this->setActive();
-    return *this;
-}
-
-// Overloaded -- operator for Component
-Component& Component::operator--() {
-    this->setNotActive();
-    return *this;
-}
-
-void EmergencyCenter::addComponent(Component* component) {
-    components.push_back(component);
+void EmergencyCenter::addComponent(std::unique_ptr<Component> component) {
+    components.push_back(std::move(component));
 }
 
 void EmergencyCenter::removeComponent(Component* component) {
-    auto it = std::find(components.begin(), components.end(), component);
+    auto it = std::find_if(components.begin(), components.end(),
+                           [component](const std::unique_ptr<Component>& compPtr) { return compPtr.get() == component; });
     if (it != components.end()) {
-        delete *it;                // Release the memory for the component
-        components.erase(it);      // Remove the pointer from the list
+        components.erase(it);
     }
 }
 
