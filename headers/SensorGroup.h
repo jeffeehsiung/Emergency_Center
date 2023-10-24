@@ -1,6 +1,4 @@
 #include "headers/Component.h"
-#include <memory> // for std::shared_ptr
-// #include <algorithm> // for std::find
 
 class SensorGroup: public Component{
 protected:

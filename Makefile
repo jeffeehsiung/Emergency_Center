@@ -8,10 +8,10 @@ CXXFLAGS = -Wall -std=c++20 -I/home/rcw/works/team-a4-ec/
 EXEC = my_program
 
 # Object files
-OBJS = EmergencyCenter.o Component.o
+OBJS = EmergencyCenter.o Component.o Sensor.o SensorGroup.o
 
 # Header files
-HDRS = headers/EmergencyCenter.h headers/Component.h headers/SensorStrategy.h
+HDRS = $(wildcard headers/*.h)
 
 # Build rules
 all: $(EXEC)
@@ -24,6 +24,12 @@ EmergencyCenter.o: EmergencyCenter.cpp $(HDRS)
 
 Component.o: Component.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c Component.cpp
+
+Sensor.o: Sensor.cpp $(HDRS)
+	$(CXX) $(CXXFLAGS) -c Sensor.cpp
+
+SensorGroup.o: SensorGroup.cpp $(HDRS)
+	$(CXX) $(CXXFLAGS) -c SensorGroup.cpp
 
 run: $(EXEC)
 	./$(EXEC)

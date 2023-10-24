@@ -1,8 +1,7 @@
 #include "headers/Sensor.h"
-#include "Sensor.h"
 
 // constructor
-Sensor::Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, int fabricationDate):
+Sensor::Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, time_t fabricationDate):
     Component(id, location, vendor, activationTimeStart, activationTimeEnd, monitorScope, isActive, alwaysActive, deactivationTime, softwareVersion)
 {
     // set the fabrication date
@@ -40,10 +39,6 @@ void Sensor::executeStrategy() const
     for (const auto& strategy : strategies) {
         strategy->executeStrategy();
     }
-}
-
-std::string getFabrication() {
-    return fabricationDate;
 }
 
 // void addStrategy(SensorStrategy* sensorStrategy) {

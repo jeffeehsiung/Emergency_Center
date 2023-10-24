@@ -20,6 +20,7 @@ protected:
 
 public:
     // constructor and destructor
+    Component(){}
     Component(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion);
     
     virtual ~Component();
