@@ -23,20 +23,20 @@ EmergencyCenter* EmergencyCenter::getInstance() {
 }
 
 // Overloaded << operator for Component's monitor scope
-std::ostream& operator<<(std::ostream& out, const std::list<std::string>& list) {
-    out << "[";
+std::ostream& operator<<(std::ostream& COUT, const std::list<std::string>& list) {
+    COUT << "[";
     for (const auto& item : list) {
-        out << item;
-        if (&item != &list.back()) out << ", ";
+        COUT << item;
+        if (&item != &list.back()) COUT << ", ";
     }
-    out << "]";
-    return out;
+    COUT << "]";
+    return COUT;
 }
 
 // Overloaded << operator for Component
-std::ostream& operator<<(std::ostream& out, const Component& component) {
+std::ostream& operator<<(std::ostream& COUT, const Component& component) {
     // Print component details using its getter methods
-    out << "ID: " << component.getId() << "\n"
+    COUT << "ID: " << component.getId() << "\n"
         << "Location: " << component.getLocation() << "\n"
         << "Vendor: " << component.getVendor() << "\n"
         << "Activation time: " << component.getActivationTimeStart() << " to " << component.getActivationTimeEnd() << "\n"
@@ -44,15 +44,15 @@ std::ostream& operator<<(std::ostream& out, const Component& component) {
         << "Is active? " << component.getIsActive() << "\n"
         << "Is always active? " << component.getAlwaysActive() << "\n"
         << "Deactivation time: " << component.getDeactivationTime() << "\n";
-    return out;
+    return COUT;
 }
 
 // Overloaded << operator for EmergencyCenter
-std::ostream& operator<<(std::ostream& out, const EmergencyCenter& center) {
+std::ostream& operator<<(std::ostream& COUT, const EmergencyCenter& center) {
     for (const auto& comp : center.components) {
-        out << *comp << "\n";
+        COUT << *comp << "\n";
     }
-    return out;
+    return COUT;
 }
 
 // Overloaded ++ operator for Component

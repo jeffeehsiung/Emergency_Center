@@ -53,7 +53,7 @@ public:
     virtual void updateSoftware() = 0;
 
     // Operator overloading methods
-    friend std::ostream& operator<<(std::ostream& out, const Component& component);
+    friend std::ostream& operator<<(std::ostream& COUT, const Component& component);
     Component& operator++();
     Component& operator--();
 

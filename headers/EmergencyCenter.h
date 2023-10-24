@@ -28,7 +28,7 @@ public:
     void updateAllSoftwares();
 
     // Operator overloading methods
-    friend std::ostream& operator<<(std::ostream& out, const EmergencyCenter& center);
+    friend std::ostream& operator<<(std::ostream& COUT, const EmergencyCenter& center);
 };
 
 #endif // EMERGENCYCENTER_H
