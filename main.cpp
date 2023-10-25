@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
-#include <EmergencyCenter.h>
+// include the .so file
+#include "headers/EmergencyCenter.h"
+#include "headers/Component.h"
 
 int main ()
 {

@@ -5,10 +5,10 @@ RESET_COLOR = \033[0m
 CXX = g++
 
 # Flags for compiler
-CXXFLAGS = -Wall -std=c++20
+CXXFLAGS = -Wall -std=c++20 -Werror -fPIC -fdiagnostics-color=auto
 
 # Source files (all .cpp files in the current directory)
-SRCS = $(wildcard *.cpp)
+SRCS = AC.cpp CentralDispatch.cpp Component.cpp Email.cpp EmergencyCenter.cpp FireBrigade.cpp Gas.o GroupAlarm.cpp LeafAlarm.cpp Light.cpp Motion.cpp Police.cpp Security.cpp Sensor.cpp SensorGroup.cpp Smoke.cpp SMS.cpp Sprinkler.cpp
 
 # Executable name
 EXEC = $(basename $(SRCS))
@@ -19,22 +19,41 @@ OBJS = $(SRCS:.cpp=.o)
 # Header files
 HDRS = $(wildcard headers/*.h)
 
-# Shared library nanes and version
-LIBRARY = libmylibrary.so
-
 # Build rules
-# all: $(EXEC)
+all: main
 
-# $(EXEC): $(SRCS)
-# 	$(CXX) $(CXXFLAGS) -o $@ $^
+main: main.cpp libmylibrary.so
+	@echo "$(TITLE_COLOR)\n***** compiling main.cpp *****$(NO_COLOR)"
+	g++ -c main.cpp -Wall -std=c++20 -Werror -o main.o -fdiagnostics-color=auto
+	@echo "$(TITLE_COLOR)\n***** linking shared library *****$(NO_COLOR)"
+	g++ main.o -L. -lmylibrary -o main -Wall -fdiagnostics-color=auto
 
-all: $(LIBRARY)
+# if you only want to compile the library
+libEmergencyCenter: libmylibrary.so
 
-$(LIBRARY): $(OBJS)
-	$(CXX) $(CXXFLAGS) -shared -o $@ $^
-
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -fPIC -c $< -o $@
+# from all cpp files, create shared libraries
+libmylibrary.so: AC.cpp CentralDispatch.cpp Component.cpp Email.cpp EmergencyCenter.cpp FireBrigade.cpp Gas.o GroupAlarm.cpp LeafAlarm.cpp Light.cpp Motion.cpp Police.cpp Security.cpp Sensor.cpp SensorGroup.cpp Smoke.cpp SMS.cpp Sprinkler.cpp $(HDRS)
+	@echo "$(TITLE_COLOR)\n***** compiling source files *****$(NO_COLOR)"
+	$(CXX) $(CXXFLAGS) -c AC.cpp -o AC.o
+	$(CXX) $(CXXFLAGS) -c CentralDispatch.cpp -o CentralDispatch.o
+	$(CXX) $(CXXFLAGS) -c Component.cpp -o Component.o
+	$(CXX) $(CXXFLAGS) -c Email.cpp -o Email.o
+	$(CXX) $(CXXFLAGS) -c EmergencyCenter.cpp -o EmergencyCenter.o
+	$(CXX) $(CXXFLAGS) -c FireBrigade.cpp -o FireBrigade.o
+	$(CXX) $(CXXFLAGS) -c Gas.cpp -o Gas.o
+	$(CXX) $(CXXFLAGS) -c GroupAlarm.cpp -o GroupAlarm.o
+	$(CXX) $(CXXFLAGS) -c LeafAlarm.cpp -o LeafAlarm.o
+	$(CXX) $(CXXFLAGS) -c Light.cpp -o Light.o
+	$(CXX) $(CXXFLAGS) -c Motion.cpp -o Motion.o
+	$(CXX) $(CXXFLAGS) -c Police.cpp -o Police.o
+	$(CXX) $(CXXFLAGS) -c Security.cpp -o Security.o
+	$(CXX) $(CXXFLAGS) -c Sensor.cpp -o Sensor.o
+	$(CXX) $(CXXFLAGS) -c SensorGroup.cpp -o SensorGroup.o
+	$(CXX) $(CXXFLAGS) -c Smoke.cpp -o Smoke.o
+	$(CXX) $(CXXFLAGS) -c SMS.cpp -o SMS.o
+	$(CXX) $(CXXFLAGS) -c Sprinkler.cpp -o Sprinkler.o
+	@echo "$(TITLE_COLOR)\n***** linking shared library *****$(NO_COLOR)"
+	g++ -shared -o libmylibrary.so AC.o CentralDispatch.o Component.o Email.o EmergencyCenter.o FireBrigade.o Gas.o GroupAlarm.o LeafAlarm.o Light.o Motion.o Police.o Security.o Sensor.o SensorGroup.o Smoke.o SMS.o Sprinkler.o
 
 EmergencyCenter: EmergencyCenter.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c EmergencyCenter.cpp -o EmergencyCenter.o
@@ -95,9 +114,18 @@ Sprinkler: Sprinkler.cpp $(HDRS)
 run: $(EXEC)
 	./$(EXEC)
 
-# shared library rules
-lib: $(OBJS)
-	$(CXX) $(CXXFLAGS) -shared -o lib$(EXEC).so $(OBJS)
+# all: $(EXEC)
+
+# $(EXEC): $(SRCS)
+# 	$(CXX) $(CXXFLAGS) -o $@ $^
+
+# all: $(LIBRARY)
+
+# $(LIBRARY): $(OBJS)
+# 	$(CXX) $(CXXFLAGS) -shared -o $@ $^
+
+# %.o: %.cpp
+# 	$(CXX) $(CXXFLAGS) -fPIC -c $< -o $@
 
 # use the generated shared library in the main program
 test: main.cpp libmylibrary.so
