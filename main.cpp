@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <libmylibrary.so>
+#include <EmergencyCenter.h>
 
 int main ()
 {
