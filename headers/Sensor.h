@@ -3,6 +3,7 @@
 
 class Sensor: public Component {
     public:
+        Sensor() = default; // default constructor
         Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, time_t fabricationDate);
 
         time_t getFabricationDate() const{return fabricationDate;};

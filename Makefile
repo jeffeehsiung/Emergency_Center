@@ -1,3 +1,6 @@
+TITLE_COLOR = \033[32m
+RESET_COLOR = \033[0m
+
 # Compiler to use
 CXX = g++
 
@@ -95,6 +98,13 @@ run: $(EXEC)
 # shared library rules
 lib: $(OBJS)
 	$(CXX) $(CXXFLAGS) -shared -o lib$(EXEC).so $(OBJS)
+
+# use the generated shared library in the main program
+test: main.cpp libmylibrary.so
+	@echo "$(TITLE_COLOR)\n***** testing shared library *****$(NO_COLOR)"
+	g++ -c main.cpp -Wall -std=c++20 -Werror -o main.o -fdiagnostics-color=auto
+	@echo "$(TITLE_COLOR)\n***** linking shared library *****$(NO_COLOR)"
+	g++ main.o -L. -lmylibrary -o test -fdiagnostics-color=auto
 
 # Cleanup object files, executables, and libraries
 clean:
