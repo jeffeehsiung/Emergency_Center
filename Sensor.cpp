@@ -2,17 +2,40 @@
 
 // constructor
 Sensor::Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, time_t fabricationDate):
-    Component(id, location, vendor, activationTimeStart, activationTimeEnd, monitorScope, isActive, alwaysActive, deactivationTime, softwareVersion)
+    Component(id, activationTimeStart, activationTimeEnd, monitorScope, isActive, alwaysActive, deactivationTime)
 {
     // set the fabrication date
     this->fabricationDate = fabricationDate;
     std::cout << "Sensor constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd << ", " << fabricationDate << std::endl;
 }
 
+std::string Sensor::getLocation() const{
+    return location;
+}
+void Sensor::setLocation(const std::string& location){
+    this->location = location;
+}
+
+std::string Sensor::getVendor() const{
+    return vendor;
+}
+void Sensor::setVendor(const std::string& vendor){
+    this->vendor = vendor;
+}
+
+void Sensor::updateSoftware(){
+    this->softwareVersion++;
+}
+
+int Sensor::getSoftwareVersion() const{
+    return softwareVersion;
+}
+
 void Sensor::addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy)
 {
     strategies.push_back(sensorStrategy);
 }
+
 void Sensor::removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy)
 {
     /** the sensorStrategy paramter is a shared pointer to the abstract class SensorStrategy.
@@ -33,6 +56,7 @@ void Sensor::removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy)
     //     }
     // }
 }
+
 void Sensor::executeStrategy() const
 {
     // Execute all strategies
@@ -40,17 +64,3 @@ void Sensor::executeStrategy() const
         strategy->executeStrategy();
     }
 }
-
-// void addStrategy(SensorStrategy* sensorStrategy) {
-//     strategies.push_back(sensorStrategy);
-// };
-
-// void removeStrategy(SensorStrategy* sensorStrategy) {
-//     // Find and remove the specified strategy
-//     for (auto it = strategies.begin(); it != strategies.end(); ++it) {
-//         if (*it == sensorStrategy) {
-//             strategies.erase(it);
-//             break;  // Assuming there are no duplicate strategies
-//         }
-//     }
-// };

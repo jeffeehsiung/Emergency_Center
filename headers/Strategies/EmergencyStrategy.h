@@ -3,7 +3,7 @@
 #ifndef EMERGENCYSTRATEGY_H
 #define EMERGENCYSTRATEGY_H
 
-#include "headers/SensorStrategy.h"
+#include "../SensorStrategy.h"
 #include <iostream>
 
 class EmergencyStrategy : public SensorStrategy

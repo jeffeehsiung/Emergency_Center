@@ -1,10 +1,10 @@
 #include "headers/Component.h"
 
 // constructor
-Component::Component(std::string id, std::string location, std::string vendor, int activationTimeStart, 
-    int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion)
-    : id{id}, location{location}, vendor{vendor}, activationTimeStart{activationTimeStart}, activationTimeEnd{activationTimeEnd}, monitorScope{monitorScope}, 
-    isActive{isActive}, alwaysActive{alwaysActive}, deactivationTime{deactivationTime}, softwareVersion{softwareVersion} {
+Component::Component(std::string id, int activationTimeStart, 
+    int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime)
+    : id{id}, activationTimeStart{activationTimeStart}, activationTimeEnd{activationTimeEnd}, monitorScope{monitorScope}, 
+    isActive{isActive}, alwaysActive{alwaysActive}, deactivationTime{deactivationTime} {
 }
 
 Component::~Component() {}
@@ -15,20 +15,6 @@ std::string Component::getId() const {
 
 void Component::setId(const std::string& id) {
     this->id = id;
-}
-
-std::string Component::getLocation() const{
-    return location;
-}
-void Component::setLocation(const std::string& location){
-    this->location = location;
-}
-
-std::string Component::getVendor() const{
-    return vendor;
-}
-void Component::setVendor(const std::string& vendor){
-    this->vendor = vendor;
 }
 
 int Component::getActivationTimeStart() const{
@@ -72,12 +58,7 @@ int Component::getDeactivationTime() const{
 void Component::setDeactivationTime(int deactivation){
     this->deactivationTime = deactivation;
 }
-void Component::updateSoftware(){
-    this->softwareVersion++;
-}
-int Component::getSoftwareVersion() const{
-    return softwareVersion;
-}
+
 
 std::ostream& operator<<(std::ostream& COUT, const std::list<std::string>& list) {
     COUT << "[";
@@ -92,8 +73,6 @@ std::ostream& operator<<(std::ostream& COUT, const std::list<std::string>& list)
 std::ostream& operator<<(std::ostream& COUT, const Component& component) {
     // Print component details using its getter methods
     COUT << "ID: " << component.getId() << "\n"
-         << "Location: " << component.getLocation() << "\n"
-         << "Vendor: " << component.getVendor() << "\n"
          << "Activation time: " << component.getActivationTimeStart() << " to " << component.getActivationTimeEnd() << "\n"
          << "Monitor scope: " << component.getMonitorScope() << "\n"
          << "Is active? " << component.getIsActive() << "\n"

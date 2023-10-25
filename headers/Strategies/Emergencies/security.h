@@ -3,7 +3,7 @@
 #ifndef SECURITY_H
 #define SECURITY_H
 
-#include "headers/EmergencyStrategy.h"
+#include "../EmergencyStrategy.h"
 
 
 class Security : public EmergencyStrategy

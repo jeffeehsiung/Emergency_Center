@@ -1,4 +1,4 @@
-#include "headers/Strategies/Actions/GroupAlarm.h"
+#include "headers/Strategies/Alarms/GroupAlarm.h"
 #include <iostream>
 
 void GroupAlarm::executeStrategy() const

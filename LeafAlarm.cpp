@@ -1,4 +1,4 @@
-#include "headers/Strategies/Actions/LeafAlarm.h"
+#include "headers/Strategies/Alarms/LeafAlarm.h"
 #include <iostream>
 
 void LeafAlarm::executeStrategy() const

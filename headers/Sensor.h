@@ -1,4 +1,4 @@
-#include "headers/Component.h"
+#include "Component.h"
 
 class Sensor: public Component {
     public:
@@ -11,8 +11,23 @@ class Sensor: public Component {
         void removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy); 
 
         void executeStrategy() const override;
+
+        std::string getLocation() const;
+
+        void setLocation(const std::string& location);
+
+        std::string getVendor() const;
+
+        void setVendor(const std::string& vendor);
+
+        void updateSoftware();
+
+        int getSoftwareVersion() const;
     
     protected:
         time_t fabricationDate;
+        std::string location;
+        std::string vendor;
+        int softwareVersion;
         std::vector<std::shared_ptr<SensorStrategy>> strategies;
 };

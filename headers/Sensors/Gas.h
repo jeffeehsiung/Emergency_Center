@@ -1,7 +1,8 @@
-#include "Sensor.h"
+#include "../Sensor.h"
 
 class Gas : public Sensor
 {
+    using Sensor::Sensor;
     private:
         std::string gasType;
     public:

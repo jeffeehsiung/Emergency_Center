@@ -64,6 +64,10 @@ bool EmergencyCenter::testAllComponents() {
 
 void EmergencyCenter::updateAllSoftwares() {
     for (auto& comp : components) {
-        comp->updateSoftware();
+        Sensor* sensor = dynamic_cast<Sensor*>(comp.get());
+        if (sensor) {
+            // It's a Sensor, so call the sensor-specific function
+            sensor->updateSoftware();
+        }
     }
 }

@@ -1,4 +1,4 @@
-#include "headers/Strategies/Actions/Email.h"
+#include "headers/Strategies/Notifications/Email.h"
 #include <iostream>
 
 void Email::executeStrategy() const

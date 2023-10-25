@@ -1,27 +1,24 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "headers/SensorStrategy.h"
+#include "SensorStrategy.h"
 
 class Component {
 protected:
     std::string id;
-    std::string location;
-    std::string vendor;
     int activationTimeStart;
     int activationTimeEnd;
     std::list<std::string> monitorScope;
     bool isActive;
     bool alwaysActive;
     int deactivationTime;
-    int softwareVersion;
     // // vector list of sensor strategies
     // std::vector<std::shared_ptr<SensorStrategy>> strategies;
 
 public:
     // constructor and destructor
     Component(){}
-    Component(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion);
+    Component(std::string id, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime);
     
     virtual ~Component();
 
@@ -29,14 +26,6 @@ public:
     virtual std::string getId() const;
 
     virtual void setId(const std::string& id);
-
-    virtual std::string getLocation() const;
-
-    virtual void setLocation(const std::string& location);
-
-    virtual std::string getVendor() const;
-
-    virtual void setVendor(const std::string& vendor);
 
     virtual int getActivationTimeStart() const;
 
@@ -61,10 +50,6 @@ public:
     virtual int getDeactivationTime() const; 
 
     virtual void setDeactivationTime(int deactivation);
-
-    virtual void updateSoftware();
-
-    virtual int getSoftwareVersion() const;
 
     // to be implemented by derived classes
     virtual void executeStrategy() const = 0;

@@ -1,4 +1,4 @@
-#include "headers/Strategies/Actions/SMS.h"
+#include "headers/Strategies/Notifications/SMS.h"
 #include <iostream>
 
 void SMS::executeStrategy() const

@@ -1,4 +1,4 @@
-#include "headers/Strategies/Actions/Security.h"
+#include "headers/Strategies/Emergencies/security.h"
 #include <iostream>
 
 void Security::executeStrategy() const

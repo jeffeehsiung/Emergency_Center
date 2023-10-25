@@ -4,7 +4,7 @@
 #ifndef SMS_H
 #define SMS_H
 
-#include "headers/NotificationStrategy.h"
+#include "../NotificationStrategy.h"
 #include <string>
 
 class SMS : public NotificationStrategy

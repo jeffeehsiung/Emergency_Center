@@ -1,10 +1,10 @@
-#include "/headers/Sensors/Smoke.h"
+#include "headers/Sensors/Smoke.h"
 
 void Smoke::setThreshold(const int type)
 {
     threshold = type;
 };
 
-std::string Smoke::getThreshold() {
+int Smoke::getThreshold() {
     return threshold;
 };

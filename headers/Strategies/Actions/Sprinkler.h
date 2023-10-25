@@ -3,7 +3,7 @@
 #ifndef SPRINKLER_H
 #define SPRINKLER_H
 
-#include "headers/ActionStrategy.h"
+#include "../ActionStrategy.h"
 
 class Sprinkler : public ActionStrategy
 {

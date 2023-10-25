@@ -3,7 +3,7 @@
 #ifndef EMAIL_H
 #define EMAIL_H
 
-#include "headers/NotificationStrategy.h"
+#include "../NotificationStrategy.h"
 #include <string>
 
 class Email : public NotificationStrategy

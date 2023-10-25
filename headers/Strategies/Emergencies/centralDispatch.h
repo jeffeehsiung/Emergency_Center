@@ -3,7 +3,7 @@
 #ifndef CENTRALDISPATCH_H
 #define CENTRALDISPATCH_H
 
-#include "headers/EmergencyStrategy.h"
+#include "../EmergencyStrategy.h"
 
 class CentralDispatch : public EmergencyStrategy
 {

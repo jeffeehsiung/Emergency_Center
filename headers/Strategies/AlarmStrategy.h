@@ -3,7 +3,7 @@
 #ifndef ALARMSTRATEGY_H
 #define ALARMSTRATEGY_H
 
-#include "headers/SensorStrategy.h"
+#include "../SensorStrategy.h"
 #include <iostream>
 
 class AlarmStrategy : public SensorStrategy

@@ -3,7 +3,7 @@
 #ifndef GROUPALARM_H
 #define GROUPALARM_H
 
-#include "headers/AlarmStrategy.h"
+#include "../AlarmStrategy.h"
 
 class GroupAlarm : public AlarmStrategy
 {
