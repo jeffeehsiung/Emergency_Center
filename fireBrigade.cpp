@@ -3,6 +3,6 @@
 
 void FireBrigade::executeStrategy() const
 {
-    // call the fire brigade
+    // call the fire brigade. no specificatoin needded
     std::cout << "Calling the fire brigade.\n" << std::endl;
 }
