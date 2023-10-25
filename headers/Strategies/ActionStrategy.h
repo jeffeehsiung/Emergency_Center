@@ -10,7 +10,7 @@ class ActionStrategy : public SensorStrategy
 {
 public:
     virtual ~ActionStrategy() = default; // the derived class can rely on the base class destructor.
-    virtual void executeStrategy() const = 0;
+    virtual void executeStrategy() const override = 0;
 };
 
 #endif  // ACTIONSTRATEGY_H

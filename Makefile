@@ -4,8 +4,11 @@ CXX = g++
 # Flags for compiler
 CXXFLAGS = -Wall -std=c++20 -I/home/rcw/works/team-a4-ec/
 
+# Source files (all .cpp files in the current directory)
+SRCS = $(wildcard *.cpp)
+
 # Executable name
-EXEC = my_program
+EXEC = $(basename $(SRCS))
 
 # Object files
 OBJS = EmergencyCenter.o Component.o Sensor.o SensorGroup.o
@@ -14,10 +17,14 @@ OBJS = EmergencyCenter.o Component.o Sensor.o SensorGroup.o
 HDRS = $(wildcard headers/*.h)
 
 # Build rules
+# all: $(EXEC)
+
+# $(EXEC): $(OBJS)
+# 	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJS)
 all: $(EXEC)
 
-$(EXEC): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJS)
+$(EXEC): $(SRCS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 EmergencyCenter.o: EmergencyCenter.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c EmergencyCenter.cpp
