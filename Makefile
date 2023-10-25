@@ -17,74 +17,69 @@ OBJS = EmergencyCenter.o Component.o Sensor.o SensorGroup.o
 HDRS = $(wildcard headers/*.h)
 
 # Build rules
-# all: $(EXEC)
-
-# $(EXEC): $(OBJS)
-#   $(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJS)
 all: $(EXEC)
 
 $(EXEC): $(SRCS)
-    $(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 EmergencyCenter.o: EmergencyCenter.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c EmergencyCenter.cpp
+	$(CXX) $(CXXFLAGS) -c EmergencyCenter.cpp
 
 Component.o: Component.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c Component.cpp
+	$(CXX) $(CXXFLAGS) -c Component.cpp
 
 Sensor.o: Sensor.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c Sensor.cpp
+	$(CXX) $(CXXFLAGS) -c Sensor.cpp
 
 SensorGroup.o: SensorGroup.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c SensorGroup.cpp
+	$(CXX) $(CXXFLAGS) -c SensorGroup.cpp
 
+# Rest of your object files and dependencies...
 AC.o: AC.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c AC.cpp
+	$(CXX) $(CXXFLAGS) -c AC.cpp
 
 CentralDispatch.o: CentralDispatch.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c CentralDispatch.cpp
+	$(CXX) $(CXXFLAGS) -c CentralDispatch.cpp
 
 Email.o: Email.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c Email.cpp
+	$(CXX) $(CXXFLAGS) -c Email.cpp
 
 FireBrigade.o: FireBrigade.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c FireBrigade.cpp
+	$(CXX) $(CXXFLAGS) -c FireBrigade.cpp
 
 Gas.o: Gas.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c Gas.cpp
+	$(CXX) $(CXXFLAGS) -c Gas.cpp
 
 GroupAlarm.o: GroupAlarm.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c GroupAlarm.cpp
+	$(CXX) $(CXXFLAGS) -c GroupAlarm.cpp
 
 LeafAlarm.o: LeafAlarm.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c LeafAlarm.cpp
+	$(CXX) $(CXXFLAGS) -c LeafAlarm.cpp
 
 Light.o: Light.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c Light.cpp
+	$(CXX) $(CXXFLAGS) -c Light.cpp
 
 Motion.o: Motion.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c Motion.cpp
+	$(CXX) $(CXXFLAGS) -c Motion.cpp
 
 Police.o: Police.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c Police.cpp
-
-Smoke.o: Smoke.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c Smoke.cpp
-
-Sprinkler.o: Sprinkler.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c Sprinkler.cpp
+	$(CXX) $(CXXFLAGS) -c Police.cpp
 
 Security.o: Security.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c Security.cpp
+	$(CXX) $(CXXFLAGS) -c Security.cpp
+
+Smoke.o: Smoke.cpp $(HDRS)
+	$(CXX) $(CXXFLAGS) -c Smoke.cpp
 
 SMS.o: SMS.cpp $(HDRS)
-    $(CXX) $(CXXFLAGS) -c SMS.cpp
+	$(CXX) $(CXXFLAGS) -c SMS.cpp
 
+Sprinkler.o: Sprinkler.cpp $(HDRS)
+	$(CXX) $(CXXFLAGS) -c Sprinkler.cpp
 
 run: $(EXEC)
-    ./$(EXEC)
+	./$(EXEC)
 
 # Cleanup
 clean:
-    rm -f $(EXEC) $(OBJS)
-
+	rm -f $(EXEC) $(OBJS)
