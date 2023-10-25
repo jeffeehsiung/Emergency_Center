@@ -1,6 +1,6 @@
 // LeafAlarm is one of the concrete strategies under parent interface AlarmStrategy that is used by the SensorContext class.
 // the LeafAlarm concrete strategy class header file is shown below:
-
+//hello
 #ifndef LEAFALARM_H
 #define LEAFALARM_H
 
