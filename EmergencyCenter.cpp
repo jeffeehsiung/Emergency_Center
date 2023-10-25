@@ -46,20 +46,89 @@ bool EmergencyCenter::testComponent(Component* component) {
     return component->getIsActive();
 }
 
-void EmergencyCenter::activateAllComponents() {
-    for (auto& comp : components) {
-        ++(*comp);
+void EmergencyCenter::activateAllComponents(int mode) {
+    if(mode == 1){
+        for (auto& comp : components) {
+        Gas* sensor = dynamic_cast<Gas*>(comp.get());
+        if (sensor) {
+            ++(*comp);
+        }
+        } 
+    }
+    else if(mode == 2){
+        for (auto& comp : components) {
+        Motion* sensor = dynamic_cast<Motion*>(comp.get());
+        if (sensor) {
+            ++(*comp);
+        }
+        } 
+    }
+    else if(mode == 3){
+        for (auto& comp : components) {
+        Smoke* sensor = dynamic_cast<Smoke*>(comp.get());
+        if (sensor) {
+            ++(*comp);
+        }
+        } 
+    }
+    else{
+        for (auto& comp : components) {
+            ++(*comp);
+    }
     }
 }
 
-void EmergencyCenter::deactivateAllComponents() {
-    for (auto& comp : components) {
-        --(*comp);
+void EmergencyCenter::deactivateAllComponents(int mode) {
+    if(mode == 1){
+        for (auto& comp : components) {
+        Gas* sensor = dynamic_cast<Gas*>(comp.get());
+        if (sensor) {
+            --(*comp);
+        }
+        } 
+    }
+    else if(mode == 2){
+        for (auto& comp : components) {
+        Motion* sensor = dynamic_cast<Motion*>(comp.get());
+        if (sensor) {
+            --(*comp);
+        }
+        } 
+    }
+    else if(mode == 3){
+        for (auto& comp : components) {
+        Smoke* sensor = dynamic_cast<Smoke*>(comp.get());
+        if (sensor) {
+            --(*comp);
+        }
+        } 
+    }
+    else{
+        for (auto& comp : components) {
+            --(*comp);
+    }
     }
 }
 
-bool EmergencyCenter::testAllComponents() {
-    return std::all_of(components.begin(), components.end(), [](const std::unique_ptr<Component>& comp) { return comp->getIsActive(); });
+bool EmergencyCenter::testAllComponents(int mode) {
+    if(mode == 1){
+        return std::all_of(components.begin(), components.end(), [](const std::unique_ptr<Component>& comp) {
+        return dynamic_cast<Gas*>(comp.get()) != nullptr;
+        }); 
+    }
+    else if(mode == 2){
+        return std::all_of(components.begin(), components.end(), [](const std::unique_ptr<Component>& comp) {
+        return dynamic_cast<Motion*>(comp.get()) != nullptr;
+        });
+    }
+    else if(mode == 3){
+        return std::all_of(components.begin(), components.end(), [](const std::unique_ptr<Component>& comp) {
+        return dynamic_cast<Smoke*>(comp.get()) != nullptr;
+        });
+    }
+    else{
+        return std::all_of(components.begin(), components.end(), [](const std::unique_ptr<Component>& comp) { return comp->getIsActive(); });
+    }
 }
 
 void EmergencyCenter::updateAllSoftwares() {

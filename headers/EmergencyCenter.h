@@ -3,6 +3,9 @@
 
 #include "Component.h"
 #include "Sensor.h"
+#include "Sensors/Gas.h"
+#include "Sensors/Motion.h"
+#include "Sensors/Smoke.h"
 
 class EmergencyCenter {
 private:
@@ -23,9 +26,9 @@ public:
     bool testComponent(Component* component);
 
     void printAllComponents();
-    void activateAllComponents();
-    void deactivateAllComponents();
-    bool testAllComponents();
+    void activateAllComponents(int mode);
+    void deactivateAllComponents(int mode);
+    bool testAllComponents(int mode);
     void updateAllSoftwares();
 
     // Operator overloading methods
