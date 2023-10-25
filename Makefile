@@ -8,7 +8,7 @@ CXX = g++
 CXXFLAGS = -Wall -std=c++20
 
 # Source files (all .cpp files in the current directory)
-SRCS = $(wildcard *.cpp)
+SRCS = $(filter-out main.cpp, $(wildcard *.cpp))
 
 # Executable name
 EXEC = $(basename $(SRCS))
