@@ -5,7 +5,6 @@
 
 #include "../EmergencyStrategy.h"
 
-
 class Security : public EmergencyStrategy
 {
 public:

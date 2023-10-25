@@ -16,27 +16,4 @@ public:
     // virtual void executeStrategy() const = 0;
 };
 
-class SMS : public NotificationStrategy
-{
-public:
-    SMS(std::string& receipientName, std::string& receipientNumber, std::string& message): receipientName(receipientName), receipientNumber(receipientNumber), message(message){};
-    virtual void executeStrategy() const override;
-private:
-    std::string receipientName;
-    std::string receipientNumber;
-    std::string message;
-};
-
-class Email : public NotificationStrategy
-{
-public:
-    Email(std::string& receipientName, std::string& receipientEmail, std::string& message): receipientName(receipientName), receipientEmail(receipientEmail), message(message){};
-    virtual void executeStrategy() const override;
-private:
-    std::string receipientName;
-    std::string receipientEmail;
-    std::string message;
-};
-
-
 #endif  // NOTIFICATIONSTRATEGY_H
