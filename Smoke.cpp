@@ -1,4 +1,4 @@
-#include "headers/Sensors/Smoke.h"
+#include "headers/Sensor.h"
 
 void Smoke::setThreshold(const int type)
 {

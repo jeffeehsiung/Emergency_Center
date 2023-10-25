@@ -32,3 +32,35 @@ class Sensor: public Component {
         int softwareVersion;
         std::vector<std::shared_ptr<SensorStrategy>> strategies;
 };
+
+class Gas : public Sensor
+{
+    using Sensor::Sensor;
+    private:
+        std::string gasType;
+    public:
+        virtual void setGasType(const std::string& type);
+        virtual std::string getGasType();
+};
+
+class Motion : public Sensor
+{
+    using Sensor::Sensor;
+    private:
+        int activationRange;
+    public:
+        virtual void setActivationRange(const int type);
+        virtual int getActivationRange();
+};
+
+class Smoke : public Sensor
+{
+    using Sensor::Sensor;
+    private:
+        int threshold;
+    public:
+        virtual void setThreshold(const int type);
+        virtual int getThreshold();
+};
+
+

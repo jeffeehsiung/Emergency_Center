@@ -1,4 +1,4 @@
-#include "headers/Sensors/Motion.h"
+#include "headers/Sensor.h"
 
 void Motion::setActivationRange(const int type)
 {

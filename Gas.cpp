@@ -1,4 +1,4 @@
-#include "headers/Sensors/Gas.h"
+#include "headers/Sensor.h"
 
 void Gas::setGasType(const std::string& type)
 {

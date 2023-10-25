@@ -3,9 +3,6 @@
 
 #include "Component.h"
 #include "Sensor.h"
-#include "Sensors/Gas.h"
-#include "Sensors/Motion.h"
-#include "Sensors/Smoke.h"
 
 class EmergencyCenter {
 private:
