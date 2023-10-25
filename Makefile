@@ -2,7 +2,7 @@
 CXX = g++
 
 # Flags for compiler
-CXXFLAGS = -Wall -std=c++20 -I/home/rcw/works/team-a4-ec/
+CXXFLAGS = -Wall -std=c++20
 
 # Source files (all .cpp files in the current directory)
 SRCS = $(wildcard *.cpp)
@@ -11,7 +11,7 @@ SRCS = $(wildcard *.cpp)
 EXEC = $(basename $(SRCS))
 
 # Object files
-OBJS = EmergencyCenter.o Component.o Sensor.o SensorGroup.o
+OBJS = $(SRCS:.cpp=.o)
 
 # Header files
 HDRS = $(wildcard headers/*.h)
@@ -22,59 +22,59 @@ all: $(EXEC)
 $(EXEC): $(SRCS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-EmergencyCenter.o: EmergencyCenter.cpp $(HDRS)
+EmergencyCenter: EmergencyCenter.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c EmergencyCenter.cpp
 
-Component.o: Component.cpp $(HDRS)
+Component: Component.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c Component.cpp
 
-Sensor.o: Sensor.cpp $(HDRS)
+Sensor: Sensor.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c Sensor.cpp
 
-SensorGroup.o: SensorGroup.cpp $(HDRS)
+SensorGroup: SensorGroup.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c SensorGroup.cpp
 
 # Rest of your object files and dependencies...
-AC.o: AC.cpp $(HDRS)
+AC: AC.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c AC.cpp
 
-CentralDispatch.o: CentralDispatch.cpp $(HDRS)
+CentralDispatch: CentralDispatch.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c CentralDispatch.cpp
 
-Email.o: Email.cpp $(HDRS)
+Email: Email.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c Email.cpp
 
-FireBrigade.o: FireBrigade.cpp $(HDRS)
+FireBrigade: FireBrigade.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c FireBrigade.cpp
 
-Gas.o: Gas.cpp $(HDRS)
+Gas: Gas.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c Gas.cpp
 
-GroupAlarm.o: GroupAlarm.cpp $(HDRS)
+GroupAlarm: GroupAlarm.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c GroupAlarm.cpp
 
-LeafAlarm.o: LeafAlarm.cpp $(HDRS)
+LeafAlarm: LeafAlarm.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c LeafAlarm.cpp
 
-Light.o: Light.cpp $(HDRS)
+Light: Light.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c Light.cpp
 
-Motion.o: Motion.cpp $(HDRS)
+Motion: Motion.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c Motion.cpp
 
-Police.o: Police.cpp $(HDRS)
+Police: Police.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c Police.cpp
 
-Security.o: Security.cpp $(HDRS)
+Security: Security.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c Security.cpp
 
-Smoke.o: Smoke.cpp $(HDRS)
+Smoke: Smoke.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c Smoke.cpp
 
-SMS.o: SMS.cpp $(HDRS)
+SMS: SMS.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c SMS.cpp
 
-Sprinkler.o: Sprinkler.cpp $(HDRS)
+Sprinkler: Sprinkler.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c Sprinkler.cpp
 
 run: $(EXEC)
