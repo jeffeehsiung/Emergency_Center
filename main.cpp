@@ -2,7 +2,6 @@
 #include <string>
 // include the .so file
 #include "headers/EmergencyCenter.h"
-#include "headers/Component.h"
 
 int main ()
 {
