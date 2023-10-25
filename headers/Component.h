@@ -1,7 +1,14 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "SensorStrategy.h"
+#include <iostream>
+#include <list>
+#include <string>
+#include <vector>
+#include <stdio.h>
+#include <iostream>
+#include <algorithm>
+#include <memory>
 
 class Component {
 protected:

@@ -1,4 +1,5 @@
 #include "Component.h"
+#include "SensorStrategy.h"
 
 class Sensor: public Component {
     public:
