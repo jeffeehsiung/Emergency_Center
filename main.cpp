@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-// include the .so file
 #include "headers/EmergencyCenter.h"
 
 int main ()
