@@ -16,14 +16,26 @@ OBJS = $(SRCS:.cpp=.o)
 # Header files
 HDRS = $(wildcard headers/*.h)
 
-# Build rules
-all: $(EXEC)
+# Shared library nanes and version
+LIBRARY = libmylibrary.so
 
-$(EXEC): $(SRCS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+# Build rules
+# all: $(EXEC)
+
+# $(EXEC): $(SRCS)
+# 	$(CXX) $(CXXFLAGS) -o $@ $^
+
+all: $(LIBRARY)
+
+$(LIBRARY): $(OBJS)
+	$(CXX) $(CXXFLAGS) -shared -o $@ $^
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -fPIC -c $< -o $@
 
 EmergencyCenter: EmergencyCenter.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c EmergencyCenter.cpp
+	$(CXX) $(CXXFLAGS) -c EmergencyCenter.cpp -o EmergencyCenter.o
+	g++ -shared -o libEmergencyCenter.so EmergencyCenter.o
 
 Component: Component.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -c Component.cpp
@@ -80,6 +92,10 @@ Sprinkler: Sprinkler.cpp $(HDRS)
 run: $(EXEC)
 	./$(EXEC)
 
-# Cleanup
+# shared library rules
+lib: $(OBJS)
+	$(CXX) $(CXXFLAGS) -shared -o lib$(EXEC).so $(OBJS)
+
+# Cleanup object files, executables, and libraries
 clean:
-	rm -f $(EXEC) $(OBJS)
+	rm -f $(OBJS) $(EXEC) $(LIBRARY)
