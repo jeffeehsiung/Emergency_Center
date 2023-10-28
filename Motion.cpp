@@ -1,7 +1,7 @@
 #include "headers/Sensor.h"
 
-Motion::Motion(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, int activationRange):
-    Sensor(id, location, vendor, activationTimeStart, activationTimeEnd, isActive, alwaysActive, deactivationTime, softwareVersion)
+Motion::Motion(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion, int activationRange):
+    Sensor(id, location, vendor, activationTimeStart, activationTimeEnd, isActive, alwaysActive, softwareVersion)
 {
     // set the fabrication date
     this->activationRange = activationRange;

@@ -1,7 +1,7 @@
 #include "headers/Sensor.h"
 
-Gas::Gas(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, std::string type):
-    Sensor(id, location, vendor, activationTimeStart, activationTimeEnd, isActive, alwaysActive, deactivationTime, softwareVersion)
+Gas::Gas(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive,  int softwareVersion, std::string type):
+    Sensor(id, location, vendor, activationTimeStart, activationTimeEnd, isActive, alwaysActive, softwareVersion)
 {
     // set the fabrication date
     this->gasType = type;

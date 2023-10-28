@@ -50,8 +50,23 @@ void EmergencyCenter::printAllComponents() {
 }
 
 bool EmergencyCenter::testComponent(Component* component) {
-    // Need logic to test the component
-    return dynamic_cast<Sensor*>(component)->getIsActive();
+     // If it's a sensor, directly return its active status
+    if (auto sensor = dynamic_cast<Sensor*>(component)) {
+        std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
+        return sensor->getIsActive();
+    }
+    
+    // If it's a sensor group, check each component in the group
+    else if (auto group = dynamic_cast<SensorGroup*>(component)) {
+        for (const auto& nestedComp : group->getComponents()) {
+            if (!testComponent(nestedComp.get())) { // Recursively test
+                std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
+                return false; // If any sensor in the group is not active, return false
+            }
+        }
+        return true; // All sensors in the group are active
+    }
+    return false;
 }
 
 void EmergencyCenter::activateAllComponents(int mode) {
