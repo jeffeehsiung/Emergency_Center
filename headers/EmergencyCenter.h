@@ -1,8 +1,9 @@
 #ifndef EMERGENCYCENTER_H
 #define EMERGENCYCENTER_H
 
-#include "Component.h"
 #include "Sensor.h"
+#include "SensorGroup.h"
+#include "SensorConfig.h"
 
 class EmergencyCenter {
 private:

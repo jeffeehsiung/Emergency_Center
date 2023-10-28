@@ -6,6 +6,7 @@ protected:
 public:
     // constructor
     SensorGroup();
+    SensorGroup(std::string id,int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime);
     // destructor
     ~SensorGroup() = default;
     // function to add a sensor to the vector of sensors

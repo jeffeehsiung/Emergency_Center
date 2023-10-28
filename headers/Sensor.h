@@ -6,9 +6,9 @@ class Sensor: public Component {
         Sensor() = default;
         Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion);
 
-        void addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy);
+        virtual void addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy);
 
-        void removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy); 
+        virtual void removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy); 
 
         void executeStrategy() const override;
 

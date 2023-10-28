@@ -1,7 +1,9 @@
 #include "headers/SensorGroup.h"
 
-SensorGroup::SensorGroup():Component(){
-    // The 'components' vector is automatically initialized as an empty vector
+SensorGroup::SensorGroup(std::string id, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime):
+    Component(id, activationTimeStart, activationTimeEnd, isActive, alwaysActive, deactivationTime)
+{
+    
 }
 
 void SensorGroup::addSensor(std::shared_ptr<Component> component){
