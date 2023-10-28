@@ -8,6 +8,9 @@ class Sensor: public Component {
         Sensor() = default;
         Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion);
 
+        void printDetails(std::ostream& COUT) const override {
+            Component::printDetails(COUT);
+        }
         // virtual void addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy);
 
         // virtual void removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy); 
@@ -25,6 +28,7 @@ class Sensor: public Component {
         // virtual void updateSoftware();
 
         // virtual int getSoftwareVersion() const;
+        
     
     // protected:
     //     std::string location;
@@ -42,7 +46,12 @@ class Gas : public Sensor
         Gas(std::string id, std::string location, std::string vendor, int activationTimeStart, 
         int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, std::string type);
         virtual void setGasType(const std::string& type);
-        virtual std::string getGasType();
+        virtual std::string getGasType() const {return gasType;};
+        void printDetails(std::ostream& COUT) const override {
+            Sensor::printDetails(COUT);
+            COUT << "Sensor Type: " << "Gas" << "\n";
+            COUT << "Gas Type: " << getGasType() << "\n";
+        }
 };
 
 class Motion : public Sensor
@@ -54,7 +63,12 @@ class Motion : public Sensor
         Motion(std::string id, std::string location, std::string vendor, int activationTimeStart, 
         int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, int activationRange);
         virtual void setActivationRange(const int type);
-        virtual int getActivationRange();
+        virtual int getActivationRange() const {return activationRange;};
+        void printDetails(std::ostream& COUT) const override {
+            Sensor::printDetails(COUT);
+            COUT << "Sensor Type: " << "Motion" << "\n";
+            COUT << "Activation Range: " << getActivationRange() << "\n";
+        }
 };
 
 class Smoke : public Sensor
@@ -66,7 +80,13 @@ class Smoke : public Sensor
         Smoke(std::string id, std::string location, std::string vendor, int activationTimeStart, 
         int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, int threshold);
         virtual void setThreshold(const int type);
-        virtual int getThreshold();
+        virtual int getThreshold() const {return threshold;};
+        void printDetails(std::ostream& COUT) const override {
+            Sensor::printDetails(COUT);
+            COUT << "Sensor Type: " << "Smoke" << "\n";
+            COUT << "Threshold: " << getThreshold() << "\n";
+        }
+        
 };
 
 #endif 

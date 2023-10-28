@@ -133,16 +133,27 @@ public:
         }
     }
 
+    virtual void printDetails(std::ostream& COUT) const {
+    // Print the details common to all Components
+    COUT << "ID: " << getId() << "\n"
+        << "Activation time: " << getActivationTimeStart() << " to " << getActivationTimeEnd() << "\n"
+        << "Is active? " << (getIsActive() ? "Yes" : "No") << "\n"  // Ternary to print Yes/No instead of 1/0
+        << "Is always active? " << (getAlwaysActive() ? "Yes" : "No") << "\n"  // Same as above
+        << "Deactivation time: " << getDeactivationTime() << "\n"
+        << "Location: " << getLocation() << "\n"
+        << "Vendor: " << getVendor() << "\n"
+        << "Software Version: " << getSoftwareVersion() << "\n";
+    }
+
+    
     /** Operator overloading methods */
     friend std::ostream& operator<<(std::ostream& COUT, const Component& component) {
     // Print component details using its getter methods
-        COUT << "ID: " << component.getId() << "\n"
-            << "Activation time: " << component.getActivationTimeStart() << " to " << component.getActivationTimeEnd() << "\n"
-            << "Is active? " << component.getIsActive() << "\n"
-            << "Is always active? " << component.getAlwaysActive() << "\n"
-            << "Deactivation time: " << component.getDeactivationTime() << "\n\n\n";
-        return COUT;
+    component.printDetails(COUT);
+    COUT << "\n\n";
+    return COUT;
     }
+
 
     Component& operator++(){
         this->setActive();

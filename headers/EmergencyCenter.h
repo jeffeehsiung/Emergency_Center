@@ -9,7 +9,7 @@
 class EmergencyCenter {
 private:
     static std::unique_ptr<EmergencyCenter> instance; // Singleton instance
-    std::list<std::unique_ptr<Component>> components;
+    std::list<std::shared_ptr<Component>> components;
 
 public:
     // Constructor & Destructor
@@ -20,7 +20,7 @@ public:
     static EmergencyCenter* getInstance();
     
     // Other methods
-    void addComponent(std::unique_ptr<Component> component);
+    void addComponent(std::shared_ptr<Component> component);
     void removeComponent(Component* component);
     bool testComponent(Component* component);
 
