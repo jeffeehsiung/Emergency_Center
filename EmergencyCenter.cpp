@@ -162,7 +162,7 @@ void EmergencyCenter::updateAllSoftwares() {
 void EmergencyCenter::orderByComponentId()
 {
     // Define a lambda comparator function
-    auto idComparator = [this](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
+    auto idComparator = [](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
         // Helper function for recursive ID comparison
         std::function<bool(const std::shared_ptr<Component>&, const std::shared_ptr<Component>&)> compareId;
 
@@ -205,7 +205,7 @@ void EmergencyCenter::orderByComponentId()
 
 void EmergencyCenter::orderByComponentLocation(){
     // Define a lambda comparator function
-    auto locationComparator = [this](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
+    auto locationComparator = [](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
         // Helper function for recursive location comparison
         std::function<bool(const std::shared_ptr<Component>&, const std::shared_ptr<Component>&)> compareLocation;
 
@@ -245,4 +245,47 @@ void EmergencyCenter::orderByComponentLocation(){
     // Use the lambda comparator in std::sort
     std::sort(components.begin(), components.end(), locationComparator);
 
+}
+
+void EmergencyCenter::orderByComponentVendor(){
+    // Define a lambda comparator function
+    auto vendorComparator = [](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
+        // Helper function for recursive vendor comparison
+        std::function<bool(const std::shared_ptr<Component>&, const std::shared_ptr<Component>&)> compareVendor;
+
+        compareVendor = [&compareVendor](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
+            const Sensor* sensorA = dynamic_cast<Sensor*>(a.get());
+            const Sensor* sensorB = dynamic_cast<Sensor*>(b.get());
+
+            if (sensorA && sensorB) {
+                // Both components are Sensor objects
+                return sensorA->getVendor() < sensorB->getVendor();
+            } else if (dynamic_cast<SensorGroup*>(a.get())) {
+                // Component 'a' is a SensorGroup
+                const auto& sensorsInGroup = std::dynamic_pointer_cast<SensorGroup>(a)->getComponents();
+                for (const auto& sensor : sensorsInGroup) {
+                    // Recursively compare the vendor of each sensor in the group with component 'b'
+                    if (compareVendor(sensor, b)) {
+                        return true;  // If any sensor in the group has a greater vendor, return true.
+                    }
+                }
+            } else if (dynamic_cast<SensorGroup*>(b.get())) {
+                // Component 'b' is a SensorGroup
+                const auto& sensorsInGroup = std::dynamic_pointer_cast<SensorGroup>(b)->getComponents();
+                for (const auto& sensor : sensorsInGroup) {
+                    // Recursively compare the vendor of each sensor in the group with component 'a'
+                    if (compareVendor(a, sensor)) {
+                        return false;  // If any sensor in the group has a greater vendor, return false.
+                    }
+                }
+            }
+
+            return false;  // If types are not comparable or no greater vendor is found, return false.
+        };
+
+        return compareVendor(a, b);
+    };
+
+    // Use the lambda comparator in std::sort
+    std::sort(components.begin(), components.end(), vendorComparator);
 }
