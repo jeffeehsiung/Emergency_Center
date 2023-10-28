@@ -9,7 +9,7 @@
 class EmergencyCenter {
 private:
     static std::unique_ptr<EmergencyCenter> instance; // Singleton instance
-    std::list<std::shared_ptr<Component>> components;
+    std::vector<std::shared_ptr<Component>> components;
 
 public:
     // Constructor & Destructor
@@ -29,6 +29,11 @@ public:
     void deactivateAllComponents(int mode);
     bool testAllComponents(int mode);
     void updateAllSoftwares();
+
+    // Orderby methods Component vector (components)
+    void orderByComponentId();
+    void orderByComponentLocation();
+    void orderByComponentVendor();
 
     // Operator overloading methods
     friend std::ostream& operator<<(std::ostream& COUT, const EmergencyCenter& center);
