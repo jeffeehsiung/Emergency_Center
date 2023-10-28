@@ -10,6 +10,8 @@
 #include <iostream>
 #include <algorithm>
 #include <memory>
+// include library for operator overloading
+#include <ostream>
 #include "SensorStrategy.h"
 
 class Component {
@@ -17,19 +19,13 @@ protected:
     std::string id;
     int activationTimeStart;
     int activationTimeEnd;
-    bool isActive;
     bool alwaysActive;
-    int deactivationTime;
-    std::string location;
-    std::string vendor;
-    int softwareVersion;
     std::vector<std::shared_ptr<SensorStrategy>> strategies;
 
 public:
     // constructor and destructor
-    Component() = default;
-    Component(std::string id, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime): id{id}, activationTimeStart{activationTimeStart}, activationTimeEnd{activationTimeEnd}, 
-    isActive{isActive}, alwaysActive{alwaysActive}, deactivationTime{deactivationTime}{}
+    Component(std::string id): id{id}{}
+    Component(std::string id, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime): id{id}, activationTimeStart{activationTimeStart}, activationTimeEnd{activationTimeEnd}, alwaysActive{alwaysActive}{}
     
     virtual ~Component() = default;
 
@@ -55,56 +51,12 @@ public:
         this->activationTimeEnd = end;
     }
 
-    virtual bool getIsActive() const{
-        return isActive;
-    }
-
-    virtual void setActive() {
-        this->isActive = true;
-    }
-
-    virtual void setNotActive() {
-        this->isActive = false;
-    }
-
     virtual bool getAlwaysActive() const{
         return alwaysActive;
     }
 
     virtual void setAlwaysActive(bool alwaysActiveStatus){
         this->alwaysActive = alwaysActiveStatus;
-    }
-
-    virtual int getDeactivationTime() const{
-        return deactivationTime;
-    }
-
-    virtual void setDeactivationTime(int deactivation){
-        this->deactivationTime = deactivation;
-    }
-
-    virtual std::string getLocation() const{
-        return location;
-    }
-
-    virtual void setLocation(const std::string& location){
-        this->location = location;
-    }
-
-    virtual std::string getVendor() const{
-        return vendor;
-    }
-    /** setVendor method to be implemented by derived classes */
-    virtual void setVendor(const std::string& vendor){
-        this->vendor = vendor;
-    }
-
-    virtual void updateSoftware(){
-        this->softwareVersion++;
-    }
-
-    virtual int getSoftwareVersion() const{
-        return softwareVersion;
     }
 
     virtual void addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy)

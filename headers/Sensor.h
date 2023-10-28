@@ -5,7 +5,8 @@
 
 class Sensor: public Component {
     public:
-        Sensor() = default;
+        // constructor
+        Sensor(std::string id): Component(id){}
         Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion);
 
         void printDetails(std::ostream& COUT) const override {
@@ -19,16 +20,15 @@ class Sensor: public Component {
 
         // virtual std::string getLocation() const override;
 
-        // virtual void setLocation(const std::string& location) override;
+        virtual void setLocation(const std::string& location);
 
-        // virtual std::string getVendor() const override;
+        virtual std::string getVendor() const;
 
-        // virtual void setVendor(const std::string& vendor) override;
+        virtual void setVendor(const std::string& vendor);
 
-        // virtual void updateSoftware();
+        virtual void updateSoftware();
 
         // virtual int getSoftwareVersion() const;
-        
     
     // protected:
     //     std::string location;
