@@ -25,7 +25,7 @@ protected:
 public:
     // constructor and destructor
     Component(std::string id): id{id}{}
-    Component(std::string id, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime): id{id}, activationTimeStart{activationTimeStart}, activationTimeEnd{activationTimeEnd}, alwaysActive{alwaysActive}{}
+    Component(std::string id, int activationTimeStart, int activationTimeEnd, bool alwaysActive): id{id}, activationTimeStart{activationTimeStart}, activationTimeEnd{activationTimeEnd}, alwaysActive{alwaysActive}{}
     
     virtual ~Component() = default;
 

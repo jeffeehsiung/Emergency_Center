@@ -1,12 +1,13 @@
 #include "headers/Sensor.h"
 
 // constructor
-Sensor::Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion):
-    Component(id, activationTimeStart, activationTimeEnd, isActive, alwaysActive, deactivationTime)
+Sensor::Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion):
+    Component(id, activationTimeStart, activationTimeEnd, alwaysActive)
 {
     this->location = location;
     this->vendor = vendor;
     this->softwareVersion = softwareVersion;
+    this->isActive = isActive;
 }
 
 std::string Sensor::getLocation() const{
@@ -42,10 +43,6 @@ void Sensor::setActive()
 void Sensor::setNotActive()
 {
     this->isActive = false;
-}
-
-int Sensor::getSoftwareVersion() const{
-    return softwareVersion;
 }
 
 Component &Sensor::operator++()

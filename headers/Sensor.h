@@ -7,7 +7,7 @@ class Sensor: public Component {
     public:
         // constructor
         Sensor(std::string id): Component(id){}
-        Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion);
+        Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion);
 
         void printDetails(std::ostream& COUT) const override {
             Component::printDetails(COUT);
@@ -36,9 +36,9 @@ class Sensor: public Component {
         virtual bool getIsActive() const {return isActive;};
 
         /** Operator overloading methods */
-        virtual Component& operator++();
+        Component& operator++();
 
-        virtual Component& operator--();
+        Component& operator--();
 
     
     protected:
@@ -55,7 +55,7 @@ class Gas : public Sensor
         std::string gasType;
     public:
         Gas(std::string id, std::string location, std::string vendor, int activationTimeStart, 
-        int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, std::string type);
+        int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion, std::string type);
         virtual void setGasType(const std::string& type);
         virtual std::string getGasType() const {return gasType;};
         void printDetails(std::ostream& COUT) const override {
@@ -72,7 +72,7 @@ class Motion : public Sensor
         int activationRange;
     public:
         Motion(std::string id, std::string location, std::string vendor, int activationTimeStart, 
-        int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, int activationRange);
+        int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion, int activationRange);
         virtual void setActivationRange(const int type);
         virtual int getActivationRange() const {return activationRange;};
         void printDetails(std::ostream& COUT) const override {
@@ -89,7 +89,7 @@ class Smoke : public Sensor
         int threshold;
     public:
         Smoke(std::string id, std::string location, std::string vendor, int activationTimeStart, 
-        int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, int threshold);
+        int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion, int threshold);
         virtual void setThreshold(const int type);
         virtual int getThreshold() const {return threshold;};
         void printDetails(std::ostream& COUT) const override {

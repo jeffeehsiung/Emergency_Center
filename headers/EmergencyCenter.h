@@ -22,12 +22,14 @@ public:
     // Other methods
     void addComponent(std::shared_ptr<Component> component);
     void removeComponent(Component* component);
-    bool testComponent(Component* component);
+    void testComponent(Component* component, int mode);
 
     void printAllComponents();
+    void activateComponent(Component* component, int mode);
     void activateAllComponents(int mode);
+    void deactivateComponent(Component* component, int mode);
     void deactivateAllComponents(int mode);
-    bool testAllComponents(int mode);
+    void testAllComponents(int mode);
     void updateAllSoftwares();
 
     // Orderby methods Component vector (components)
