@@ -1,10 +1,7 @@
 #include "headers/SensorGroup.h"
 #include "SensorGroup.h"
 
-SensorGroup::SensorGroup():Component(){
-    // The 'components' vector is automatically initialized as an empty vector
-}
-
+/** SensorGroup specific methods */
 void SensorGroup::addSensor(std::shared_ptr<Component> component){
     /** the component parameter is a reference to a Sensor component. 
      * the method adds the component to the vector of components 
@@ -29,6 +26,71 @@ std::vector<std::shared_ptr<Component>> SensorGroup::getSensors()
 {
     /** return the updated vector of components **/
     return components;
+}
+
+/** SensorGroup specific methods */
+/** inline getters and setter can be overriden by derived classes 
+ * the following method will check if the component is a sensor or a sensor group
+ * if the component is a sensor, the method will get the id, activation time start, activation time end, location, and vendor
+ * if the component is a sensor group, the method will get the id, activation time start, activation time end, location, and vendor for each sensor in the sensor group
+ * each information is separated by a space
+ * the method will return the information
+*/
+std::string SensorGroup::getId() const
+{
+    // for each sensor in the sensor group, get the id
+    std::string id = "";
+    for (const auto& component : components) {
+        if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
+            id += std::dynamic_pointer_cast<Sensor>(component)->getId() + " ";
+        }
+        else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+                id += std::dynamic_pointer_cast<Sensor>(sensor)->getId() + " ";
+            }
+        }
+    }
+    return id;
+}
+
+int SensorGroup::getActivationTimeStart() const
+{
+    // for each sensor in the sensor group, get the activation time start
+    int activationTimeStart = 0;
+    for (const auto& component : components) {
+        // check if the component is a sensor or a sensor group
+        // if the component is a sensor, get the activation time start
+        // if the component is a sensor group, get the activation time start for each sensor in the sensor group
+        if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
+            activationTimeStart += std::dynamic_pointer_cast<Sensor>(component)->getActivationTimeStart();
+        }
+        else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
+            // for each sensor in the sensor group, get the activation time start
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+                activationTimeStart += std::dynamic_pointer_cast<Sensor>(sensor)->getActivationTimeStart();
+            }
+        }
+    }
+}
+
+int SensorGroup::getActivationTimeEnd() const
+{
+    // for each sensor in the sensor group, get the activation time end
+    int activationTimeEnd = 0;
+    for (const auto& component : components) {
+        // check if the component is a sensor or a sensor group
+        // if the component is a sensor, get the activation time end
+        // if the component is a sensor group, get the activation time end for each sensor in the sensor group
+        if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
+            activationTimeEnd += std::dynamic_pointer_cast<Sensor>(component)->getActivationTimeEnd();
+        }
+        else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
+            // for each sensor in the sensor group, get the activation time end
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+                activationTimeEnd += std::dynamic_pointer_cast<Sensor>(sensor)->getActivationTimeEnd();
+            }
+        }
+    }
 }
 
 

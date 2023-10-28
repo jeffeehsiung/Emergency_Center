@@ -1,68 +1,63 @@
 #include "headers/Sensor.h"
+#include "Sensor.h"
 
 // constructor
 Sensor::Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion):
     Component(id, activationTimeStart, activationTimeEnd, isActive, alwaysActive, deactivationTime)
 {
-    // set the fabrication date
     this->location = location;
     this->vendor = vendor;
     this->softwareVersion = softwareVersion;
 }
 
-// // implmement getLocation() and setLocation() methods from the abstract class Component
-// std::string Sensor::getLocation() const{
-//     return location;
-// }
-// void Sensor::setLocation(const std::string& location){
-//     this->location = location;
-// }
+std::string Sensor::getLocation() const{
+    return location;
+}
 
-// std::string Sensor::getVendor() const{
-//     return vendor;
-// }
-// void Sensor::setVendor(const std::string& vendor){
-//     this->vendor = vendor;
-// }
+void Sensor::setLocation(const std::string& location){
+    this->location = location;
+}
 
-// void Sensor::updateSoftware(){
-//     this->softwareVersion++;
-// }
+std::string Sensor::getVendor() const{
+    return vendor;
+}
+
+void Sensor::setVendor(const std::string& vendor){
+    this->vendor = vendor;
+}
+
+void Sensor::updateSoftware(){
+    this->softwareVersion++;
+}
+
+int Sensor::getSoftwareVersion() const
+{
+    return softwareVersion;
+}
+
+void Sensor::setActive()
+{
+    this->isActive = true;
+}
+
+void Sensor::setNotActive()
+{
+    this->isActive = false;
+}
 
 // int Sensor::getSoftwareVersion() const{
 //     return softwareVersion;
 // }
+Component &Sensor::operator++()
+{
+    // set active
+    this->setActive();
+    return *this;
+}
 
-// void Sensor::addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy)
-// {
-//     strategies.push_back(sensorStrategy);
-// }
-
-// void Sensor::removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy)
-// {
-//     /** the sensorStrategy paramter is a shared pointer to the abstract class SensorStrategy.
-//      * the method removes the SensorStreatgy from the vector list
-//      * the method utilize the std::find function from the algorithm library
-//      * reference: https://unstop.com/blog/find-in-vector-cpp
-//      * reference: https://en.cppreference.com/w/cpp/algorithm/find
-//     */
-//     auto it = std::find(strategies.begin(), strategies.end(), sensorStrategy);
-//     if (it != strategies.end()) {
-//         strategies.erase(it);
-//     }
-//     // // find and remove the specified strategy making use of iterators
-//     // for (auto it = strategies.begin(); it != strategies.end(); ++it) {
-//     //     if (*it == sensorStrategy) {
-//     //         strategies.erase(it);
-//     //         break;  // assuming there are no duplicate strategies
-//     //     }
-//     // }
-// }
-
-// void Sensor::executeStrategy() const
-// {
-//     // Execute all strategies
-//     for (const auto& strategy : strategies) {
-//         strategy->executeStrategy();
-//     }
-// }
+Component &Sensor::operator--()
+{
+    // set not active
+    this->setNotActive();
+    return *this;
+}

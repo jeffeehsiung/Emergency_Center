@@ -5,32 +5,38 @@
 
 class Sensor: public Component {
     public:
-        Sensor() = default;
+        // constructor
+        Sensor(std::string id): Component(id){}
         Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion);
 
-        // virtual void addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy);
+        /** sensor specific methods */
+        virtual std::string getLocation() const;
 
-        // virtual void removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy); 
+        virtual void setLocation(const std::string& location);
 
-        // virtual void executeStrategy() const override;
+        virtual std::string getVendor() const;
 
-        // virtual std::string getLocation() const override;
+        virtual void setVendor(const std::string& vendor);
 
-        // virtual void setLocation(const std::string& location) override;
+        virtual void updateSoftware();
 
-        // virtual std::string getVendor() const override;
+        virtual int getSoftwareVersion() const;
 
-        // virtual void setVendor(const std::string& vendor) override;
+        virtual void setActive();
 
-        // virtual void updateSoftware();
+        virtual void setNotActive();
 
-        // virtual int getSoftwareVersion() const;
+        /** Operator overloading methods */
+        virtual Component& operator++();
+
+        virtual Component& operator--();
+
     
-    // protected:
-    //     std::string location;
-    //     std::string vendor;
-    //     int softwareVersion;
-    //     std::vector<std::shared_ptr<SensorStrategy>> strategies;
+    protected:
+        bool isActive;
+        std::string location;
+        std::string vendor;
+        int softwareVersion;
 };
 
 class Gas : public Sensor
