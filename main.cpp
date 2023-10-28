@@ -24,11 +24,9 @@ int main ()
     comp1 -> addStrategy(std::shared_ptr<SensorStrategy>(strat1));
     comp2 -> addStrategy(std::shared_ptr<SensorStrategy>(strat2));
     center->printAllComponents();
-    center->testComponent(comp1,0);
-    center->testComponent(comp3,0);
-    // center->activateAllComponents(0);
-    center->activateComponent(comp1, 0);
-    center->testComponent(comp1,0);
+    center->deactivateAllComponents(0);
+    center->testAllComponents(0);
+    center->activateAllComponents(0);
     center->testAllComponents(0);
 
 
