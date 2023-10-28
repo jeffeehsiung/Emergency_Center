@@ -2,14 +2,14 @@
 #include "SensorGroup.h"
 
 /** SensorGroup specific methods */
-void SensorGroup::addSensor(std::shared_ptr<Component> component){
+void SensorGroup::addComponent(std::shared_ptr<Component> component){
     /** the component parameter is a reference to a Sensor component. 
      * the method adds the component to the vector of components 
      **/
     components.push_back(component);
 }
 
-void SensorGroup::removeSensor(std::shared_ptr<Component> component){
+void SensorGroup::removeComponent(std::shared_ptr<Component> component){
     /** the component paramter is a shared pointer to the sensor component.
      * the method removes the component from the vector list
      * the method utilize the std::find function from the algorithm library
@@ -22,7 +22,7 @@ void SensorGroup::removeSensor(std::shared_ptr<Component> component){
     }
 }
 
-std::vector<std::shared_ptr<Component>> SensorGroup::getSensors()
+std::vector<std::shared_ptr<Component>> SensorGroup::getComponents()
 {
     /** return the updated vector of components **/
     return components;
@@ -38,96 +38,93 @@ std::vector<std::shared_ptr<Component>> SensorGroup::getSensors()
 */
 std::string SensorGroup::getId() const
 {
-    // for each sensor in the sensor group, get the id
-    std::string id = "";
-    for (const auto& component : components) {
-        if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
-            id += std::dynamic_pointer_cast<Sensor>(component)->getId() + " ";
-        }
-        else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
-                id += std::dynamic_pointer_cast<Sensor>(sensor)->getId() + " ";
-            }
-        }
-    }
+    // return group id
     return id;
 }
 
-int SensorGroup::getActivationTimeStart() const
+void SensorGroup::setActivationTime(int start, int end)
 {
-    // for each sensor in the sensor group, get the activation time start
-    int activationTimeStart = 0;
+    // for each sensor in the sensor group, set the activation time
     for (const auto& component : components) {
-        // check if the component is a sensor or a sensor group
-        // if the component is a sensor, get the activation time start
-        // if the component is a sensor group, get the activation time start for each sensor in the sensor group
         if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
-            activationTimeStart += std::dynamic_pointer_cast<Sensor>(component)->getActivationTimeStart();
+            std::dynamic_pointer_cast<Sensor>(component)->setActivationTime(start, end);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            // for each sensor in the sensor group, get the activation time start
             for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
-                activationTimeStart += std::dynamic_pointer_cast<Sensor>(sensor)->getActivationTimeStart();
+                std::dynamic_pointer_cast<Sensor>(sensor)->setActivationTime(start, end);
             }
         }
     }
 }
 
-int SensorGroup::getActivationTimeEnd() const
+void SensorGroup::setActive()
 {
-    // for each sensor in the sensor group, get the activation time end
-    int activationTimeEnd = 0;
+    // for each sensor in the sensor group, set the active status
     for (const auto& component : components) {
-        // check if the component is a sensor or a sensor group
-        // if the component is a sensor, get the activation time end
-        // if the component is a sensor group, get the activation time end for each sensor in the sensor group
         if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
-            activationTimeEnd += std::dynamic_pointer_cast<Sensor>(component)->getActivationTimeEnd();
+            std::dynamic_pointer_cast<Sensor>(component)->setActive();
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            // for each sensor in the sensor group, get the activation time end
             for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
-                activationTimeEnd += std::dynamic_pointer_cast<Sensor>(sensor)->getActivationTimeEnd();
+                std::dynamic_pointer_cast<Sensor>(sensor)->setActive();
             }
         }
     }
 }
 
-
-// each sensor in the sensor group may have different locations, vendors, and strategies
-std::string SensorGroup::getLocation() const
+void SensorGroup::setNotActive()
 {
-    // for each sensor in the sensor group, get the location
-    std::string location = "";
+    // for each sensor in the sensor group, set the not active status
     for (const auto& component : components) {
-        // check if the component is a sensor or a sensor group
-        // if the component is a sensor, get the location
-        // if the component is a sensor group, get the location for each sensor in the sensor group
         if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
-            location += std::dynamic_pointer_cast<Sensor>(component)->getLocation() + " ";
+            std::dynamic_pointer_cast<Sensor>(component)->setNotActive();
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            // for each sensor in the sensor group, get the location
             for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
-                location += std::dynamic_pointer_cast<Sensor>(sensor)->getLocation() + " ";
+                std::dynamic_pointer_cast<Sensor>(sensor)->setNotActive();
             }
         }
     }
 }
 
-// each sensor in the sensor group may have different locations, vendors, and strategies
-void SensorGroup::setLocation(const std::string &location)
+void SensorGroup::setAlwaysActive(bool alwaysActive)
+{
+    // for each sensor in the sensor group, set the always active status
+    for (const auto& component : components) {
+        if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
+            std::dynamic_pointer_cast<Sensor>(component)->setAlwaysActive(alwaysActive);
+        }
+        else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+                std::dynamic_pointer_cast<Sensor>(sensor)->setAlwaysActive(alwaysActive);
+            }
+        }
+    }
+}
+
+void SensorGroup::updateSoftware()
+{
+    // for each sensor in the sensor group, update the software
+    for (const auto& component : components) {
+        if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
+            std::dynamic_pointer_cast<Sensor>(component)->updateSoftware();
+        }
+        else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+                std::dynamic_pointer_cast<Sensor>(sensor)->updateSoftware();
+            }
+        }
+    }
+}
+
+void SensorGroup::setLocation(const std::string& location)
 {
     // for each sensor in the sensor group, set the location
     for (const auto& component : components) {
-        // check if the component is a sensor or a sensor group
-        // if the component is a sensor, set the location
-        // if the component is a sensor group, set the location for each sensor in the sensor group
         if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
             std::dynamic_pointer_cast<Sensor>(component)->setLocation(location);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            // for each sensor in the sensor group, set the location
             for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
                 std::dynamic_pointer_cast<Sensor>(sensor)->setLocation(location);
             }
@@ -135,40 +132,47 @@ void SensorGroup::setLocation(const std::string &location)
     }
 }
 
-std::string SensorGroup::getVendor() const
+void SensorGroup::setVendor(const std::string& vendor)
 {
-    // for each sensor in the sensor group, get the vendor
-    std::string vendor = "";
+    // for each sensor in the sensor group, set the vendor
     for (const auto& component : components) {
-        // check if the component is a sensor or a sensor group
-        // if the component is a sensor, get the vendor
-        // if the component is a sensor group, get the vendor for each sensor in the sensor group
         if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
-            vendor += std::dynamic_pointer_cast<Sensor>(component)->getVendor() + " ";
+            std::dynamic_pointer_cast<Sensor>(component)->setVendor(vendor);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            // for each sensor in the sensor group, get the vendor
             for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
-                vendor += std::dynamic_pointer_cast<Sensor>(sensor)->getVendor() + " ";
+                std::dynamic_pointer_cast<Sensor>(sensor)->setVendor(vendor);
             }
         }
     }
 }
 
-void SensorGroup::setVendor(const std::string &vendor)
+
+void SensorGroup::addStrategy(std::shared_ptr<SensorStrategy> strategy)
 {
-    // for each sensor in the sensor group, set the vendor
+    // for each sensor in the sensor group, add the strategy
     for (const auto& component : components) {
-        // check if the component is a sensor or a sensor group
-        // if the component is a sensor, set the vendor
-        // if the component is a sensor group, set the vendor for each sensor in the sensor group
         if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
-            std::dynamic_pointer_cast<Sensor>(component)->setVendor(vendor);
+            std::dynamic_pointer_cast<Sensor>(component)->addStrategy(strategy);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            // for each sensor in the sensor group, set the vendor
             for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
-                std::dynamic_pointer_cast<Sensor>(sensor)->setVendor(vendor);
+                std::dynamic_pointer_cast<Sensor>(sensor)->addStrategy(strategy);
+            }
+        }
+    }
+}
+
+void SensorGroup::removeStrategy(std::shared_ptr<SensorStrategy> strategy)
+{
+    // for each sensor in the sensor group, remove the strategy
+    for (const auto& component : components) {
+        if (std::dynamic_pointer_cast<Sensor>(component) != nullptr){
+            std::dynamic_pointer_cast<Sensor>(component)->removeStrategy(strategy);
+        }
+        else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+                std::dynamic_pointer_cast<Sensor>(sensor)->removeStrategy(strategy);
             }
         }
     }
@@ -191,3 +195,6 @@ void SensorGroup::executeStrategy() const{
         }
     }
 }
+
+/** Operator overloading methods */
+
