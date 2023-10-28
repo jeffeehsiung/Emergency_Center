@@ -5,7 +5,7 @@ RESET_COLOR = \033[0m
 CXX = g++
 
 # Flags for compiler
-CXXFLAGS = -Wall -std=c++20 -Werror -fPIC -fdiagnostics-color=auto
+CXXFLAGS = -Wall -std=c++20 -fsanitize=address -Werror -fPIC -fdiagnostics-color=auto
 
 # Source files
 SRCS = $(filter-out main.cpp, $(wildcard *.cpp))
@@ -35,7 +35,7 @@ main: main.cpp $(LIBRARY)
 	@echo "$(TITLE_COLOR)\n***** compiling main.cpp *****$(NO_COLOR)"
 	$(CXX) -c main.cpp -o main.o $(CXXFLAGS)
 	@echo "$(TITLE_COLOR)\n***** linking shared library *****$(NO_COLOR)"
-	g++ main.o -L. -lmylibrary -o main -Wall -fdiagnostics-color=auto
+	g++ main.o -L. -lmylibrary -o main -Wall -fsanitize=address -fdiagnostics-color=auto
 
 all: main
 

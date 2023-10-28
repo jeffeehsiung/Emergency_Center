@@ -1,5 +1,4 @@
 #include "headers/EmergencyCenter.h"
-#include "EmergencyCenter.h"
 
 // Initialize the singleton instance as null
 std::unique_ptr<EmergencyCenter> EmergencyCenter::instance = nullptr;
