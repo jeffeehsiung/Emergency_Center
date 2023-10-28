@@ -1,3 +1,6 @@
+#pragma once
+#ifndef SENSOR_H
+#define SENSOR_H
 #include "Component.h"
 
 class Sensor: public Component {
@@ -66,4 +69,5 @@ class Smoke : public Sensor
         virtual int getThreshold();
 };
 
+#endif 
 

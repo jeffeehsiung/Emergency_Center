@@ -1,3 +1,7 @@
+#pragma once
+
+#ifndef SENSORGROUP_H
+#define SENSORGROUP_H
 #include "Component.h"
 #include "Sensor.h"
 
@@ -28,3 +32,4 @@ public:
 
 
 };
+#endif 
