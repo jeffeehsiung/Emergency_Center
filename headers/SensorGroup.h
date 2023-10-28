@@ -1,4 +1,5 @@
 #include "Component.h"
+#include "Sensor.h"
 
 class SensorGroup: public Component{
 protected:
@@ -16,5 +17,14 @@ public:
     virtual std::vector<std::shared_ptr<Component>> getSensors();
     // execute the strategy for the entire sensor group
     virtual void executeStrategy() const override;
+    // getLocation method to be implemented by derived classes
+    virtual std::string getLocation() const override;
+    // setLocation method to be implemented by derived classes
+    virtual void setLocation(const std::string& location) override;
+    // getVendor method to be implemented by derived classes
+    virtual std::string getVendor() const override;
+    // setVendor method to be implemented by derived classes
+    virtual void setVendor(const std::string& vendor) override;
+
 
 };
