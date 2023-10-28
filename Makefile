@@ -5,7 +5,7 @@ RESET_COLOR = \033[0m
 CXX = g++
 
 # Flags for compiler
-CXXFLAGS = -Wall -std=c++20 -fsanitize=address -Werror -fPIC -fdiagnostics-color=auto
+CXXFLAGS = -Wall -std=c++20 -Werror -fPIC -fdiagnostics-color=auto
 
 # Source files
 SRCS = $(filter-out main.cpp, $(wildcard *.cpp))
