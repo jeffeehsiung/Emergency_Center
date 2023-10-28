@@ -49,108 +49,92 @@ void EmergencyCenter::printAllComponents() {
     std::cout << *this;
 }
 
-bool EmergencyCenter::testComponent(Component* component) {
-     // If it's a sensor, directly return its active status
+void EmergencyCenter::testComponent(Component* component, int mode) {
+    // If it's a sensor, directly print its active status
     if (auto sensor = dynamic_cast<Sensor*>(component)) {
         std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
-        return sensor->getIsActive();
     }
     
     // If it's a sensor group, check each component in the group
     else if (auto group = dynamic_cast<SensorGroup*>(component)) {
         for (const auto& nestedComp : group->getComponents()) {
-            if (!testComponent(nestedComp.get())) { // Recursively test
-                std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
-                return false; // If any sensor in the group is not active, return false
-            }
+            testComponent(nestedComp.get(), mode); // Recursively test and print
         }
-        return true; // All sensors in the group are active
     }
-    return false;
+}
+
+void EmergencyCenter::activateComponent(Component* component, int mode) {
+    Sensor* asSensor = dynamic_cast<Sensor*>(component); // Try to cast component to Sensor
+    if (auto group = dynamic_cast<SensorGroup*>(component)) {
+        for (const auto& nestedComp : group->getComponents()) {
+            activateComponent(nestedComp.get(), mode);
+        }
+    }
+    
+    if (!asSensor) return; // If the cast failed (not a Sensor), return early
+
+    if (mode == 1 && dynamic_cast<Gas*>(component)) {
+        ++(*asSensor);
+    }
+    else if (mode == 2 && dynamic_cast<Motion*>(component)) {
+        ++(*asSensor);
+    }
+    else if (mode == 3 && dynamic_cast<Smoke*>(component)) {
+        ++(*asSensor);
+    }
+    else{
+        // If you want to activate all sensors, regardless of their type
+        ++(*asSensor);
+    }
+
+    // Handle SensorGroup
+    
 }
 
 void EmergencyCenter::activateAllComponents(int mode) {
-    if(mode == 1){
-        for (auto& comp : components) {
-        Gas* sensor = dynamic_cast<Gas*>(comp.get());
-        if (sensor) {
-            ++(*sensor);
-        }
-        } 
+    for (auto& comp : components) {
+        activateComponent(comp.get(), mode);
     }
-    else if(mode == 2){
-        for (auto& comp : components) {
-        Motion* sensor = dynamic_cast<Motion*>(comp.get());
-        if (sensor) {
-            ++(*sensor);
+}
+
+void EmergencyCenter::deactivateComponent(Component* component, int mode) {
+    Sensor* asSensor = dynamic_cast<Sensor*>(component); // Try to cast component to Sensor
+    if (auto group = dynamic_cast<SensorGroup*>(component)) {
+        for (const auto& nestedComp : group->getComponents()) {
+            deactivateComponent(nestedComp.get(), mode);
         }
-        } 
     }
-    else if(mode == 3){
-        for (auto& comp : components) {
-        Smoke* sensor = dynamic_cast<Smoke*>(comp.get());
-        if (sensor) {
-            ++(*sensor);
-        }
-        } 
+    
+    if (!asSensor) return; // If the cast failed (not a Sensor), return early
+
+    if (mode == 1 && dynamic_cast<Gas*>(component)) {
+        --(*asSensor);
     }
-    // else{
-    //     for (auto& comp : components) {
-    //         ++(*comp);
-    // }
-    // }
+    else if (mode == 2 && dynamic_cast<Motion*>(component)) {
+        --(*asSensor);
+    }
+    else if (mode == 3 && dynamic_cast<Smoke*>(component)) {
+        --(*asSensor);
+    }
+    else{
+        // If you want to activate all sensors, regardless of their type
+        --(*asSensor);
+    }
+
+    // Handle SensorGroup
+    
 }
 
 void EmergencyCenter::deactivateAllComponents(int mode) {
-    if(mode == 1){
-        for (auto& comp : components) {
-        Gas* sensor = dynamic_cast<Gas*>(comp.get());
-        if (sensor) {
-            --(*sensor);
-        }
-        } 
+    for (auto& comp : components) {
+        deactivateComponent(comp.get(), mode);
     }
-    else if(mode == 2){
-        for (auto& comp : components) {
-        Motion* sensor = dynamic_cast<Motion*>(comp.get());
-        if (sensor) {
-            --(*sensor);
-        }
-        } 
-    }
-    else if(mode == 3){
-        for (auto& comp : components) {
-        Smoke* sensor = dynamic_cast<Smoke*>(comp.get());
-        if (sensor) {
-            --(*sensor);
-        }
-        } 
-    }
-    // else{
-    //     for (auto& comp : components) {
-    //         --(*comp);
-    // }
-    // }
 }
 
-bool EmergencyCenter::testAllComponents(int mode) {
-    if(mode == 1){
-        return std::all_of(components.begin(), components.end(), [](const std::shared_ptr<Component>& comp) {
-        return dynamic_cast<Gas*>(comp.get()) != nullptr;
-        }); 
-    }
-    else if(mode == 2){
-        return std::all_of(components.begin(), components.end(), [](const std::shared_ptr<Component>& comp) {
-        return dynamic_cast<Motion*>(comp.get()) != nullptr;
-        });
-    }
-    else if(mode == 3){
-        return std::all_of(components.begin(), components.end(), [](const std::shared_ptr<Component>& comp) {
-        return dynamic_cast<Smoke*>(comp.get()) != nullptr;
-        });
-    }
-    else{
-        return true;
+
+void EmergencyCenter::testAllComponents(int mode) {
+    for (auto& comp : components) {
+        testComponent(comp.get(), mode);
     }
 }
 

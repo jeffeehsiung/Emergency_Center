@@ -36,9 +36,9 @@ class Sensor: public Component {
         virtual bool getIsActive() const {return isActive;};
 
         /** Operator overloading methods */
-        virtual Component& operator++();
+        Component& operator++();
 
-        virtual Component& operator--();
+        Component& operator--();
 
     
     protected:
