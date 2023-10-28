@@ -3,6 +3,7 @@
 
 class Sensor: public Component {
     public:
+        Sensor() = default;
         Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion);
 
         void addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy);
@@ -36,6 +37,8 @@ class Gas : public Sensor
     private:
         std::string gasType;
     public:
+        Gas(std::string id, std::string location, std::string vendor, int activationTimeStart, 
+        int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, std::string type);
         virtual void setGasType(const std::string& type);
         virtual std::string getGasType();
 };
@@ -46,7 +49,9 @@ class Motion : public Sensor
     private:
         int activationRange;
     public:
-        virtual void setActivationRange(const int type);
+        Motion(std::string id, std::string location, std::string vendor, int activationTimeStart, 
+        int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, int activationRange);
+        virtual void setActivationRange(const int activationRange);
         virtual int getActivationRange();
 };
 
@@ -56,7 +61,9 @@ class Smoke : public Sensor
     private:
         int threshold;
     public:
-        virtual void setThreshold(const int type);
+        Motion(std::string id, std::string location, std::string vendor, int activationTimeStart, 
+        int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, int threshold);
+        virtual void setThreshold(const int threshold);
         virtual int getThreshold();
 };
 
