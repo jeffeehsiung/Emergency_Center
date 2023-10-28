@@ -11,14 +11,13 @@ class Sensor: public Component {
 
         void printDetails(std::ostream& COUT) const override {
             Component::printDetails(COUT);
+            COUT << "Is active? " << (getIsActive() ? "Yes" : "No") << "\n"  // Ternary to print Yes/No instead of 1/0
+            << "Location: " << getLocation() << "\n"
+            << "Vendor: " << getVendor() << "\n"
+            << "Software Version: " << getSoftwareVersion() << "\n";
         }
-        // virtual void addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy);
-
-        // virtual void removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy); 
-
-        // virtual void executeStrategy() const override;
-
-        // virtual std::string getLocation() const override;
+         /** sensor specific methods */
+        virtual std::string getLocation() const;
 
         virtual void setLocation(const std::string& location);
 
@@ -28,13 +27,25 @@ class Sensor: public Component {
 
         virtual void updateSoftware();
 
-        // virtual int getSoftwareVersion() const;
+        virtual int getSoftwareVersion() const;
+
+        virtual void setActive();
+
+        virtual void setNotActive();
+
+        virtual bool getIsActive() const {return isActive;};
+
+        /** Operator overloading methods */
+        virtual Component& operator++();
+
+        virtual Component& operator--();
+
     
-    // protected:
-    //     std::string location;
-    //     std::string vendor;
-    //     int softwareVersion;
-    //     std::vector<std::shared_ptr<SensorStrategy>> strategies;
+    protected:
+        bool isActive;
+        std::string location;
+        std::string vendor;
+        int softwareVersion;
 };
 
 class Gas : public Sensor

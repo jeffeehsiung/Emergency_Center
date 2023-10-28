@@ -89,12 +89,7 @@ public:
     // Print the details common to all Components
     COUT << "ID: " << getId() << "\n"
         << "Activation time: " << getActivationTimeStart() << " to " << getActivationTimeEnd() << "\n"
-        << "Is active? " << (getIsActive() ? "Yes" : "No") << "\n"  // Ternary to print Yes/No instead of 1/0
-        << "Is always active? " << (getAlwaysActive() ? "Yes" : "No") << "\n"  // Same as above
-        << "Deactivation time: " << getDeactivationTime() << "\n"
-        << "Location: " << getLocation() << "\n"
-        << "Vendor: " << getVendor() << "\n"
-        << "Software Version: " << getSoftwareVersion() << "\n";
+        << "Is always active? " << (getAlwaysActive() ? "Yes" : "No") << "\n"  ;// Same as above
     }
 
     
@@ -104,17 +99,6 @@ public:
     component.printDetails(COUT);
     COUT << "\n\n";
     return COUT;
-    }
-
-
-    Component& operator++(){
-        this->setActive();
-        return *this;
-    }
-
-    Component& operator--(){
-        this->setNotActive();
-        return *this;
     }
 
 };

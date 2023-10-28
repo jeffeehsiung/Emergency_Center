@@ -1,5 +1,4 @@
 #include "headers/Sensor.h"
-#include "Sensor.h"
 
 // constructor
 Sensor::Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion):

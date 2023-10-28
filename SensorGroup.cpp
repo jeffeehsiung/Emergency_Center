@@ -1,5 +1,4 @@
 #include "headers/SensorGroup.h"
-#include "headers/SensorGroup.h"
 
 /** SensorGroup specific methods */
 void SensorGroup::addComponent(std::shared_ptr<Component> component){
@@ -110,13 +109,11 @@ void SensorGroup::updateSoftware()
             std::dynamic_pointer_cast<Sensor>(component)->updateSoftware();
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            // for each sensor in the sensor group, get the location
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
-                location += std::dynamic_pointer_cast<Sensor>(sensor)->getLocation() + " ";
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
+                std::dynamic_pointer_cast<Sensor>(sensor)->updateSoftware();
             }
         }
     }
-    return location;
 }
 
 void SensorGroup::setLocation(const std::string& location)
@@ -127,8 +124,7 @@ void SensorGroup::setLocation(const std::string& location)
             std::dynamic_pointer_cast<Sensor>(component)->setLocation(location);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            // for each sensor in the sensor group, set the location
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
                 std::dynamic_pointer_cast<Sensor>(sensor)->setLocation(location);
             }
         }
@@ -159,13 +155,11 @@ void SensorGroup::addStrategy(std::shared_ptr<SensorStrategy> strategy)
             std::dynamic_pointer_cast<Sensor>(component)->addStrategy(strategy);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            // for each sensor in the sensor group, get the vendor
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
-                vendor += std::dynamic_pointer_cast<Sensor>(sensor)->getVendor() + " ";
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
+                std::dynamic_pointer_cast<Sensor>(sensor)->addStrategy(strategy);
             }
         }
     }
-    return vendor;
 }
 
 void SensorGroup::removeStrategy(std::shared_ptr<SensorStrategy> strategy)
@@ -176,9 +170,8 @@ void SensorGroup::removeStrategy(std::shared_ptr<SensorStrategy> strategy)
             std::dynamic_pointer_cast<Sensor>(component)->removeStrategy(strategy);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            // for each sensor in the sensor group, set the vendor
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
-                std::dynamic_pointer_cast<Sensor>(sensor)->setVendor(vendor);
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
+                std::dynamic_pointer_cast<Sensor>(sensor)->removeStrategy(strategy);
             }
         }
     }

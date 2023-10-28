@@ -41,7 +41,7 @@ void EmergencyCenter::addComponent(std::shared_ptr<Component> component) {
 
 void EmergencyCenter::removeComponent(Component* component) {
     auto it = std::remove_if(components.begin(), components.end(),
-                             [component](const std::shared_ptr<Component>& compPtr) { return compPtr.get() == component; });
+    [component](const std::shared_ptr<Component>& compPtr) { return compPtr.get() == component; });
     components.erase(it, components.end());
 }
 
@@ -51,7 +51,7 @@ void EmergencyCenter::printAllComponents() {
 
 bool EmergencyCenter::testComponent(Component* component) {
     // Need logic to test the component
-    return component->getIsActive();
+    return dynamic_cast<Sensor*>(component)->getIsActive();
 }
 
 void EmergencyCenter::activateAllComponents(int mode) {
@@ -59,7 +59,7 @@ void EmergencyCenter::activateAllComponents(int mode) {
         for (auto& comp : components) {
         Gas* sensor = dynamic_cast<Gas*>(comp.get());
         if (sensor) {
-            ++(*comp);
+            ++(*sensor);
         }
         } 
     }
@@ -67,7 +67,7 @@ void EmergencyCenter::activateAllComponents(int mode) {
         for (auto& comp : components) {
         Motion* sensor = dynamic_cast<Motion*>(comp.get());
         if (sensor) {
-            ++(*comp);
+            ++(*sensor);
         }
         } 
     }
@@ -75,15 +75,15 @@ void EmergencyCenter::activateAllComponents(int mode) {
         for (auto& comp : components) {
         Smoke* sensor = dynamic_cast<Smoke*>(comp.get());
         if (sensor) {
-            ++(*comp);
+            ++(*sensor);
         }
         } 
     }
-    else{
-        for (auto& comp : components) {
-            ++(*comp);
-    }
-    }
+    // else{
+    //     for (auto& comp : components) {
+    //         ++(*comp);
+    // }
+    // }
 }
 
 void EmergencyCenter::deactivateAllComponents(int mode) {
@@ -91,7 +91,7 @@ void EmergencyCenter::deactivateAllComponents(int mode) {
         for (auto& comp : components) {
         Gas* sensor = dynamic_cast<Gas*>(comp.get());
         if (sensor) {
-            --(*comp);
+            --(*sensor);
         }
         } 
     }
@@ -99,7 +99,7 @@ void EmergencyCenter::deactivateAllComponents(int mode) {
         for (auto& comp : components) {
         Motion* sensor = dynamic_cast<Motion*>(comp.get());
         if (sensor) {
-            --(*comp);
+            --(*sensor);
         }
         } 
     }
@@ -107,15 +107,15 @@ void EmergencyCenter::deactivateAllComponents(int mode) {
         for (auto& comp : components) {
         Smoke* sensor = dynamic_cast<Smoke*>(comp.get());
         if (sensor) {
-            --(*comp);
+            --(*sensor);
         }
         } 
     }
-    else{
-        for (auto& comp : components) {
-            --(*comp);
-    }
-    }
+    // else{
+    //     for (auto& comp : components) {
+    //         --(*comp);
+    // }
+    // }
 }
 
 bool EmergencyCenter::testAllComponents(int mode) {
@@ -135,7 +135,7 @@ bool EmergencyCenter::testAllComponents(int mode) {
         });
     }
     else{
-        return std::all_of(components.begin(), components.end(), [](const std::shared_ptr<Component>& comp) { return comp->getIsActive(); });
+        return true;
     }
 }
 

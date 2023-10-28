@@ -20,8 +20,19 @@ public:
     // function to remove a sensor from the vector of sensors
     virtual void removeComponent(std::shared_ptr<Component> component);
     // function to get and return the vector of sensors
-    virtual std::vector<std::shared_ptr<Component>> getSensors();
-    // execute the strategy for the entire sensor group
+    virtual std::vector<std::shared_ptr<Component>> getComponents();
+    
+    /** inline methods from base class override to set all sensors in the sensor group at once */
+    virtual std::string getId() const override;
+    virtual void setActivationTime(int start, int end) override;
+    virtual void setActive();
+    virtual void setNotActive();
+    virtual void setAlwaysActive(bool alwaysActive) override;
+    virtual void setLocation(const std::string &location);
+    virtual void setVendor(const std::string &vendor);
+    virtual void updateSoftware();
+    virtual void addStrategy(std::shared_ptr<SensorStrategy> strategy) override;
+    virtual void removeStrategy(std::shared_ptr<SensorStrategy> strategy) override;
     virtual void executeStrategy() const override;
     /** Operator overloading methods overriden from base class */
     virtual Component& operator++();
@@ -29,4 +40,4 @@ public:
     /** overload << operator for output stream */
     friend std::ostream& operator<<(std::ostream& os, const SensorGroup& sensorGroup);
 };
-#endif 
+#endif
