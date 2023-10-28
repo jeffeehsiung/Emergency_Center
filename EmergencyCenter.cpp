@@ -52,7 +52,19 @@ void EmergencyCenter::printAllComponents() {
 void EmergencyCenter::testComponent(Component* component, int mode) {
     // If it's a sensor, directly print its active status
     if (auto sensor = dynamic_cast<Sensor*>(component)) {
-        std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
+        if (mode == 1 && dynamic_cast<Gas*>(component)) {
+            std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
+        }
+        else if (mode == 2 && dynamic_cast<Motion*>(component)) {
+            std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
+        }
+        else if (mode == 3 && dynamic_cast<Smoke*>(component)) {
+            std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
+        }
+        else if(mode == 0){
+            // If you want to activate all sensors, regardless of their type
+            std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
+        }
     }
     
     // If it's a sensor group, check each component in the group
@@ -82,7 +94,7 @@ void EmergencyCenter::activateComponent(Component* component, int mode) {
     else if (mode == 3 && dynamic_cast<Smoke*>(component)) {
         ++(*asSensor);
     }
-    else{
+    else if(mode == 0){
         // If you want to activate all sensors, regardless of their type
         ++(*asSensor);
     }
@@ -116,7 +128,7 @@ void EmergencyCenter::deactivateComponent(Component* component, int mode) {
     else if (mode == 3 && dynamic_cast<Smoke*>(component)) {
         --(*asSensor);
     }
-    else{
+    else if(mode == 0){
         // If you want to activate all sensors, regardless of their type
         --(*asSensor);
     }
