@@ -1,3 +1,4 @@
+#pragma once
 #ifndef EMERGENCYCENTER_H
 #define EMERGENCYCENTER_H
 
