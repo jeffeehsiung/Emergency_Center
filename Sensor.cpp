@@ -7,7 +7,6 @@ Sensor::Sensor(std::string id, std::string location, std::string vendor, int act
     // set the fabrication date
     this->location = location;
     this->softwareVersion = softwareVersion;
-    std::cout << "Sensor constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd << ", " << fabricationDate << std::endl;
 }
 
 std::string Sensor::getLocation() const{

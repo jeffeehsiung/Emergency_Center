@@ -39,10 +39,6 @@ public:
 
     virtual void setActivationTime(int start, int end);
 
-    virtual std::list<std::string> getMonitorScope() const;
-
-    virtual void setMonitorScope(const std::list<std::string>& scope);
-
     virtual bool getIsActive() const;
 
     virtual void setActive();
@@ -61,8 +57,6 @@ public:
     virtual void executeStrategy() const = 0;
 
     // Operator overloading methods
-    friend std::ostream& operator<<(std::ostream& COUT, const std::list<std::string>& list);
-
     friend std::ostream& operator<<(std::ostream& COUT, const Component& component);
 
     Component& operator++();
