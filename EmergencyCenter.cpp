@@ -246,7 +246,7 @@ void EmergencyCenter::orderByComponentLocation(){
     std::sort(components.begin(), components.end(), locationComparator);
 }
 
-std::vector<std::shared_ptr<Component>> EmergencyCenter::orderByComponentVendor(){
+void EmergencyCenter::orderByComponentVendor(){
     // Define a new vector list to store the sorted components
     std::vector<std::shared_ptr<Component>> sortedComponents;
     // Define a lambda comparator function
@@ -305,5 +305,6 @@ std::vector<std::shared_ptr<Component>> EmergencyCenter::orderByComponentVendor(
             }
         }
     }
-    return sortedComponents;
+    // replace the components vector with the sortedComponents vector
+    components = sortedComponents;
 }
