@@ -305,4 +305,5 @@ std::vector<std::shared_ptr<Component>> EmergencyCenter::orderByComponentVendor(
             }
         }
     }
+    return sortedComponents;
 }
