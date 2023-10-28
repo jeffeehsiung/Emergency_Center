@@ -4,8 +4,8 @@ Gas::Gas(std::string id, std::string location, std::string vendor, int activatio
     Sensor(id, location, vendor, activationTimeStart, activationTimeEnd, isActive, alwaysActive, deactivationTime, softwareVersion)
 {
     // set the fabrication date
-    this->type = type;
-    std::cout << "Sensor constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd << ", " << fabricationDate << std::endl;
+    this->gasType = type;
+    std::cout << "Sensor constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd  << std::endl;
 }
 
 void Gas::setGasType(const std::string& type)

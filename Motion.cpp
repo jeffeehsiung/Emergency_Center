@@ -4,13 +4,13 @@ Motion::Motion(std::string id, std::string location, std::string vendor, int act
     Sensor(id, location, vendor, activationTimeStart, activationTimeEnd, isActive, alwaysActive, deactivationTime, softwareVersion)
 {
     // set the fabrication date
-    this->activationRange = type;
-    std::cout << "Sensor constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd << ", " << fabricationDate << std::endl;
+    this->activationRange = activationRange;
+    std::cout << "Sensor constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd << std::endl;
 }
 
-void Motion::setActivationRange(const int activationRange)
+void Motion::setActivationRange(const int type)
 {
-    activationRange = activationRange;
+    activationRange = type;
 };
 
 int Motion::getActivationRange() {

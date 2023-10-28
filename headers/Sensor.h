@@ -54,7 +54,7 @@ class Motion : public Sensor
     public:
         Motion(std::string id, std::string location, std::string vendor, int activationTimeStart, 
         int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, int activationRange);
-        virtual void setActivationRange(const int activationRange);
+        virtual void setActivationRange(const int type);
         virtual int getActivationRange();
 };
 
@@ -64,9 +64,9 @@ class Smoke : public Sensor
     private:
         int threshold;
     public:
-        Motion(std::string id, std::string location, std::string vendor, int activationTimeStart, 
+        Smoke(std::string id, std::string location, std::string vendor, int activationTimeStart, 
         int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, int threshold);
-        virtual void setThreshold(const int threshold);
+        virtual void setThreshold(const int type);
         virtual int getThreshold();
 };
 

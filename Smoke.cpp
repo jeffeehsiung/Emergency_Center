@@ -5,12 +5,12 @@ Smoke::Smoke(std::string id, std::string location, std::string vendor, int activ
 {
     // set the fabrication date
     this->threshold = threshold;
-    std::cout << "Sensor constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd << ", " << fabricationDate << std::endl;
+    std::cout << "Sensor constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd  << std::endl;
 }
 
-void Smoke::setThreshold(const int threshold)
+void Smoke::setThreshold(const int type)
 {
-    threshold = threshold;
+    threshold = type;
 };
 
 int Smoke::getThreshold() {
