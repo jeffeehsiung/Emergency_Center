@@ -1,14 +1,14 @@
+TITLE_COLOR = \033[32m
+RESET_COLOR = \033[0m
+
 # Compiler to use
 CXX = g++
 
 # Flags for compiler
-CXXFLAGS = -Wall -std=c++20
+CXXFLAGS = -Wall -std=c++20 -Werror -fPIC -fdiagnostics-color=auto
 
-# Source files (all .cpp files in the current directory)
-SRCS = $(wildcard *.cpp)
-
-# Executable name
-EXEC = $(basename $(SRCS))
+# Source files
+SRCS = $(filter-out main.cpp, $(wildcard *.cpp))
 
 # Object files
 OBJS = $(SRCS:.cpp=.o)
@@ -16,86 +16,32 @@ OBJS = $(SRCS:.cpp=.o)
 # Header files
 HDRS = $(wildcard headers/*.h)
 
-# Shared library nanes and version
+# Shared library name
 LIBRARY = libmylibrary.so
 
+# Executable name
+EXEC = main
+
 # Build rules
-# all: $(EXEC)
+# from all cpp files, create shared libraries
+$(LIBRARY): $(SRCS) $(HDRS)
+	@echo "$(TITLE_COLOR)\n***** compiling source files *****$(NO_COLOR)"
+	$(CXX) -c $(SRCS) $(CXXFLAGS)
+	@echo "$(TITLE_COLOR)\n***** linking shared library *****$(NO_COLOR)"
+	g++ -shared -o libmylibrary.so $(OBJS)
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.
 
-# $(EXEC): $(SRCS)
-# 	$(CXX) $(CXXFLAGS) -o $@ $^
+main: main.cpp $(LIBRARY)
+	@echo "$(TITLE_COLOR)\n***** compiling main.cpp *****$(NO_COLOR)"
+	$(CXX) -c main.cpp -o main.o $(CXXFLAGS)
+	@echo "$(TITLE_COLOR)\n***** linking shared library *****$(NO_COLOR)"
+	g++ main.o -L. -lmylibrary -o main -Wall -fdiagnostics-color=auto
 
-all: $(LIBRARY)
-
-$(LIBRARY): $(OBJS)
-	$(CXX) $(CXXFLAGS) -shared -o $@ $^
-
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -fPIC -c $< -o $@
-
-EmergencyCenter: EmergencyCenter.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c EmergencyCenter.cpp -o EmergencyCenter.o
-	g++ -shared -o libEmergencyCenter.so EmergencyCenter.o
-
-Component: Component.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c Component.cpp
-
-Sensor: Sensor.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c Sensor.cpp
-
-SensorGroup: SensorGroup.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c SensorGroup.cpp
-
-# Rest of your object files and dependencies...
-AC: AC.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c AC.cpp
-
-CentralDispatch: CentralDispatch.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c CentralDispatch.cpp
-
-Email: Email.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c Email.cpp
-
-FireBrigade: FireBrigade.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c FireBrigade.cpp
-
-Gas: Gas.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c Gas.cpp
-
-GroupAlarm: GroupAlarm.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c GroupAlarm.cpp
-
-LeafAlarm: LeafAlarm.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c LeafAlarm.cpp
-
-Light: Light.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c Light.cpp
-
-Motion: Motion.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c Motion.cpp
-
-Police: Police.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c Police.cpp
-
-Security: Security.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c Security.cpp
-
-Smoke: Smoke.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c Smoke.cpp
-
-SMS: SMS.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c SMS.cpp
-
-Sprinkler: Sprinkler.cpp $(HDRS)
-	$(CXX) $(CXXFLAGS) -c Sprinkler.cpp
+all: main
 
 run: $(EXEC)
-	./$(EXEC)
-
-# shared library rules
-lib: $(OBJS)
-	$(CXX) $(CXXFLAGS) -shared -o lib$(EXEC).so $(OBJS)
+	export LD_LIBRARY_PATH=./:$$LD_LIBRARY_PATH; ./$(EXEC)
 
 # Cleanup object files, executables, and libraries
 clean:
-	rm -f $(OBJS) $(EXEC) $(LIBRARY)
+	rm -f $(OBJS) $(EXEC) $(LIBRARY) main.o
