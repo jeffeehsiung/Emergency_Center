@@ -1,3 +1,6 @@
+#pragma once
+#ifndef SENSOR_H
+#define SENSOR_H
 #include "Component.h"
 #include "SensorStrategy.h"
 
@@ -67,4 +70,5 @@ class Smoke : public Sensor
         virtual int getThreshold();
 };
 
+#endif 
 

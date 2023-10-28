@@ -1,3 +1,7 @@
+#pragma once
+
+#ifndef SENSORGROUP_H
+#define SENSORGROUP_H
 #include "Component.h"
 
 class SensorGroup: public Component{
@@ -18,3 +22,4 @@ public:
     virtual void executeStrategy() const override;
 
 };
+#endif 
