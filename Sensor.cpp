@@ -44,9 +44,10 @@ void Sensor::setNotActive()
     this->isActive = false;
 }
 
-// int Sensor::getSoftwareVersion() const{
-//     return softwareVersion;
-// }
+int Sensor::getSoftwareVersion() const{
+    return softwareVersion;
+}
+
 Component &Sensor::operator++()
 {
     // set active
