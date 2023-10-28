@@ -3,51 +3,33 @@
 int main ()
 {
     EmergencyCenter* center = EmergencyCenter::getInstance();
+    // create a component
+    Component* comp1 = new Smoke("S001", "labChemistry", "Sensor Solution", 0, 24, false, false, 1, 100);
+    Component* comp2 = new Gas("G001", "labChemistry", "GasSense", 0, 24, true, false, 1, "NOx");
+    Component* comp5 = new Gas("G002", "labChemistry", "GasSense", 0, 24, false, false, 1, "NOx");
+    Component* comp6 = new Gas("G003", "labChemistry", "GasSense", 0, 24, true, false, 1, "NOx");
+    //Component* component = new SensorGroup("5.01", 0, 24, true, false, 0);
+    //component->addSensor(std::shared_ptr<Component>(comp1));
+    // add the component to the center
+    center->addComponent(std::unique_ptr<Component>(comp1));
+    center->addComponent(std::unique_ptr<Component>(comp2));
+    SensorStrategy* strat1 = new CentralDispatch(); 
+    SensorStrategy* strat2 = new Email("Lore Hennebel", "lore.hennebel@kuleuven.be", "Gas sensor activated");
+    Component* comp3 = new SensorGroup("5.01");
+    dynamic_cast<SensorGroup*>(comp3) -> addComponent(std::shared_ptr<Component>(comp5));
+    dynamic_cast<SensorGroup*>(comp3) -> addComponent(std::shared_ptr<Component>(comp6));
+    center->addComponent(std::unique_ptr<Component>(comp3));
+    // print the component
+    comp1 -> addStrategy(std::shared_ptr<SensorStrategy>(strat1));
+    comp2 -> addStrategy(std::shared_ptr<SensorStrategy>(strat2));
+    center->printAllComponents();
+    center->deactivateAllComponents(0);
+    center->testAllComponents(0);
+    center->activateAllComponents(0);
+    center->testAllComponents(0);
 
-    // Lab Chemistry 5.01
-    Component* chemSmokeSensor = new Smoke("S001", "5.01", "Sensor Solution", 0, 24, false, false, 1, 100);
-    Component* chemGasSensor = new Gas("G001", "5.01", "GasSense", 0, 24, true, false, 1, "NOx");
-    center->addComponent(std::unique_ptr<Component>(chemSmokeSensor));
-    center->addComponent(std::unique_ptr<Component>(chemGasSensor));
 
-    SensorStrategy* centralDispatch = new CentralDispatch(); 
-    SensorStrategy* loreEmail = new Email("Lore Hennebel", "lore.hennebel@kuleuven.be", "Gas sensor activated");
-    chemSmokeSensor->addStrategy(std::shared_ptr<SensorStrategy>(centralDispatch));
-    chemGasSensor->addStrategy(std::shared_ptr<SensorStrategy>(loreEmail));
-
-    // Lab Electronics 10.01
-    Component* elecSmokeSensor = new Smoke("S002", "10.01", "Sensor Solution", 0, 24, false, false, 1, 100);
-    Component* motionSensor10_01 = new Motion("M001", "10.01", "GotYou", 22, 7, true, false, 1);  // Active between 10pm and 7am
-    center->addComponent(std::unique_ptr<Component>(elecSmokeSensor));
-    center->addComponent(std::unique_ptr<Component>(motionSensor10_01));
-
-    SensorStrategy* gertSMS = new SMS("Gert Vanloock", "Gas sensor activated");
-    elecSmokeSensor->addStrategy(std::shared_ptr<SensorStrategy>(centralDispatch));
-    motionSensor10_01->addStrategy(std::shared_ptr<SensorStrategy>(gertSMS));
-
-    // Lab Electronics 10.02
-    Component* motionSensor10_02 = new Motion("M002", "10.02", "GotYou", 22, 7, true, false, 1);  // Active between 10pm and 7am
-    center->addComponent(std::unique_ptr<Component>(motionSensor10_02));
-    motionSensor10_02->addStrategy(std::shared_ptr<SensorStrategy>(gertSMS));
-
-    // Alma kitchen 1.03
-    Component* almaSmokeSensor = new Smoke("S003", "1.03", "KitchenSafe", 0, 24, false, false, 1, 100);
-    Component* almaGasSensor = new Gas("G002", "1.03", "GasSense", 0, 24, true, false, 1, "CO");
-    Component* almaMotionSensor = new Motion("M003", "1.03", "BigBrother Is Watching You", 0, 24, true, false, 1);
-    center->addComponent(std::unique_ptr<Component>(almaSmokeSensor));
-    center->addComponent(std::unique_ptr<Component>(almaGasSensor));
-    center->addComponent(std::unique_ptr<Component>(almaMotionSensor));
-
-    SensorStrategy* extinctionSystem = new ExtinctionSystem();
-    SensorStrategy* localAlarm = new LocalAlarm();
-    SensorStrategy* policeAndSecurity = new PoliceAndSecurity();
-    almaSmokeSensor->addStrategy(std::shared_ptr<SensorStrategy>(extinctionSystem));
-    almaGasSensor->addStrategy(std::shared_ptr<SensorStrategy>(localAlarm));
-    almaMotionSensor->addStrategy(std::shared_ptr<SensorStrategy>(policeAndSecurity));
-
-    // TODO: Implement the remaining actions like activating, testing sensors, and ordering by vendor.
-    // The provided code has some example actions that you can use as reference.
-
+    // print a line saying the end
     std::cout << "End of the program" << std::endl;
 
     return 0;
