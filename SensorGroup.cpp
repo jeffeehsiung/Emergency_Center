@@ -50,7 +50,7 @@ void SensorGroup::setActivationTime(int start, int end)
             std::dynamic_pointer_cast<Sensor>(component)->setActivationTime(start, end);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
                 std::dynamic_pointer_cast<Sensor>(sensor)->setActivationTime(start, end);
             }
         }
@@ -65,7 +65,7 @@ void SensorGroup::setActive()
             std::dynamic_pointer_cast<Sensor>(component)->setActive();
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
                 std::dynamic_pointer_cast<Sensor>(sensor)->setActive();
             }
         }
@@ -80,7 +80,7 @@ void SensorGroup::setNotActive()
             std::dynamic_pointer_cast<Sensor>(component)->setNotActive();
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
                 std::dynamic_pointer_cast<Sensor>(sensor)->setNotActive();
             }
         }
@@ -95,7 +95,7 @@ void SensorGroup::setAlwaysActive(bool alwaysActive)
             std::dynamic_pointer_cast<Sensor>(component)->setAlwaysActive(alwaysActive);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
                 std::dynamic_pointer_cast<Sensor>(sensor)->setAlwaysActive(alwaysActive);
             }
         }
@@ -110,7 +110,7 @@ void SensorGroup::updateSoftware()
             std::dynamic_pointer_cast<Sensor>(component)->updateSoftware();
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
                 std::dynamic_pointer_cast<Sensor>(sensor)->updateSoftware();
             }
         }
@@ -125,7 +125,7 @@ void SensorGroup::setLocation(const std::string& location)
             std::dynamic_pointer_cast<Sensor>(component)->setLocation(location);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
                 std::dynamic_pointer_cast<Sensor>(sensor)->setLocation(location);
             }
         }
@@ -140,7 +140,7 @@ void SensorGroup::setVendor(const std::string& vendor)
             std::dynamic_pointer_cast<Sensor>(component)->setVendor(vendor);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
                 std::dynamic_pointer_cast<Sensor>(sensor)->setVendor(vendor);
             }
         }
@@ -156,7 +156,7 @@ void SensorGroup::addStrategy(std::shared_ptr<SensorStrategy> strategy)
             std::dynamic_pointer_cast<Sensor>(component)->addStrategy(strategy);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
                 std::dynamic_pointer_cast<Sensor>(sensor)->addStrategy(strategy);
             }
         }
@@ -171,7 +171,7 @@ void SensorGroup::removeStrategy(std::shared_ptr<SensorStrategy> strategy)
             std::dynamic_pointer_cast<Sensor>(component)->removeStrategy(strategy);
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
                 std::dynamic_pointer_cast<Sensor>(sensor)->removeStrategy(strategy);
             }
         }
@@ -189,7 +189,7 @@ void SensorGroup::executeStrategy() const{
         }
         else if (std::dynamic_pointer_cast<SensorGroup>(component) != nullptr){
             // for each sensor in the sensor group, execute the strategy
-            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getSensors()){
+            for (const auto& sensor : std::dynamic_pointer_cast<SensorGroup>(component)->getComponents()){
                 std::dynamic_pointer_cast<Sensor>(sensor)->executeStrategy();
             }
         }
@@ -197,4 +197,14 @@ void SensorGroup::executeStrategy() const{
 }
 
 /** Operator overloading methods */
+Component& SensorGroup::operator++(){
+    // activate each sensor in the sensor group
+    setActive();
+    return *this;
+}
 
+Component& SensorGroup::operator--(){
+    // deactivate each sensor in the sensor group
+    setNotActive();
+    return *this;
+}

@@ -37,5 +37,7 @@ public:
     /** Operator overloading methods overriden from base class */
     virtual Component& operator++();
     virtual Component& operator--();
+    /** overload << operator for output stream */
+    friend std::ostream& operator<<(std::ostream& os, const SensorGroup& sensorGroup);
 };
 #endif 
