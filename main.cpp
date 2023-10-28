@@ -16,6 +16,8 @@ int main ()
     center->addComponent(std::unique_ptr<Component>(comp2));
     SensorStrategy* strat1 = new CentralDispatch(); 
     SensorStrategy* strat2 = new Email("Lore Hennebel", "lore.hennebel@kuleuven.be", "Gas sensor activated");
+    SensorStrategy* strat3 = new SMS("Lore Hennebel", "0477777777", "Gas sensor activated");
+
     Component* comp3 = new SensorGroup("5.01");
     dynamic_cast<SensorGroup*>(comp3) -> addComponent(std::shared_ptr<Component>(comp5));
     dynamic_cast<SensorGroup*>(comp3) -> addComponent(std::shared_ptr<Component>(comp6));
@@ -23,13 +25,18 @@ int main ()
     // print the component
     comp1 -> addStrategy(std::shared_ptr<SensorStrategy>(strat1));
     comp2 -> addStrategy(std::shared_ptr<SensorStrategy>(strat2));
-    // comp1 -> executeStrategy();
-    // comp2 -> executeStrategy();
+    comp2 -> addStrategy(std::shared_ptr<SensorStrategy>(strat3));
+    comp1 -> executeStrategy();
+    comp2 -> executeStrategy();
     // center->printAllComponents();
     // center->deactivateAllComponents(0);
     // center->testAllComponents(0);
     // center->activateAllComponents(0);
     // center->testAllComponents(0);
+    center->orderByComponentId();
+    std::cout<<*center;
+    center->orderByComponentVendor();
+    std::cout<<*center;
     center->orderByComponentLocation();
     std::cout<<*center;
 
