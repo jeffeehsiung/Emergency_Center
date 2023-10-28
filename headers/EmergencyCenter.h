@@ -35,7 +35,7 @@ public:
     // Orderby methods Component vector (components)
     void orderByComponentId();
     void orderByComponentLocation();
-    void orderByComponentVendor();
+    std::vector<std::shared_ptr<Component>> orderByComponentVendor();
 
     // Operator overloading methods
     friend std::ostream& operator<<(std::ostream& COUT, const EmergencyCenter& center);

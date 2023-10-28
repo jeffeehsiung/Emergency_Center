@@ -244,10 +244,11 @@ void EmergencyCenter::orderByComponentLocation(){
 
     // Use the lambda comparator in std::sort
     std::sort(components.begin(), components.end(), locationComparator);
-
 }
 
-void EmergencyCenter::orderByComponentVendor(){
+std::vector<std::shared_ptr<Component>> EmergencyCenter::orderByComponentVendor(){
+    // Define a new vector list to store the sorted components
+    std::vector<std::shared_ptr<Component>> sortedComponents;
     // Define a lambda comparator function
     auto vendorComparator = [](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
         // Helper function for recursive vendor comparison
@@ -286,6 +287,22 @@ void EmergencyCenter::orderByComponentVendor(){
         return compareVendor(a, b);
     };
 
-    // Use the lambda comparator in std::sort
-    std::sort(components.begin(), components.end(), vendorComparator);
+    // compare the sensor with each of the components in the vector and add it to the sortedComponents vector
+    for (auto& comp : components) {
+        if(sortedComponents.empty()){
+            sortedComponents.push_back(comp);
+        }
+        else{
+            for (auto& sortedComp : sortedComponents) {
+                if(vendorComparator(comp, sortedComp)){
+                    sortedComponents.insert(sortedComponents.begin(), comp);
+                    break;
+                }
+                else{
+                    sortedComponents.push_back(comp);
+                    break;
+                }
+            }
+        }
+    }
 }
