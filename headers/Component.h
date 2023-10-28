@@ -15,7 +15,6 @@ protected:
     std::string id;
     int activationTimeStart;
     int activationTimeEnd;
-    std::list<std::string> monitorScope;
     bool isActive;
     bool alwaysActive;
     int deactivationTime;
@@ -25,7 +24,7 @@ protected:
 public:
     // constructor and destructor
     Component(){}
-    Component(std::string id, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime);
+    Component(std::string id, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime);
     
     virtual ~Component();
 

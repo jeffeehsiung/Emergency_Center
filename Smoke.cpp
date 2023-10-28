@@ -1,8 +1,16 @@
 #include "headers/Sensor.h"
 
-void Smoke::setThreshold(const int type)
+Smoke::Smoke(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, int threshold):
+    Sensor(id, location, vendor, activationTimeStart, activationTimeEnd, isActive, alwaysActive, deactivationTime, softwareVersion)
 {
-    threshold = type;
+    // set the fabrication date
+    this->threshold = threshold;
+    std::cout << "Sensor constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd << ", " << fabricationDate << std::endl;
+}
+
+void Smoke::setThreshold(const int threshold)
+{
+    threshold = threshold;
 };
 
 int Smoke::getThreshold() {

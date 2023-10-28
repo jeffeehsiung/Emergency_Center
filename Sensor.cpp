@@ -1,11 +1,10 @@
 #include "headers/Sensor.h"
 
 // constructor
-Sensor::Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, time_t fabricationDate):
-    Component(id, activationTimeStart, activationTimeEnd, monitorScope, isActive, alwaysActive, deactivationTime)
+Sensor::Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion):
+    Component(id, activationTimeStart, activationTimeEnd, isActive, alwaysActive, deactivationTime)
 {
     // set the fabrication date
-    this->fabricationDate = fabricationDate;
     this->location = location;
     this->softwareVersion = softwareVersion;
     std::cout << "Sensor constructor 1 called with parameters " << id << ", " << location << ", " << vendor << ", " << activationTimeStart << ", " << activationTimeEnd << ", " << fabricationDate << std::endl;

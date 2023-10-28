@@ -3,9 +3,7 @@
 
 class Sensor: public Component {
     public:
-        Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, std::list<std::string> monitorScope, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion, time_t fabricationDate);
-
-        time_t getFabricationDate() const{return fabricationDate;};
+        Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion);
 
         void addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy);
 
@@ -26,7 +24,6 @@ class Sensor: public Component {
         int getSoftwareVersion() const;
     
     protected:
-        time_t fabricationDate;
         std::string location;
         std::string vendor;
         int softwareVersion;
