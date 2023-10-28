@@ -1,4 +1,5 @@
 #include "headers/EmergencyCenter.h"
+#include "EmergencyCenter.h"
 
 // Initialize the singleton instance as null
 std::unique_ptr<EmergencyCenter> EmergencyCenter::instance = nullptr;
@@ -158,4 +159,91 @@ void EmergencyCenter::updateAllSoftwares() {
             sensor->updateSoftware();
         }
     }
+}
+void EmergencyCenter::orderByComponentId()
+{
+    // Define a lambda comparator function
+    auto idComparator = [this](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
+        // Helper function for recursive ID comparison
+        std::function<bool(const std::shared_ptr<Component>&, const std::shared_ptr<Component>&)> compareId;
+
+        compareId = [&compareId](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
+            const Sensor* sensorA = dynamic_cast<Sensor*>(a.get());
+            const Sensor* sensorB = dynamic_cast<Sensor*>(b.get());
+
+            if (sensorA && sensorB) {
+                // Both components are Sensor objects
+                return sensorA->getId() < sensorB->getId();
+            } else if (dynamic_cast<SensorGroup*>(a.get())) {
+                // Component 'a' is a SensorGroup
+                const auto& sensorsInGroup = std::dynamic_pointer_cast<SensorGroup>(a)->getComponents();
+                for (const auto& sensor : sensorsInGroup) {
+                    // Recursively compare the ID of each sensor in the group with component 'b'
+                    if (compareId(sensor, b)) {
+                        return true;  // If any sensor in the group has a greater ID, return true.
+                    }
+                }
+            } else if (dynamic_cast<SensorGroup*>(b.get())) {
+                // Component 'b' is a SensorGroup
+                const auto& sensorsInGroup = std::dynamic_pointer_cast<SensorGroup>(b)->getComponents();
+                for (const auto& sensor : sensorsInGroup) {
+                    // Recursively compare the ID of each sensor in the group with component 'a'
+                    if (compareId(a, sensor)) {
+                        return false;  // If any sensor in the group has a greater ID, return false.
+                    }
+                }
+            }
+
+            return false;  // If types are not comparable or no greater ID is found, return false.
+        };
+
+        return compareId(a, b);
+    };
+
+    // Use the lambda comparator in std::sort
+    std::sort(components.begin(), components.end(), idComparator);
+}
+
+void EmergencyCenter::orderByComponentLocation(){
+    // Define a lambda comparator function
+    auto locationComparator = [this](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
+        // Helper function for recursive location comparison
+        std::function<bool(const std::shared_ptr<Component>&, const std::shared_ptr<Component>&)> compareLocation;
+
+        compareLocation = [&compareLocation](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
+            const Sensor* sensorA = dynamic_cast<Sensor*>(a.get());
+            const Sensor* sensorB = dynamic_cast<Sensor*>(b.get());
+
+            if (sensorA && sensorB) {
+                // Both components are Sensor objects
+                return sensorA->getLocation() < sensorB->getLocation();
+            } else if (dynamic_cast<SensorGroup*>(a.get())) {
+                // Component 'a' is a SensorGroup
+                const auto& sensorsInGroup = std::dynamic_pointer_cast<SensorGroup>(a)->getComponents();
+                for (const auto& sensor : sensorsInGroup) {
+                    // Recursively compare the location of each sensor in the group with component 'b'
+                    if (compareLocation(sensor, b)) {
+                        return true;  // If any sensor in the group has a greater location, return true.
+                    }
+                }
+            } else if (dynamic_cast<SensorGroup*>(b.get())) {
+                // Component 'b' is a SensorGroup
+                const auto& sensorsInGroup = std::dynamic_pointer_cast<SensorGroup>(b)->getComponents();
+                for (const auto& sensor : sensorsInGroup) {
+                    // Recursively compare the location of each sensor in the group with component 'a'
+                    if (compareLocation(a, sensor)) {
+                        return false;  // If any sensor in the group has a greater location, return false.
+                    }
+                }
+            }
+
+            return false;  // If types are not comparable or no greater location is found, return false.
+        };
+
+        return compareLocation(a, b);
+    };
+
+    // Use the lambda comparator in std::sort
+    std::sort(components.begin(), components.end(), locationComparator);
+
 }
