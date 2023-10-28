@@ -2,36 +2,35 @@
 #ifndef SENSOR_H
 #define SENSOR_H
 #include "Component.h"
-#include "SensorStrategy.h"
 
 class Sensor: public Component {
     public:
         Sensor() = default;
         Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int deactivationTime, int softwareVersion);
 
-        virtual void addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy);
+        // virtual void addStrategy(std::shared_ptr<SensorStrategy> sensorStrategy);
 
-        virtual void removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy); 
+        // virtual void removeStrategy(std::shared_ptr<SensorStrategy> sensorStrategy); 
 
-        void executeStrategy() const override;
+        // virtual void executeStrategy() const override;
 
-        std::string getLocation() const;
+        // virtual std::string getLocation() const override;
 
-        void setLocation(const std::string& location);
+        // virtual void setLocation(const std::string& location) override;
 
-        std::string getVendor() const;
+        // virtual std::string getVendor() const override;
 
-        void setVendor(const std::string& vendor);
+        // virtual void setVendor(const std::string& vendor) override;
 
-        void updateSoftware();
+        // virtual void updateSoftware();
 
-        int getSoftwareVersion() const;
+        // virtual int getSoftwareVersion() const;
     
-    protected:
-        std::string location;
-        std::string vendor;
-        int softwareVersion;
-        std::vector<std::shared_ptr<SensorStrategy>> strategies;
+    // protected:
+    //     std::string location;
+    //     std::string vendor;
+    //     int softwareVersion;
+    //     std::vector<std::shared_ptr<SensorStrategy>> strategies;
 };
 
 class Gas : public Sensor
