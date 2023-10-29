@@ -29,7 +29,7 @@ int main ()
     //LV-426
     Component* group2 = new SensorGroup("LV-426");
     Component* g2 = new Gas("G002", "LV-426", "Disney", 0, 24, true, false, 1, "Oxygen", 1200000000);
-    SensorStrategy* lvAlarm = new LeafAlarm("Oxygen Alarm"); 
+    SensorStrategy* lvAlarm = new LeafAlarm("Oxygen"); 
     g2 ->addStrategy(std::shared_ptr<SensorStrategy>(lvAlarm));
     Component* m2 = new Motion("M002", "LV-426", "Disney", 0, 24, true, true, 1, 0);
     SensorStrategy* scientistMotion = new SMS("Scientists", "number list","LV-426 atmosphere has been breached"); 
@@ -45,19 +45,19 @@ int main ()
     Component* s4 = new Smoke("S004", "Dweezil", "Disney", 0, 24, true, false, 1, 100);
     SensorStrategy* fire = new FireBrigade();
     s3 ->addStrategy(std::shared_ptr<SensorStrategy>(fire));
-    s4 ->addStrategy(std::shared_ptr<SensorStrategy>(fire));
+    //s4 ->addStrategy(std::shared_ptr<SensorStrategy>(fire));
     Component* m3 = new Motion("M003", "Moon Unit", "Disney", 20, 8, true, false, 1, 10);
     Component* m4 = new Motion("M004", "Dweezil", "Disney", 20, 8, true, false, 1, 10);
     SensorStrategy* eggs = new SMS("Zorglax", "HQ number","Eggs are hatching"); 
     m3 ->addStrategy(std::shared_ptr<SensorStrategy>(eggs));
-    m4 ->addStrategy(std::shared_ptr<SensorStrategy>(eggs));
+    //m4 ->addStrategy(std::shared_ptr<SensorStrategy>(eggs));
     dynamic_cast<SensorGroup*>(group3) -> addComponent(std::shared_ptr<Component>(s3));
     dynamic_cast<SensorGroup*>(group3) -> addComponent(std::shared_ptr<Component>(m3));
     dynamic_cast<SensorGroup*>(group4) -> addComponent(std::shared_ptr<Component>(s4));
     dynamic_cast<SensorGroup*>(group4) -> addComponent(std::shared_ptr<Component>(m4));
     center->addComponent(std::shared_ptr<Component>(group2));
 
-    center->printAllComponents();
+    
     center->deactivateAllComponents(0);
     center->activateAllComponents(1); // 1 is Gas sensors, 2 is Motion , 3 is Smoke and 0 is all
     center->testAllComponents(1);
@@ -66,17 +66,12 @@ int main ()
     center->deactivateComponent(group2, 0);
     center->testComponent(group2, 0);
     center->activateComponent(group2, 0);
+    center->testComponent(group2,0);
+    center->printAllComponents();
+    center->orderByComponentLocation();
+    center->printAllComponents();
+    delete center;
 
-    // center->deactivateAllComponents(0);
-    // center->testAllComponents(0);
-    // center->activateAllComponents(0);
-    // center->testAllComponents(0);
-    // center->orderByComponentId();
-    // std::cout<<*center;
-    // center->orderByComponentVendor();
-    // std::cout<<*center;
-    // center->orderByComponentLocation();
-    // std::cout<<*center;
 
 
     // print a line saying the end
