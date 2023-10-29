@@ -9,7 +9,7 @@ class Security : public EmergencyStrategy
 {
 public:
     Security(){};
-    ~Security(){};
+    virtual ~Security(){};
     virtual void executeStrategy() const override;
 };
 

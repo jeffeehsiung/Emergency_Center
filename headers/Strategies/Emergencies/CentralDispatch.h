@@ -9,7 +9,7 @@ class CentralDispatch : public EmergencyStrategy
 {
 public:
     CentralDispatch(){};
-    ~CentralDispatch(){};
+    virtual ~CentralDispatch(){};
     virtual void executeStrategy() const override;
 };
 

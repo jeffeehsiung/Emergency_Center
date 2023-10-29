@@ -9,7 +9,7 @@ class Sprinkler : public ActionStrategy
 {
 public:
     Sprinkler(){};
-    ~Sprinkler(){};
+    virtual ~Sprinkler(){};
     virtual void executeStrategy() const override;
 };
 

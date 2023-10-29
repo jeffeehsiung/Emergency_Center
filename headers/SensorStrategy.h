@@ -20,7 +20,9 @@
 class SensorStrategy
 {
 public:
+    SensorStrategy(){};
     virtual void executeStrategy() const = 0;
+    virtual ~SensorStrategy() = default;
 };
 
 #endif  // SENSORSTRATEGY_H

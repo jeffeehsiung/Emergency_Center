@@ -9,7 +9,7 @@ class AC : public ActionStrategy
 {
 public:
     AC(){};
-    ~AC(){};
+    virtual ~AC(){};
     virtual void executeStrategy() const override;
 };
 

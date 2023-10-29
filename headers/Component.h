@@ -26,7 +26,7 @@ public:
     // constructor and destructor
     Component(std::string id): id{id}{}
     Component(std::string id, int activationTimeStart, int activationTimeEnd, bool alwaysActive): id{id}, activationTimeStart{activationTimeStart}, activationTimeEnd{activationTimeEnd}, alwaysActive{alwaysActive}{}
-    ~Component() = default;
+    virtual ~Component() = default;
     /** inline getters and setters and can be overriden by derived classes */
     virtual std::string getId() const{
         return id;

@@ -12,7 +12,7 @@ class Gas : public Sensor
     public:
         Gas(std::string id, std::string location, std::string vendor, int activationTimeStart, 
         int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion, std::string type, int capacity);
-        ~Gas() = default;
+        virtual ~Gas(){};
         virtual void setGasType(const std::string& type);
         virtual std::string getGasType() const {return gasType;};
         virtual void setAmount(const int type);
