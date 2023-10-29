@@ -33,6 +33,7 @@ public:
     void updateAllSoftwares();
 
     // Orderby methods Component vector (components)
+    void collectSensors(std::vector<std::shared_ptr<Component>>& sortedComponents, std::shared_ptr<Component> comp);
     void orderByComponentId();
     void orderByComponentLocation();
     void orderByComponentVendor();
