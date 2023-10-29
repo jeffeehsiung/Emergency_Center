@@ -12,7 +12,7 @@ public:
     // constructor
     SensorGroup(std::string id): Component(id){}
     // destructor
-    virtual ~SensorGroup() = default;
+    ~SensorGroup() = default;
     
     /** SensorGroup specific methods */
     // function to add a sensor to the vector of sensors
