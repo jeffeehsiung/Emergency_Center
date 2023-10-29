@@ -9,3 +9,6 @@
 #include "Strategies/Emergencies/Security.h"
 #include "Strategies/Notifications/Email.h"
 #include "Strategies/Notifications/SMS.h"
+#include "Sensors/Gas.h"
+#include "Sensors/Motion.h"
+#include "Sensors/Smoke.h"
