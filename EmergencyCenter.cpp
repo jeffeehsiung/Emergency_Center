@@ -219,31 +219,41 @@ void EmergencyCenter::orderByComponentId()
 void EmergencyCenter::orderByComponentLocation(){
     // Define a new vector list to store the sorted components
     std::vector<std::shared_ptr<Component>> sortedComponents;
-    // iterate through the components vector and extract each sensor component from sensor and sensor group
+    // iterate through the components vector and extract each sensor component from the components vector
     for (const auto& comp : components) {
         Sensor* sensor = dynamic_cast<Sensor*>(comp.get());
         if (sensor) {
             // It's a Sensor, so call the sensor-specific function
             sortedComponents.push_back(comp);
+            this->removeComponent(comp.get());
         }
-        else if (auto group = dynamic_cast<SensorGroup*>(comp.get())) {
-            for (const auto& nestedComp : group->getComponents()) {
-                Sensor* sensor = dynamic_cast<Sensor*>(nestedComp.get());
-                if (sensor) {
-                    // It's a Sensor, so call the sensor-specific function
-                    sortedComponents.push_back(nestedComp);
-                }else if(auto nestedGroup = dynamic_cast<SensorGroup*>(nestedComp.get())){
-                    for (const auto& nestedNestedComp : nestedGroup->getComponents()) {
-                        Sensor* sensor = dynamic_cast<Sensor*>(nestedNestedComp.get());
-                        if (sensor) {
-                            // It's a Sensor, so call the sensor-specific function
-                            sortedComponents.push_back(nestedNestedComp);
-                        }
+    }
+    // now only sensor group objects are left in the components vector
+    // iterate through the components vector and extract each sensor component from sensor group
+    while(auto sensorGroup = std::dynamic_pointer_cast<SensorGroup>(components.front())){
+        for (const auto& nestedComp : sensorGroup->getComponents()) {
+            // if the nested component is a sensor, add it to the sortedComponents vector
+            Sensor* sensor = dynamic_cast<Sensor*>(nestedComp.get());
+            if (sensor) {
+                // It's a Sensor, so call the sensor-specific function
+                sortedComponents.push_back(nestedComp);
+                this->removeComponent(nestedComp.get());
+            // else the the component is a sensorgroup, so iterate through the sensorgroup and extract each sensor component from sensor group
+            }else if(auto nestedGroup = dynamic_cast<SensorGroup*>(nestedComp.get())){
+                for (const auto& nestedNestedComp : nestedGroup->getComponents()) {
+                    Sensor* sensor = dynamic_cast<Sensor*>(nestedNestedComp.get());
+                    if (sensor) {
+                        // It's a Sensor, so call the sensor-specific function
+                        sortedComponents.push_back(nestedNestedComp);
+                        this->removeComponent(nestedNestedComp.get());
                     }
                 }
             }
         }
+        // remove this sensor group component from the components vector
+        this->removeComponent(sensorGroup.get());
     }
+
     // Sort the new vector list composed of only Sensor class objects, sortedComponents, by location
     std::sort(sortedComponents.begin(), sortedComponents.end(), [](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
         const Sensor* sensorA = dynamic_cast<Sensor*>(a.get());
