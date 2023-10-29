@@ -12,11 +12,9 @@ Thumbs.db
 
 # # ignore shared library files
 # *.so
-
+/.idea
 /.vscode
 
-CmakeLists.txt
-CmakeLists.txt.user
 
 # main.cpp
 
