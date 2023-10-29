@@ -11,7 +11,7 @@ class Smoke : public Sensor
     public:
         Smoke(std::string id, std::string location, std::string vendor, int activationTimeStart, 
         int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion, int threshold);
-        ~Smoke() = default;
+        virtual ~Smoke() = default;
         virtual void setThreshold(const int type);
         virtual int getThreshold() const {return threshold;};
         virtual void printDetails(std::ostream& COUT) const override {
