@@ -177,7 +177,7 @@ void EmergencyCenter::updateAllSoftwares() {
 
 void EmergencyCenter::collectSensors(std::vector<std::shared_ptr<Component>>& sortedComponents, std::shared_ptr<Component> comp)
 {
-    if (auto sensor = dynamic_cast<Sensor*>(comp.get())) {
+    if (dynamic_cast<Sensor*>(comp.get())) {
         sortedComponents.push_back(comp);
     }
     else if (auto group = dynamic_cast<SensorGroup*>(comp.get())) {
