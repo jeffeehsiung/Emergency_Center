@@ -20,8 +20,9 @@
 class SensorStrategy
 {
 public:
-    virtual ~SensorStrategy() = default; // the derived class can rely on the base class destructor.
+    SensorStrategy(){};
     virtual void executeStrategy() const = 0;
+    virtual ~SensorStrategy() = default;
 };
 
 #endif  // SENSORSTRATEGY_H

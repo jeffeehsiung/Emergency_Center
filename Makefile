@@ -33,14 +33,14 @@ $(LIBRARY): $(SRCS) $(HDRS)
 
 main: main.cpp $(LIBRARY)
 	@echo "$(TITLE_COLOR)\n***** compiling main.cpp *****$(NO_COLOR)"
-	$(CXX) -c main.cpp -o main.o $(CXXFLAGS)
+	$(CXX) -g -c main.cpp -o main.o $(CXXFLAGS)
 	@echo "$(TITLE_COLOR)\n***** linking shared library *****$(NO_COLOR)"
 	g++ main.o -L. -lmylibrary -o main -Wall -fdiagnostics-color=auto
 
 all: main
 
 run: $(EXEC)
-	export LD_LIBRARY_PATH=./:$$LD_LIBRARY_PATH; ./$(EXEC)
+	export LD_LIBRARY_PATH=./:$$LD_LIBRARY_PATH; ./$(EXEC) 
 
 # Cleanup object files, executables, and libraries
 clean:

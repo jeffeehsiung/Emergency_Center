@@ -11,7 +11,7 @@ class Motion : public Sensor
     public:
         Motion(std::string id, std::string location, std::string vendor, int activationTimeStart, 
         int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion, int activationRange);
-        virtual ~Motion() = default;
+        ~Motion() = default;
         virtual void setActivationRange(const int type);
         virtual int getActivationRange() const {return activationRange;};
         virtual void printDetails(std::ostream& COUT) const override {

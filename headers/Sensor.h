@@ -8,8 +8,6 @@ class Sensor: public Component {
         // constructor
         Sensor(std::string id): Component(id){}
         Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion);
-        // destructor, clear all the pointers
-        virtual ~Sensor(){}
 
         virtual void printDetails(std::ostream& COUT) const override {
             Component::printDetails(COUT);
