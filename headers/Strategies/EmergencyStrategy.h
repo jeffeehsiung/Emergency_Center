@@ -9,7 +9,6 @@
 class EmergencyStrategy : public SensorStrategy
 {
 public:
-    virtual ~EmergencyStrategy() = default; // the derived class can rely on the base class destructor.
     virtual void executeStrategy() const override = 0;
 };
 

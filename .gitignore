@@ -20,3 +20,6 @@ CmakeLists.txt.user
 
 main.cpp
 main
+
+valgrind-out.txt
+makefile
