@@ -71,6 +71,13 @@ int main ()
     center->orderByComponentLocation();
     center->printAllComponents();
     delete center;
+    delete m1;
+    delete pol;
+    delete group1;
+    delete group2;
+    delete group3;
+    delete group4;
+    delete group4;
 
 
 
