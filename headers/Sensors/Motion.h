@@ -14,7 +14,7 @@ class Motion : public Sensor
         virtual ~Motion() = default;
         virtual void setActivationRange(const int type);
         virtual int getActivationRange() const {return activationRange;};
-        void printDetails(std::ostream& COUT) const override {
+        virtual void printDetails(std::ostream& COUT) const override {
             Sensor::printDetails(COUT);
             COUT << "Sensor Type: " << "Motion" << "\n";
             COUT << "Activation Range: " << getActivationRange() << "\n";

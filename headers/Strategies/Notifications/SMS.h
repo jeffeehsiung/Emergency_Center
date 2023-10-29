@@ -10,7 +10,9 @@
 class SMS : public NotificationStrategy
 {
 public:
+    // constructor
     SMS() = default;
+    // destructor
     virtual ~SMS() = default;
     SMS(std::string receipientName, std::string receipientNumber, std::string message);
     virtual void executeStrategy() const override;

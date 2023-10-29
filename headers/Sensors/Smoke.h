@@ -14,7 +14,7 @@ class Smoke : public Sensor
         virtual ~Smoke() = default;
         virtual void setThreshold(const int type);
         virtual int getThreshold() const {return threshold;};
-        void printDetails(std::ostream& COUT) const override {
+        virtual void printDetails(std::ostream& COUT) const override {
             Sensor::printDetails(COUT);
             COUT << "Sensor Type: " << "Smoke" << "\n";
             COUT << "Threshold: " << getThreshold() << "\n";

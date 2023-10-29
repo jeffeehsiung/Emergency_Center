@@ -187,14 +187,24 @@ void EmergencyCenter::orderByComponentId()
         }
         else if (auto group = dynamic_cast<SensorGroup*>(comp.get())) {
             for (const auto& nestedComp : group->getComponents()) {
+                // recursively check if the nested component is a sensor or sensor group
                 Sensor* sensor = dynamic_cast<Sensor*>(nestedComp.get());
                 if (sensor) {
                     // It's a Sensor, so call the sensor-specific function
                     sortedComponents.push_back(nestedComp);
+                }else if(auto nestedGroup = dynamic_cast<SensorGroup*>(nestedComp.get())){
+                    for (const auto& nestedNestedComp : nestedGroup->getComponents()) {
+                        Sensor* sensor = dynamic_cast<Sensor*>(nestedNestedComp.get());
+                        if (sensor) {
+                            // It's a Sensor, so call the sensor-specific function
+                            sortedComponents.push_back(nestedNestedComp);
+                        }
+                    }
                 }
             }
         }
     }
+    
     // Sort the new vector list composed of only Sensor class objects, sortedComponents, by id
     std::sort(sortedComponents.begin(), sortedComponents.end(), [](const std::shared_ptr<Component>& a, const std::shared_ptr<Component>& b) -> bool {
         const Sensor* sensorA = dynamic_cast<Sensor*>(a.get());
@@ -222,6 +232,14 @@ void EmergencyCenter::orderByComponentLocation(){
                 if (sensor) {
                     // It's a Sensor, so call the sensor-specific function
                     sortedComponents.push_back(nestedComp);
+                }else if(auto nestedGroup = dynamic_cast<SensorGroup*>(nestedComp.get())){
+                    for (const auto& nestedNestedComp : nestedGroup->getComponents()) {
+                        Sensor* sensor = dynamic_cast<Sensor*>(nestedNestedComp.get());
+                        if (sensor) {
+                            // It's a Sensor, so call the sensor-specific function
+                            sortedComponents.push_back(nestedNestedComp);
+                        }
+                    }
                 }
             }
         }
@@ -253,6 +271,14 @@ void EmergencyCenter::orderByComponentVendor(){
                 if (sensor) {
                     // It's a Sensor, so call the sensor-specific function
                     sortedComponents.push_back(nestedComp);
+                }else if(auto nestedGroup = dynamic_cast<SensorGroup*>(nestedComp.get())){
+                    for (const auto& nestedNestedComp : nestedGroup->getComponents()) {
+                        Sensor* sensor = dynamic_cast<Sensor*>(nestedNestedComp.get());
+                        if (sensor) {
+                            // It's a Sensor, so call the sensor-specific function
+                            sortedComponents.push_back(nestedNestedComp);
+                        }
+                    }
                 }
             }
         }
