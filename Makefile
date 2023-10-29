@@ -35,7 +35,7 @@ main: main.cpp $(LIBRARY)
 	@echo "$(TITLE_COLOR)\n***** compiling main.cpp *****$(NO_COLOR)"
 	$(CXX) -c main.cpp -o main.o $(CXXFLAGS)
 	@echo "$(TITLE_COLOR)\n***** linking shared library *****$(NO_COLOR)"
-	g++ main.o -L. -lmylibrary -o main -Wall -fsanitize=address -fdiagnostics-color=auto
+	g++ main.o -L. -lmylibrary -o main -Wall -fdiagnostics-color=auto
 
 all: main
 
