@@ -12,6 +12,7 @@ private:
 public:
     //groupAlarm constructor to specify the name of the group alarm
     GroupAlarm(std::string groupAlarm): groupAlarm(groupAlarm){};
+    virtual ~GroupAlarm(){};
     virtual void executeStrategy() const override;
 };
 

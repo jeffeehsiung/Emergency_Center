@@ -14,7 +14,7 @@ private:
 public:
     // Constructor & Destructor
     EmergencyCenter();
-    ~EmergencyCenter();
+    virtual ~EmergencyCenter();
 
     // Singleton related methods
     static EmergencyCenter* getInstance();

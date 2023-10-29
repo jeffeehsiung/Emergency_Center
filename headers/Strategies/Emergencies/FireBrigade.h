@@ -11,7 +11,7 @@ class FireBrigade : public EmergencyStrategy
 {
 public:
     FireBrigade(){};
-    ~FireBrigade(){};
+    virtual ~FireBrigade(){};
     virtual void executeStrategy() const override;
 };
 

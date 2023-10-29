@@ -28,7 +28,7 @@ int main ()
     
     //LV-426
     Component* group2 = new SensorGroup("LV-426");
-    Component* g2 = new Gas("G002", "LV-426", "Disney", 0, 24, true, false, 1, "Oxygen", 1200000000);
+    Component* g2 = new Gas("G002", "LV-426", "Bisney", 0, 24, true, false, 1, "Oxygen", 1200000000);
     SensorStrategy* lvAlarm = new LeafAlarm("Oxygen Alarm"); 
     g2 ->addStrategy(std::shared_ptr<SensorStrategy>(lvAlarm));
     Component* m2 = new Motion("M002", "LV-426", "Disney", 0, 24, true, true, 1, 0);
@@ -41,13 +41,13 @@ int main ()
     Component* group4 = new SensorGroup("Dweezil");
     dynamic_cast<SensorGroup*>(group2) -> addComponent(std::shared_ptr<Component>(group3));
     dynamic_cast<SensorGroup*>(group2) -> addComponent(std::shared_ptr<Component>(group4));
-    Component* s3 = new Smoke("S003", "Moon Unit", "Disney", 0, 24, true, false, 1, 100);
+    Component* s3 = new Smoke("S003", "Moon Unit", "Aisney", 0, 24, true, false, 1, 100);
     Component* s4 = new Smoke("S004", "Dweezil", "Disney", 0, 24, true, false, 1, 100);
     SensorStrategy* fire = new FireBrigade();
     s3 ->addStrategy(std::shared_ptr<SensorStrategy>(fire));
     s4 ->addStrategy(std::shared_ptr<SensorStrategy>(fire));
-    Component* m3 = new Motion("M003", "Moon Unit", "Disney", 20, 8, true, false, 1, 10);
-    Component* m4 = new Motion("M004", "Dweezil", "Disney", 20, 8, true, false, 1, 10);
+    Component* m3 = new Motion("M003", "Moon Unit", "Zisney", 20, 8, true, false, 1, 10);
+    Component* m4 = new Motion("M004", "Dweezil", "Lisney", 20, 8, true, false, 1, 10);
     SensorStrategy* eggs = new SMS("Zorglax", "HQ number","Eggs are hatching"); 
     m3 ->addStrategy(std::shared_ptr<SensorStrategy>(eggs));
     m4 ->addStrategy(std::shared_ptr<SensorStrategy>(eggs));
@@ -57,7 +57,7 @@ int main ()
     dynamic_cast<SensorGroup*>(group4) -> addComponent(std::shared_ptr<Component>(m4));
     center->addComponent(std::shared_ptr<Component>(group2));
 
-    center->printAllComponents();
+    // center->printAllComponents();
     center->deactivateAllComponents(0);
     center->activateAllComponents(1); // 1 is Gas sensors, 2 is Motion , 3 is Smoke and 0 is all
     center->testAllComponents(1);
@@ -71,12 +71,16 @@ int main ()
     // center->testAllComponents(0);
     // center->activateAllComponents(0);
     // center->testAllComponents(0);
-    // center->orderByComponentId();
-    // std::cout<<*center;
-    // center->orderByComponentVendor();
-    // std::cout<<*center;
-    // center->orderByComponentLocation();
-    // std::cout<<*center;
+    // print in console that the following is the orderby functions
+    std::cout << "Orderby ID functions" << std::endl;
+    center->orderByComponentId();
+    std::cout<<*center;
+    std::cout << "Orderby Vendor functions" << std::endl;
+    center->orderByComponentVendor();
+    std::cout<<*center;
+    std::cout << "Orderby Location functions" << std::endl;
+    center->orderByComponentLocation();
+    std::cout<<*center;
 
 
     // print a line saying the end

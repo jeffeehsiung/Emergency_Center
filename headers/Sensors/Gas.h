@@ -12,11 +12,12 @@ class Gas : public Sensor
     public:
         Gas(std::string id, std::string location, std::string vendor, int activationTimeStart, 
         int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion, std::string type, int capacity);
+        virtual ~Gas() = default;
         virtual void setGasType(const std::string& type);
         virtual std::string getGasType() const {return gasType;};
         virtual void setAmount(const int type);
         virtual int getAmount() const {return amount;};
-        void printDetails(std::ostream& COUT) const override {
+        virtual void printDetails(std::ostream& COUT) const override {
             Sensor::printDetails(COUT);
             COUT << "Sensor Type: " << "Gas" << "\n";
             COUT << "Gas Type: " << getGasType() << "\n";

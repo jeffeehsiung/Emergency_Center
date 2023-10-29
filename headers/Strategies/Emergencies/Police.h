@@ -7,7 +7,7 @@ class Police : public EmergencyStrategy
 {
 public:
     Police(){};
-    ~Police(){};
+    virtual ~Police(){};
     virtual void executeStrategy() const override;
 };
 

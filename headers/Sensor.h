@@ -8,8 +8,10 @@ class Sensor: public Component {
         // constructor
         Sensor(std::string id): Component(id){}
         Sensor(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion);
+        // destructor, clear all the pointers
+        virtual ~Sensor(){}
 
-        void printDetails(std::ostream& COUT) const override {
+        virtual void printDetails(std::ostream& COUT) const override {
             Component::printDetails(COUT);
             COUT << "Is active? " << (getIsActive() ? "Yes" : "No") << "\n"  // Ternary to print Yes/No instead of 1/0
             << "Location: " << getLocation() << "\n"
@@ -36,9 +38,9 @@ class Sensor: public Component {
         virtual bool getIsActive() const {return isActive;};
 
         /** Operator overloading methods */
-        Component& operator++();
+        virtual Component& operator++();
 
-        Component& operator--();
+        virtual Component& operator--();
 
     
     protected:
