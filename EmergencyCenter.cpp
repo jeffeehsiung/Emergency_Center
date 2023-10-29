@@ -56,15 +56,27 @@ void EmergencyCenter::testComponent(Component* component, int mode) {
     // If it's a sensor, directly print its active status
     if (auto sensor = dynamic_cast<Sensor*>(component)) {
         if (mode == 1 && dynamic_cast<Gas*>(component)) {
+            if(sensor->getIsActive()){
+                sensor->executeStrategy();
+            }
             std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
         }
         else if (mode == 2 && dynamic_cast<Motion*>(component)) {
+            if(sensor->getIsActive()){
+                sensor->executeStrategy();
+            }
             std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
         }
         else if (mode == 3 && dynamic_cast<Smoke*>(component)) {
+            if(sensor->getIsActive()){
+                sensor->executeStrategy();
+            }
             std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
         }
         else if(mode == 0){
+            if(sensor->getIsActive()){
+                sensor->executeStrategy();
+            }
             // If you want to activate all sensors, regardless of their type
             std::cout << "Sensor " << sensor->getId() << " is " << (sensor->getIsActive() ? "active" : "not active") << "\n";
         }

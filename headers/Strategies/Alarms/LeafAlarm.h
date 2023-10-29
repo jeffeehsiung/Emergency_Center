@@ -13,7 +13,7 @@ private:
     std::string leafAlarm;
 public:
     //leafAlarm constructor to specify the name of the leaf alarm
-    LeafAlarm(std::string& leafAlarm): leafAlarm(leafAlarm){};
+    LeafAlarm(std::string leafAlarm): leafAlarm(leafAlarm){};
     virtual void executeStrategy() const override;
 };
 

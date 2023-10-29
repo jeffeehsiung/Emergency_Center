@@ -1,4 +1,4 @@
-#include "headers/Sensor.h"
+#include "headers/Sensors/Motion.h"
 
 Motion::Motion(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion, int activationRange):
     Sensor(id, location, vendor, activationTimeStart, activationTimeEnd, isActive, alwaysActive, softwareVersion)
