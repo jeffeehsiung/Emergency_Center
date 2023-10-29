@@ -40,7 +40,7 @@ main: main.cpp $(LIBRARY)
 all: main
 
 run: $(EXEC)
-	export LD_LIBRARY_PATH=./:$$LD_LIBRARY_PATH; valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt  ./$(EXEC) 
+	export LD_LIBRARY_PATH=./:$$LD_LIBRARY_PATH; ./$(EXEC) 
 
 # Cleanup object files, executables, and libraries
 clean:
