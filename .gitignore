@@ -10,8 +10,8 @@ Thumbs.db
 # ignore compiled code-specific files, such as .o files.
 *.o
 
-# ignore shared library files
-*.so
+# # ignore shared library files
+# *.so
 
 /.vscode
 
