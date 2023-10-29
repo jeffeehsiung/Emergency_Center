@@ -4,5 +4,5 @@
 void CentralDispatch::executeStrategy() const
 {
     // call the central dispatch
-    std::cout << "Calling the KULeuven central dispatch for evacuation\n" << std::endl;
+    std::cout << "Calling the central dispatch for evacuation\n" << std::endl;
 }
