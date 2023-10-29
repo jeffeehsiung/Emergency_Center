@@ -1,4 +1,4 @@
-#include "headers/Sensor.h"
+#include "headers/Sensors/Smoke.h"
 
 Smoke::Smoke(std::string id, std::string location, std::string vendor, int activationTimeStart, int activationTimeEnd, bool isActive, bool alwaysActive, int softwareVersion, int threshold):
     Sensor(id, location, vendor, activationTimeStart, activationTimeEnd, isActive, alwaysActive, softwareVersion)
